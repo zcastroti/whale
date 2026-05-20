@@ -12,8 +12,7 @@ footer.innerHTML = `
     <i class="fa-solid fa-sliders"></i>
 `
 
-document.querySelector('.btnModal').onclick = ()=> { modal('Janela do Sistema') }
-
+// Modal
 function modal(titulo) {
     if (document.querySelector('.overlay')) return
 
@@ -31,7 +30,7 @@ function modal(titulo) {
     `
     <div class='mHeader'>
         ${titulo}
-        <i class="fa-solid fa-circle-xmark" style="cursor:pointer"></i>
+        <i class="fa-regular fa-circle-xmark" style="cursor:pointer"></i>
     </div>
     <div class='mBody'>
         Conteúdo do Modal aqui...
