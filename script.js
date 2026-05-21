@@ -68,7 +68,6 @@ export function modal(titulo) {
         Conteúdo do Modal aqui...
     </div>
     <div class='mFooter'>
-        <button>Confirmar</button>
     </div>
     `
 

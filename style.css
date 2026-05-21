@@ -13,6 +13,7 @@
 html, body {
     width: 100%;
     height: 100%;
+    padding-top: 10px;
     background: whitesmoke;
     color: #282828;
     overflow: hidden; 
@@ -24,12 +25,15 @@ html, body {
 --------------------*/
 header {
     display: flex; align-items: center; justify-content: center;
+    width: 85%;
+    margin: auto;
     height: 60px;
     background: #678DB2;
     color: whitesmoke; 
     font-size: 1.7em;
     font-weight: bolder;
-    text-shadow: 3px 3px #282828;}
+    border-radius: 20px;
+    text-shadow: 3px 3px #282828; }
 /*--------------------
     Main
 --------------------*/
@@ -143,15 +147,13 @@ button {
     border: solid 1px #DADADA;
 }
 
-
-
 .editor {
   overflow: hidden;
   overflow-y: scroll;
   height: 320px;
   padding: 5px;
   background: #deebf7;
-  border: solid 1px #1F1F2080; }
+  border: solid 1px #282828; }
 
 .editor::-webkit-scrollbar  { display: block; width: 5px; }
 .editor::-webkit-scrollbar-track { background: #1F1F2080; }
