@@ -1,19 +1,60 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import { 
+  getFirestore, 
+  doc, 
+  getDoc, 
+  setDoc, 
+  collection, 
+  getDocs, 
+  updateDoc, 
+  deleteDoc,
+  query, 
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAzChmCdzNXfSx5x_gL8m69ohYcVSdfagA",
+  authDomain: "projeto-bc2b5.firebaseapp.com",
+  projectId: "projeto-bc2b5",
+  storageBucket: "projeto-bc2b5.firebasestorage.app",
+  messagingSenderId: "7604977733",
+  appId: "1:7604977733:web:26c3b831bf961530bea32c" };
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export { 
+  db, 
+  doc, 
+  getDoc, 
+  setDoc, 
+  collection, 
+  getDocs, 
+  updateDoc, 
+  deleteDoc,
+  query,
+  orderBy };
+
+// --------------------------------------------------------------------------
+
 // Header
 let header = document.createElement('header')
 document.body.prepend(header)
-header.textContent = 'Sistema'
+header.innerHTML = 'Sistema'
 
 // Footer
 let footer = document.createElement('footer')
 document.body.appendChild(footer)
-footer.innerHTML = `
-    <i class="fa-solid fa-house"></i>
-    <i class="fa-solid fa-pen-to-square"></i>
-    <i class="fa-solid fa-sliders"></i>
+footer.innerHTML = 
+`
+<a href='index.html'><i class="fa-solid fa-house"></i></a>
+<a href='#'><i class="fa-solid fa-pen-to-square"></i></a>
+<a href='#'><i class="fa-solid fa-sliders"></i></a>
 `
 
-// Modal
-function modal(titulo) {
+// Função - Modal
+export function modal(titulo) {
     if (document.querySelector('.overlay')) return
 
     // Criar Overlay
@@ -53,3 +94,5 @@ function modal(titulo) {
     let ico_FecharModal = modal.querySelector('.fa-circle-xmark')
     ico_FecharModal.onclick = ()=> { fecharModal() }
 }
+
+

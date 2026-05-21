@@ -121,8 +121,19 @@ button {
   border-top: solid 1px #DADADA; }
 
 /*--------------------
-    Formulário de Login
+    Formulário
 --------------------*/
-.form_Login {
-    display: flex; flex-flow: column; gap: 10px;
+.formLogin { display: flex; flex-flow: column; gap: 10px; }
+
+/*--------------------
+    Anotações
+--------------------*/
+.menuNotas {
+    display: flex; align-items: center; justify-content: center; flex-flow: row wrap; gap: 10px;
+    padding: 20px;
+}
+.nota {
+    padding: 10px;
+    border-radius: 5px;
+    background: #DADADA;
 }

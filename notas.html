@@ -7,14 +7,43 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
+    <main class="conteudo">
     </main>
 
-    <style>
-        footer { display: none; }
-    </style>
+    <script type="module">
+        import { db, doc, getDoc, setDoc, collection, getDocs, updateDoc, deleteDoc, query, orderBy } from './script.js'
+        // --------------------------------------------------------------------------
 
-    <script src="script.js"></script>
+        const CONTEUDO = document.querySelector('.conteudo')
+        const USUARIO = 'admin'
+
+        carregar_Notas()
+        async function carregar_Notas() {
+
+            let menuNotas = document.createElement('div')
+            menuNotas.classList.add('menuNotas')
+            CONTEUDO.prepend(menuNotas);
+
+            let notasREF = collection(db, 'usuarios', USUARIO, 'notas')
+            let consulta = await getDocs(notasREF);
+            if (!consulta.empty) {
+                consulta.forEach(e => {
+                    let dados = e.data()
+                    let nota = document.createElement('div')
+                    nota.classList.add('nota')
+                    menuNotas.appendChild(nota)
+                    nota.dataset.id = e.id
+                    nota.innerHTML = `${dados.nome}`
+                });
+            } else {
+                let texto = document.createElement('p')
+                menuNotas.appendChild(texto)
+                texto.innerHTML = `<p class='textoDestaque'>Nenhuma nota cadastrada</p>`
+            }
+        }
+    </script>
+
+    <script type="module" src="script.js"></script>
     <script src="https://kit.fontawesome.com/ac3bdc8044.js" crossorigin="anonymous"></script>
 </body>
 </html>
