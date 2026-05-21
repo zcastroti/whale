@@ -41,7 +41,10 @@ export {
 // Header
 let header = document.createElement('header')
 document.body.prepend(header)
-header.innerHTML = 'Sistema'
+header.innerHTML = 
+`
+<img src="whale.png" width="200px">
+`
 
 
 // Função - Modal
