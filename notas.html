@@ -38,10 +38,92 @@
             editar_Nota()
         }
 
+function editar_Nota() {
+    let notas = document.querySelectorAll('.nota')
+    notas.forEach(e => {
+        e.onclick = async ()=> { 
+            let id = e.dataset.id
+
+            let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id)
+            let consulta = await getDoc(notaREF)
+            let dados = consulta.data() 
 
 
+            let modal_Editor = document.createElement('div')
+            modal_Editor.classList.add('modal','flutuante')
+            document.body.appendChild(modal_Editor)
+            modal_Editor.innerHTML = `
+                <div class="modal_Conteudo">
+                    <div class='row_noWrap_Left_5' style='margin-bottom: 5px;'> 
+                        <p class='ID'>${id}</p> 
+                        <p class='texto_Destaque'>${dados.nome}</p>
+                        <div style='flex:content; text-align: right;'>
+                            <i class="fa-regular fa-circle-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="conteudo_Editor" contenteditable="true">
+                    ${dados.conteudo || ''}
+                    </div>
+                </div>
+                <div class="modal_Rodape">
+                    <button class="BTN voltar"><i class="fa-solid fa-circle-arrow-left"></i> Voltar</button>
+                    <button class="BTN salvar"><i class="fa-solid fa-circle-check"></i> Salvar</button>
+                    <button class="BTN deletar"><i class="fa-solid fa-circle-xmark"></i> Deletar</button>
+                </div>
+            `
+            
+            //-- Voltar - Visualização das Notas
+            document.querySelector('.voltar').onclick = ()=> {
+                overlay.remove()
+                modal_Editor.remove()
+            }
+            document.querySelector('.fa-circle-xmark').onclick = ()=> {
+                overlay.remove()
+                modal_Editor.remove()
+            }
+            
+            //-- Salvar
+            document.querySelector('.salvar').onclick = ()=> { 
+                salvarNota() 
+            }
+            //-- Deletar Nota
+            document.querySelector('.deletar').onclick = ()=> {
+                modal_Editor.style.display = 'none'
+                let modal_Deletar_Nota = document.createElement('div')
+                modal_Deletar_Nota.classList.add('modal' , 'flutuante')
+                document.body.appendChild(modal_Deletar_Nota)
+                modal_Deletar_Nota.innerHTML = `
+                    <div class="modal_cabecalho">
+                        <i class="fa-solid fa-shapes"></i>
+                        <p>Deletar Nota</p>
+                    </div>
 
-        
+                    <div class="modal_conteudo">
+                        <p>Deseja realmente deletar essa nota?</p>
+                    </div>
+
+                    <div class="modal_rodape">
+                        <button class='BTN cancelar_deletar'><i class="fa-solid fa-circle-xmark"></i> Cancelar</button>
+                        <button class='BTN confirmar_deletar'><i class="fa-solid fa-circle-check"></i> Confirmar</button>
+                    </div>
+                `
+                
+                document.querySelector('.cancelar_deletar').onclick = ()=> { 
+                    modal_Deletar_Nota.remove()
+                    modal_Editor.style.display = 'flex'
+                }
+                document.querySelector('.confirmar_deletar').onclick = async ()=> {
+                    await deleteDoc(notaREF);
+                    modal_Deletar_Nota.remove()
+                    modal_Editor.remove()
+                    overlay.remove()
+                    e.remove()
+                }
+            }     
+        }
+    });
+}
+
     </script>
 
     <script type="module" src="script.js"></script>
