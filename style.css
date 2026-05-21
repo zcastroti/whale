@@ -100,7 +100,8 @@ button {
   display: flex; flex-direction: column;
   overflow: hidden;
   width: 95%;
-  max-width: 500px; 
+  max-width: 500px;
+  max-height: 500px;
   background: whitesmoke;
   border-radius: 8px; }
 .mHeader {
@@ -141,3 +142,18 @@ button {
     background: white;
     border: solid 1px #DADADA;
 }
+
+
+
+.editor {
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 320px;
+  padding: 5px;
+  background: #deebf7;
+  border: solid 1px #1F1F2080; }
+
+.editor::-webkit-scrollbar  { display: block; width: 5px; }
+.editor::-webkit-scrollbar-track { background: #1F1F2080; }
+.editor::-webkit-scrollbar-thumb { background: #1F1F20; }
+.editor::-webkit-scrollbar-thumb:hover { background: #678db2; }

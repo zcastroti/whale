@@ -14,6 +14,8 @@
         import { db, doc, getDoc, setDoc, collection, getDocs, updateDoc, deleteDoc, query, orderBy } from './script.js'
         // --------------------------------------------------------------------------
 
+        import { modal } from './script.js'
+
         const CONTEUDO = document.querySelector('.conteudo')
         const USUARIO = 'admin'
 
@@ -48,44 +50,23 @@ function editar_Nota() {
             let consulta = await getDoc(notaREF)
             let dados = consulta.data() 
 
+            modal('Editar Nota')
 
-            let modal_Editor = document.createElement('div')
-            modal_Editor.classList.add('modal','flutuante')
-            document.body.appendChild(modal_Editor)
-            modal_Editor.innerHTML = `
-                <div class="modal_Conteudo">
-                    <div class='row_noWrap_Left_5' style='margin-bottom: 5px;'> 
-                        <p class='ID'>${id}</p> 
-                        <p class='texto_Destaque'>${dados.nome}</p>
-                        <div style='flex:content; text-align: right;'>
-                            <i class="fa-regular fa-circle-xmark"></i>
-                        </div>
-                    </div>
-                    <div class="conteudo_Editor" contenteditable="true">
-                    ${dados.conteudo || ''}
-                    </div>
-                </div>
-                <div class="modal_Rodape">
-                    <button class="BTN voltar"><i class="fa-solid fa-circle-arrow-left"></i> Voltar</button>
-                    <button class="BTN salvar"><i class="fa-solid fa-circle-check"></i> Salvar</button>
-                    <button class="BTN deletar"><i class="fa-solid fa-circle-xmark"></i> Deletar</button>
-                </div>
+            // Corpo Modal
+            document.querySelector('.mBody').innerHTML =
             `
-            
-            //-- Voltar - Visualização das Notas
-            document.querySelector('.voltar').onclick = ()=> {
-                overlay.remove()
-                modal_Editor.remove()
-            }
-            document.querySelector('.fa-circle-xmark').onclick = ()=> {
-                overlay.remove()
-                modal_Editor.remove()
-            }
+            <div class='editor' contenteditable="true">${dados.conteudo || ''}</div>
+            `
+
+
+        
+
             
             //-- Salvar
             document.querySelector('.salvar').onclick = ()=> { 
                 salvarNota() 
             }
+
             //-- Deletar Nota
             document.querySelector('.deletar').onclick = ()=> {
                 modal_Editor.style.display = 'none'
