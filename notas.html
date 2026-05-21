@@ -19,7 +19,6 @@
 
         carregar_Notas()
         async function carregar_Notas() {
-
             let menuNotas = document.createElement('div')
             menuNotas.classList.add('menuNotas')
             CONTEUDO.prepend(menuNotas);
@@ -35,17 +34,17 @@
                     nota.dataset.id = e.id
                     nota.innerHTML = `${dados.nome}`
                 });
-            } else {
-                let texto = document.createElement('p')
-                menuNotas.appendChild(texto)
-                texto.innerHTML = `<p class='textoDestaque'>Nenhuma nota cadastrada</p>`
-            }
+            } else { menuNotas.innerHTML = 'Nenhuma nota cadastrada' }
+            editar_Nota()
         }
+
+
+
+
+        
     </script>
 
     <script type="module" src="script.js"></script>
     <script src="https://kit.fontawesome.com/ac3bdc8044.js" crossorigin="anonymous"></script>
 </body>
 </html>
-
-

@@ -43,15 +43,6 @@ let header = document.createElement('header')
 document.body.prepend(header)
 header.innerHTML = 'Sistema'
 
-// Footer
-let footer = document.createElement('footer')
-document.body.appendChild(footer)
-footer.innerHTML = 
-`
-<a href='index.html'><i class="fa-solid fa-house"></i></a>
-<a href='#'><i class="fa-solid fa-pen-to-square"></i></a>
-<a href='#'><i class="fa-solid fa-sliders"></i></a>
-`
 
 // Função - Modal
 export function modal(titulo) {
