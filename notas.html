@@ -43,9 +43,8 @@
 function editar_Nota() {
     let notas = document.querySelectorAll('.nota')
     notas.forEach(e => {
-        e.onclick = async ()=> { 
+        e.onclick = async () => { 
             let id = e.dataset.id
-
             let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id)
             let consulta = await getDoc(notaREF)
             let dados = consulta.data() 
@@ -57,21 +56,31 @@ function editar_Nota() {
             `
             <div class='editor' contenteditable="true">${dados.conteudo || ''}</div>
             `
+            
+            // --- IMPLEMENTAÇÃO DO SALVAMENTO AUTOMÁTICO ---
+            const editor = document.querySelector('.editor')
+            let temporizador;
 
-            // Footer Modal
-            document.querySelector('.mFooter').innerHTML =
-            `
-            <button class="salvar">Salvar</button>
-            <button class="deletar">Deletar</button>
-            `
+            // Escuta o evento 'input' que detecta qualquer alteração de texto na div
+            editor.oninput = () => {
+                // Se o usuário digitar algo antes do tempo acabar, limpa o temporizador anterior
+                clearTimeout(temporizador);
 
-        
+                // Define um novo temporizador (ex: 1000ms = 1 segundo após parar de digitar)
+                temporizador = setTimeout(async () => {
+                    const novoConteudo = editor.innerHTML; // ou editor.innerText, dependendo de como salva
 
-            //-- Salvar
-            document.querySelector('.salvar').onclick = ()=> { 
-                salvarNota() 
-            }
-    
+                    try {
+                        // Atualiza apenas o campo 'conteudo' no documento correspondente
+                        await updateDoc(notaREF, {
+                            conteudo: novoConteudo
+                        });
+                        console.log("Nota salva automaticamente!");
+                    } catch (erro) {
+                        console.error("Erro ao salvar automaticamente:", erro);
+                    }
+                }, 1000); // 1 segundo de espera
+            };
         }
     });
 }
