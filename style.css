@@ -107,7 +107,7 @@ button {
   max-width: 500px;
   max-height: 500px;
   background: whitesmoke;
-  border-radius: 8px; }
+  border-radius: 20px; }
 .mHeader {
   display: flex; align-items: center; justify-content: space-between;
   height: 40px;
@@ -137,20 +137,18 @@ button {
     padding: 20px; }
 
 .nota {
-    flex: content;
-    padding: 12px;
-    border-radius: 5px;
+
+    padding: 15px 20px;
+    border-radius: 20px;
     text-align: center;
     background: white;
-    border: solid 1px #DADADA;
 }
 
 .editor {
-  overflow: hidden;
-  overflow-y: scroll;
-  height: 320px;
-  padding: 5px;
-
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 320px;
+    padding: 5px;
  }
 
 .editor::-webkit-scrollbar  { display: block; width: 5px; }
