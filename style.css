@@ -134,7 +134,7 @@ button {
 .menuNotas {
     display: flex; align-items: center; justify-content: center; flex-flow: row wrap; gap: 10px;
     max-width: 600px;
-    padding: 20px; }
+    padding: 40px 20px 20px; }
 
 .nota {
 
