@@ -70,8 +70,7 @@ export function modal(titulo) {
     <div class='mBody'>
         Conteúdo do Modal aqui...
     </div>
-    <div class='mFooter'>
-    </div>
+
     `
 
     // Função - Fechar Modal

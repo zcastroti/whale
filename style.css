@@ -111,10 +111,9 @@ button {
 .mHeader {
   display: flex; align-items: center; justify-content: space-between;
   height: 40px;
-  padding: 20px;
+  padding: 10px;
   font-weight: bold;
   font-size: 18px;
-  border-bottom: solid 1px #DADADA;
   color: #678DB2; }
 .mBody { 
     flex: 1; 
@@ -122,8 +121,7 @@ button {
 .mFooter {
   display: flex; align-items: center; gap: 10px;
   height: 60px;
-  padding: 20px;
-  border-top: solid 1px #DADADA; }
+  padding: 20px; }
 
 /*--------------------
     Formulário
@@ -152,8 +150,8 @@ button {
   overflow-y: scroll;
   height: 320px;
   padding: 5px;
-  background: #deebf7;
-  border: solid 1px #282828; }
+
+ }
 
 .editor::-webkit-scrollbar  { display: block; width: 5px; }
 .editor::-webkit-scrollbar-track { background: #1F1F2080; }
