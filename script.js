@@ -63,7 +63,6 @@ export function modal(titulo) {
     modal.innerHTML = 
     `
     <div class='mHeader'>
-    
       ${titulo}
     </div>
     <div class='mBody'>

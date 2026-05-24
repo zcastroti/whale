@@ -87,6 +87,16 @@
                 }
             });
         }
+
+
+        let addNota = document.createElement('button')
+        addNota.classList.add('add')
+        CONTEUDO.appendChild(addNota)
+        addNota.textContent = 'Nova Nota'
+        document.querySelector('.add').onclick =  async ()=> {
+            prompt('Nome')
+        }
+
     </script>
 
     <script type="module" src="script.js"></script>

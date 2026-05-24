@@ -75,6 +75,7 @@ button {
     font-weight: bolder;
     padding: 15px;
     border: none;
+    border-radius: 14px;
     background: #678DB2;
     color: whitesmoke; }
 
@@ -118,7 +119,9 @@ button {
 .mFooter {
   display: flex; align-items: center; gap: 10px;
   height: 40px;
-  padding-left: 20px; }
+  padding-left: 20px;
+    background: #ebebeb;
+}
 
 .mFooter i { font-size: 20px; }
 
@@ -126,6 +129,17 @@ button {
     Formulário
 --------------------*/
 .formLogin { display: flex; flex-flow: column; gap: 10px; }
+
+
+/*--------------------
+    Button Add
+--------------------*/
+.add {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+}
+
 
 /*--------------------
     Anotações
