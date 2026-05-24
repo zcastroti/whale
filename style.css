@@ -117,8 +117,10 @@ button {
     margin: 10px }
 .mFooter {
   display: flex; align-items: center; gap: 10px;
-  height: 60px;
-  padding: 20px; }
+  height: 40px;
+  padding-left: 20px; }
+
+.mFooter i { font-size: 20px; }
 
 /*--------------------
     Formulário
