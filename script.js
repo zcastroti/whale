@@ -64,7 +64,6 @@ export function modal(titulo) {
     modal.innerHTML = 
     `
     <div class='mHeader'>
-      <i class="fa-regular fa-circle-xmark" style="cursor:pointer"></i>
       ${titulo}
     </div>
     <div class='mBody'>
@@ -82,9 +81,6 @@ export function modal(titulo) {
     // Overlay - Fechar Modal
     overlay.onclick = ()=> { fecharModal() }
     
-    // Icone - Fechar Modal
-    let ico_FecharModal = modal.querySelector('.fa-circle-xmark')
-    ico_FecharModal.onclick = ()=> { fecharModal() }
 }
 
 
