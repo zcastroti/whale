@@ -107,9 +107,8 @@ button {
   background: whitesmoke;
   border-radius: 14px; }
 .mHeader {
-  display: flex; align-items: center; gap: 20px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
   height: 40px;
-  padding-left: 20px;
   font-weight: bold;
   font-size: 18px;
   color: #678DB2; }

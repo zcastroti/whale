@@ -43,9 +43,8 @@ let header = document.createElement('header')
 document.body.prepend(header)
 header.innerHTML = 
 `
-<img src="whale.png" width="200px">
+<a href='index.html'><img src="whale.png" width="200px"></a>
 `
-
 
 // Função - Modal
 export function modal(titulo) {
@@ -64,12 +63,14 @@ export function modal(titulo) {
     modal.innerHTML = 
     `
     <div class='mHeader'>
+    
       ${titulo}
     </div>
     <div class='mBody'>
         Conteúdo do Modal aqui...
     </div>
-
+    <div class='mFooter'>
+    </div>
     `
 
     // Função - Fechar Modal

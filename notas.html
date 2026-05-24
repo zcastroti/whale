@@ -40,51 +40,52 @@
             editar_Nota()
         }
 
-function editar_Nota() {
-    let notas = document.querySelectorAll('.nota')
-    notas.forEach(e => {
-        e.onclick = async () => { 
-            let id = e.dataset.id
-            let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id)
-            let consulta = await getDoc(notaREF)
-            let dados = consulta.data() 
+        function editar_Nota() {
+            let notas = document.querySelectorAll('.nota')
+            notas.forEach(e => {
+                e.onclick = async () => { 
+                    let id = e.dataset.id
+                    let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id)
+                    let consulta = await getDoc(notaREF)
+                    let dados = consulta.data() 
 
-            modal(dados.nome)
+                    modal(dados.nome)
 
-            // Body Modal
-            document.querySelector('.mBody').innerHTML =
-            `
-            <div class='editor' contenteditable="true">${dados.conteudo || ''}</div>
-            `
-            
-            // --- IMPLEMENTAÇÃO DO SALVAMENTO AUTOMÁTICO ---
-            const editor = document.querySelector('.editor')
-            let temporizador;
+                    // Body Modal
+                    document.querySelector('.mBody').innerHTML =
+                    `
+                    <div class='editor' contenteditable="true">${dados.conteudo || ''}</div>
+                    `
 
-            // Escuta o evento 'input' que detecta qualquer alteração de texto na div
-            editor.oninput = () => {
-                // Se o usuário digitar algo antes do tempo acabar, limpa o temporizador anterior
-                clearTimeout(temporizador);
+                    // Footer Modal
+                    document.querySelector('.mFooter').innerHTML =
+                    `
+                    <button>aaaa</button>
+                    `
 
-                // Define um novo temporizador (ex: 1000ms = 1 segundo após parar de digitar)
-                temporizador = setTimeout(async () => {
-                    const novoConteudo = editor.innerHTML; // ou editor.innerText, dependendo de como salva
+                    // --- IMPLEMENTAÇÃO DO SALVAMENTO AUTOMÁTICO ---
+                    const editor = document.querySelector('.editor')
+                    let temporizador;
 
-                    try {
-                        // Atualiza apenas o campo 'conteudo' no documento correspondente
-                        await updateDoc(notaREF, {
-                            conteudo: novoConteudo
-                        });
-                        console.log("Nota salva automaticamente!");
-                    } catch (erro) {
-                        console.error("Erro ao salvar automaticamente:", erro);
-                    }
-                }, 1000); // 1 segundo de espera
-            };
+                    editor.oninput = () => {
+                        clearTimeout(temporizador);
+
+                        temporizador = setTimeout(async () => {
+                            const novoConteudo = editor.innerHTML;
+
+                            try {
+                                await updateDoc(notaREF, {
+                                    conteudo: novoConteudo
+                                });
+                                console.log("Nota salva automaticamente!");
+                            } catch (erro) {
+                                console.error("Erro ao salvar automaticamente:", erro);
+                            }
+                        }, 1000); // 1 segundo de espera
+                    };
+                }
+            });
         }
-    });
-}
-
     </script>
 
     <script type="module" src="script.js"></script>
