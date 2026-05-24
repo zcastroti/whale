@@ -28,12 +28,8 @@ header {
     width: 85%;
     margin: auto;
     height: 60px;
+    color: whitesmoke; }
 
-    color: whitesmoke; 
-    font-size: 1.7em;
-    font-weight: bolder;
-    border-radius: 20px;
-    text-shadow: 3px 3px #282828; }
 /*--------------------
     Main
 --------------------*/
@@ -41,6 +37,7 @@ main {
     flex: 1; 
     display: flex; align-items: center; justify-content: flex-start; flex-flow: column; gap: 10px;
     padding-bottom: 60px; }
+
 /*--------------------
     Footer
 --------------------*/
@@ -107,11 +104,11 @@ button {
   max-width: 500px;
   max-height: 500px;
   background: whitesmoke;
-  border-radius: 20px; }
+  border-radius: 14px; }
 .mHeader {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; gap: 20px;
   height: 40px;
-  padding: 10px;
+  padding-left: 20px;
   font-weight: bold;
   font-size: 18px;
   color: #678DB2; }
@@ -134,24 +131,21 @@ button {
 .menuNotas {
     display: flex; align-items: center; justify-content: center; flex-flow: row wrap; gap: 10px;
     max-width: 600px;
-    padding: 40px 20px 20px; }
+    padding: 20px; }
 
 .nota {
-
+    cursor: pointer;
     padding: 15px 20px;
-    border-radius: 20px;
+    border-radius: 14px;
     text-align: center;
-    background: white;
-}
+    background: white; }
 
 .editor {
     overflow: hidden;
     overflow-y: scroll;
     height: 320px;
-    padding: 5px;
- }
+    padding: 5px; }
 
 .editor::-webkit-scrollbar  { display: block; width: 5px; }
-.editor::-webkit-scrollbar-track { background: #1F1F2080; }
-.editor::-webkit-scrollbar-thumb { background: #1F1F20; }
-.editor::-webkit-scrollbar-thumb:hover { background: #678db2; }
+.editor::-webkit-scrollbar-track { background: #00000080; }
+.editor::-webkit-scrollbar-thumb { background: #678DB2; }

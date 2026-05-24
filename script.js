@@ -64,8 +64,8 @@ export function modal(titulo) {
     modal.innerHTML = 
     `
     <div class='mHeader'>
-        ${titulo}
-        <i class="fa-regular fa-circle-xmark" style="cursor:pointer"></i>
+      <i class="fa-regular fa-circle-xmark" style="cursor:pointer"></i>
+      ${titulo}
     </div>
     <div class='mBody'>
         Conteúdo do Modal aqui...
