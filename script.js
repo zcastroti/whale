@@ -95,16 +95,8 @@ export function prompt(texto) {
     
     prompt.innerHTML = 
     `
+    <div class='pBody'></div>
+    <div class='pFooter'></div>
     `
-
-    // Função - Fechar Modal
-    function fecharPRompt() {
-        overlay.remove()
-        modal.remove()
-    }
-
-    // Overlay - Fechar Modal
-    overlay.onclick = ()=> { fecharModal() }
-    
 }
 
