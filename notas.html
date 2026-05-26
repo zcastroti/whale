@@ -17,7 +17,7 @@
         import { modal } from './script.js'
 
         const CONTEUDO = document.querySelector('.conteudo')
-        const USUARIO = 'sae'
+        const USUARIO = 'admin'
 
         carregar_Notas()
         async function carregar_Notas() {
@@ -60,30 +60,36 @@
                     // Footer Modal
                     document.querySelector('.mFooter').innerHTML =
                     `
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    <i class="fa-solid fa-trash"></i>
+                    <button>Renomear <i class="fa-regular fa-pen-to-square"></i></button>
+                    <button>Deletar <i class="fa-regular fa-trash-can"></i></button>
                     `
 
                     // --- IMPLEMENTAÇÃO DO SALVAMENTO AUTOMÁTICO ---
                     const editor = document.querySelector('.editor')
-                    let temporizador;
+                    let temporizador
 
                     editor.oninput = () => {
-                        clearTimeout(temporizador);
+                        clearTimeout(temporizador)
 
                         temporizador = setTimeout(async () => {
-                            const novoConteudo = editor.innerHTML;
+                            const novoConteudo = editor.innerHTML
 
-                            try {
-                                await updateDoc(notaREF, {
-                                    conteudo: novoConteudo
-                                });
-                                console.log("Nota salva automaticamente!");
-                            } catch (erro) {
-                                console.error("Erro ao salvar automaticamente:", erro);
-                            }
-                        }, 1000); // 1 segundo de espera
-                    };
+                            await updateDoc(notaREF, {
+                                conteudo: novoConteudo
+                            })
+                            console.log("Nota salva automaticamente!")
+                            
+                        }, 1000)
+                    }
+
+                    //-- Renomear
+                    document.querySelector('.fa-pen-to-square').onclick = async ()=> {
+                    }
+
+                    //-- Deletar
+                    document.querySelector('.fa-trash').onclick = ()=> {
+                       modal('aaa')
+                    }
                 }
             });
         }
@@ -92,7 +98,7 @@
         let addNota = document.createElement('button')
         addNota.classList.add('add')
         CONTEUDO.appendChild(addNota)
-        addNota.textContent = 'Nova Nota'
+        addNota.innerHTML = `Adicionar Nota<i class="fa-regular fa-square-plus"></i>`
         document.querySelector('.add').onclick =  async ()=> {
             prompt('Nome')
         }
