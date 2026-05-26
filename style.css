@@ -55,12 +55,14 @@ input:hover {
 
 button {
     cursor: pointer;
-    font-weight: bolder;
-    padding: 15px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     color: #282828;
- }
+    background: #e2e2e2; }
+button:hover {
+    transition: .5s;
+    font-weight: 500; }
 
 /*--------------------
     Overlay
@@ -100,7 +102,7 @@ button {
     margin: 0px 15px }
 .mFooter {
     display: flex; align-items: center; gap: 10px;
-    padding-left: 40px;
+    padding-left: 20px;
     height: 50px; }
 .mFooter i { 
     padding: 10px;
@@ -112,12 +114,11 @@ button {
 .prompt {
     position: fixed;
     z-index: 3;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     display: flex; flex-direction: column;
     overflow: hidden;
-    background: #f5f5f7;
+    background: rgb(255, 150, 150);
     border-radius: 5px;
 }
 
@@ -145,10 +146,9 @@ button {
     padding: 15px 20px;
     border-radius: 5px;
     text-align: center;
-    background: white; }
+    background: #e2e2e2; }
 
 .editor {
-
     border: solid 1px #DADADA;
     overflow: hidden;
     overflow-y: scroll;

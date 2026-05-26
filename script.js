@@ -63,6 +63,7 @@ export function modal(titulo) {
     modal.innerHTML = 
     `
     <div class='mHeader'>
+      <i class="fa-regular fa-font-awesome"></i>
       ${titulo}
     </div>
     <div class='mBody'>
@@ -83,4 +84,27 @@ export function modal(titulo) {
     
 }
 
+// Função - Prompt
+export function prompt(texto) {
+    if (document.querySelector('.prompt')) return
+
+    // Cria Prompt
+    let prompt = document.createElement('div')
+    prompt.classList.add('prompt')
+    document.body.prepend(prompt)
+    
+    prompt.innerHTML = 
+    `
+    `
+
+    // Função - Fechar Modal
+    function fecharPRompt() {
+        overlay.remove()
+        modal.remove()
+    }
+
+    // Overlay - Fechar Modal
+    overlay.onclick = ()=> { fecharModal() }
+    
+}
 
