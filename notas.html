@@ -14,7 +14,7 @@
         import { db, doc, getDoc, setDoc, collection, getDocs, updateDoc, deleteDoc, query, orderBy } from './script.js'
         // --------------------------------------------------------------------------
 
-        import { modal } from './script.js'
+        import { modal, confirm } from './script.js'
 
         const CONTEUDO = document.querySelector('.conteudo')
         const USUARIO = 'admin'
@@ -60,8 +60,8 @@
                     // Footer Modal
                     document.querySelector('.mFooter').innerHTML =
                     `
-                    <button>Renomear <i class="fa-regular fa-pen-to-square"></i></button>
-                    <button>Deletar <i class="fa-regular fa-trash-can"></i></button>
+                    <button class='renomear'>Renomear <i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class='deletar'>Deletar <i class="fa-regular fa-trash-can"></i></button>
                     `
 
                     // --- IMPLEMENTAÇÃO DO SALVAMENTO AUTOMÁTICO ---
@@ -83,12 +83,12 @@
                     }
 
                     //-- Renomear
-                    document.querySelector('.fa-pen-to-square').onclick = async ()=> {
+                    document.querySelector('.renomear').onclick = async ()=> {
                     }
 
                     //-- Deletar
-                    document.querySelector('.fa-trash').onclick = ()=> {
-                       modal('aaa')
+                    document.querySelector('.deletar').onclick = ()=> {
+                       confirm('Deletar Nota')
                     }
                 }
             });
@@ -100,7 +100,13 @@
         CONTEUDO.appendChild(addNota)
         addNota.innerHTML = `Adicionar Nota <i class="fa-solid fa-circle-plus"></i>`
         document.querySelector('.add').onclick =  async ()=> {
-            prompt('Nome')
+            confirm('Tem certeza')
+
+            document.querySelector('.cBody').innerHTML +=
+            `
+            <input>
+            `
+
         }
 
     </script>

@@ -84,19 +84,36 @@ export function modal(titulo) {
     
 }
 
-// Função - Prompt
-export function prompt(texto) {
-    if (document.querySelector('.prompt')) return
+// Função - Confirm
+export function confirm(texto) {
+    if (document.querySelector('.confirm')) return
 
-    // Cria Prompt
-    let prompt = document.createElement('div')
-    prompt.classList.add('prompt')
-    document.body.prepend(prompt)
+    // Criar Overlay Two
+    let overlayTwo = document.createElement('div')
+    overlayTwo.classList.add('overlayTwo')
+    document.body.prepend(overlayTwo)
+
+    // Cria Confirm
+    let confirm = document.createElement('div')
+    confirm.classList.add('confirm')
+    document.body.prepend(confirm)
     
-    prompt.innerHTML = 
+    confirm.innerHTML = 
     `
-    <div class='pBody'></div>
-    <div class='pFooter'></div>
+    <div class='cBody'>${texto}</div>
+    <div class='cFooter'>
+      <button>Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
+      <button>Confirmar <i class="fa-regular fa-circle-check"></i></button>
+    </div>
     `
+
+    // Função - Fechar Modal
+    function fecharModal() {
+        overlayTwo.remove()
+        confirm.remove()
+    }
+
+    // Overlay - Fechar Modal
+    overlayTwo.onclick = ()=> { fecharModal() }
 }
 
