@@ -20,6 +20,7 @@
         const USUARIO = 'admin'
 
         carregar_Notas()
+        CONTEUDO.innerHTML = ''
         async function carregar_Notas() {
             let menuNotas = document.createElement('div')
             menuNotas.classList.add('menuNotas')
@@ -116,6 +117,7 @@
                 await setDoc(notaREF, { nome: nome })
             }
             fecharConfirm()
+            carregar_Notas()
         }
 
     </script>
