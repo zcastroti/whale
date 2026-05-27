@@ -108,6 +108,8 @@
             <input type="text" maxlength="20" class='nome'>
             `
             document.querySelector('.confirm').onclick = async ()=> {
+                document.querySelector('.cancelar').onclick = ()=> { fecharConfirm() }
+                
                 let nome = document.querySelector('.nome').value
                 if (!nome) return
 
@@ -115,7 +117,7 @@
                 let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id);
 
                 await setDoc(notaREF, { nome: nome })
-                document.querySelector('.cancelar').onclick = ()=> { fecharConfirm()}
+                fecharConfirm()
                 carregar_Notas()
             }
         }
