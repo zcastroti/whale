@@ -38,6 +38,9 @@ export {
 
 // --------------------------------------------------------------------------
 
+// Gerar ID
+export function gerarID() { return Math.random().toString(36).substring(2, 6); }
+
 // Header
 let header = document.createElement('header')
 document.body.prepend(header)
