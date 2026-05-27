@@ -105,8 +105,8 @@ export function confirm(texto) {
     `
     <div class='cBody'>${texto}</div>
     <div class='cFooter'>
-      <button>Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
-      <button>Confirmar <i class="fa-regular fa-circle-check"></i></button>
+      <button class='cancelar'>Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
+      <button class='confirmar'>Confirmar <i class="fa-regular fa-circle-check"></i></button>
     </div>
     `
 
