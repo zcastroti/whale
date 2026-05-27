@@ -14,7 +14,7 @@
         import { db, doc, getDoc, setDoc, collection, getDocs, updateDoc, deleteDoc, query, orderBy } from './script.js'
         // --------------------------------------------------------------------------
 
-        import { modal, confirm } from './script.js'
+        import { modal, confirm, gerarID } from './script.js'
 
         const CONTEUDO = document.querySelector('.conteudo')
         const USUARIO = 'admin'
@@ -104,9 +104,18 @@
 
             document.querySelector('.cBody').innerHTML +=
             `
-            <input>
+            <input type="text" maxlength="20" class='nome'>
             `
+            document.querySelector('.confirm').onclick = async ()=> {
+                let nome = document.querySelector('.nome').value
+                if (!nome) return
 
+                let id = gerarID();
+                let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id);
+
+                await setDoc(notaREF, { nome: nome })
+            }
+            
         }
 
     </script>
