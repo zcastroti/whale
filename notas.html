@@ -101,7 +101,7 @@
         CONTEUDO.appendChild(addNota)
         addNota.innerHTML = `Adicionar Nota <i class="fa-solid fa-circle-plus"></i>`
         document.querySelector('.add').onclick =  async ()=> {
-            confirm('Tem certeza')
+            confirm('Nome da Anotação')
 
             document.querySelector('.cBody').innerHTML +=
             `
@@ -115,8 +115,8 @@
                 let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id);
 
                 await setDoc(notaREF, { nome: nome })
+                document.querySelector('.cancelar').onclick = ()=> { fecharConfirm()}
             }
-            fecharConfirm()
             carregar_Notas()
         }
 
