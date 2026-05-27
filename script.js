@@ -111,12 +111,12 @@ export function confirm(texto) {
     `
 
     // Função - Fechar Modal
-    function fecharModal() {
+    function fecharConfirm() {
         overlayTwo.remove()
         confirm.remove()
     }
 
     // Overlay - Fechar Modal
-    overlayTwo.onclick = ()=> { fecharModal() }
+    overlayTwo.onclick = ()=> { fecharConfirm() }
 }
 
