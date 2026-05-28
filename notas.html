@@ -38,10 +38,11 @@
                     nota.innerHTML = `${dados.nome}`
                 });
             } else { menuNotas.innerHTML = 'Nenhuma nota cadastrada' }
-            editar_Nota()
+            add_Nota()
+            abrir_Nota()
         }
 
-        function editar_Nota() {
+        function abrir_Nota() {
             let notas = document.querySelectorAll('.nota')
             notas.forEach(e => {
                 e.onclick = async () => { 
@@ -89,36 +90,41 @@
 
                     //-- Deletar
                     document.querySelector('.deletar').onclick = ()=> {
-                       confirm('Deletar Nota')
+                       confirm('Deletar Nota: ' + `<b>${dados.nome}</b>`)
+
+                       document.querySelector('.confirm').onclick = async ()=> {
+                        
+                       }
                     }
                 }
             });
         }
 
+        function add_Nota() {
+            let addNota = document.createElement('button')
+            addNota.classList.add('add')
+            CONTEUDO.appendChild(addNota)
+            addNota.innerHTML = `Adicionar Nota <i class="fa-solid fa-circle-plus"></i>`
+            document.querySelector('.add').onclick = ()=> {
+                confirm('Nome da Anotação')
 
-        let addNota = document.createElement('button')
-        addNota.classList.add('add')
-        CONTEUDO.appendChild(addNota)
-        addNota.innerHTML = `Adicionar Nota <i class="fa-solid fa-circle-plus"></i>`
-        document.querySelector('.add').onclick =  async ()=> {
-            confirm('Nome da Anotação')
+                document.querySelector('.cBody').innerHTML +=
+                `
+                <input type="text" maxlength="20" class='nome'>
+                `
+                document.querySelector('.confirm').onclick = async ()=> {
+                    let nome = document.querySelector('.nome').value
+                    if (!nome) return
 
-            document.querySelector('.cBody').innerHTML +=
-            `
-            <input type="text" maxlength="20" class='nome'>
-            `
-            document.querySelector('.confirm').onclick = async ()=> {
-                document.querySelector('.cancelar').onclick = ()=> { fecharConfirm() }
-                
-                let nome = document.querySelector('.nome').value
-                if (!nome) return
+                    let id = gerarID();
+                    let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id);
 
-                let id = gerarID();
-                let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id);
+                    await setDoc(notaREF, { nome: nome })
+                    carregar_Notas()
 
-                await setDoc(notaREF, { nome: nome })
-                fecharConfirm()
-                carregar_Notas()
+                    document.querySelector('.confirm').remove()
+                    document.querySelector('.overlayConfirm').remove()
+                }
             }
         }
 

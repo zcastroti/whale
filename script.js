@@ -91,10 +91,10 @@ export function modal(titulo) {
 export function confirm(texto) {
     if (document.querySelector('.confirm')) return
 
-    // Criar Overlay Two
-    let overlayTwo = document.createElement('div')
-    overlayTwo.classList.add('overlayTwo')
-    document.body.prepend(overlayTwo)
+    // Criar Overlay Confirm
+    let overlayConfirm = document.createElement('div')
+    overlayConfirm.classList.add('overlayConfirm')
+    document.body.prepend(overlayConfirm)
 
     // Cria Confirm
     let confirm = document.createElement('div')
@@ -110,13 +110,16 @@ export function confirm(texto) {
     </div>
     `
 
-    // Função - Fechar Modal
-    function fecharConfirm() {
-        overlayTwo.remove()
-        confirm.remove()
-    }
+  // Botão Cancelar - Fechar Confirm
+  document.querySelector('.cancelar').onclick = ()=> { 
+    overlayConfirm.remove()
+    confirm.remove()
+  }
 
-    // Overlay - Fechar Modal
-    overlayTwo.onclick = ()=> { fecharConfirm() }
+  // Clique no Overlay - Fechar Confirm
+  overlayConfirm.onclick = ()=> { 
+    overlayConfirm.remove()
+    confirm.remove()
+  }
 }
 

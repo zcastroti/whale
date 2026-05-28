@@ -20,6 +20,9 @@ html, body {
     display: flex;
     flex-direction: column; }
 
+a { text-decoration: none; }
+b { font-weight: 500; }
+
 /*--------------------
     Header
 --------------------*/
@@ -98,17 +101,16 @@ button {
     flex: 1; 
     margin: 0px 15px }
 .mFooter {
-    display: flex; align-items: center; gap: 10px;
-    padding-left: 20px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
     height: 50px; }
 .mFooter i { 
     padding: 10px;
     font-size: 20px; }
 
 /*--------------------
-    Overlay Two
+    Overlay Confirm
 --------------------*/
-.overlayTwo {
+.overlayConfirm {
   position: fixed;
   top: 0;
   left: 0;
@@ -136,8 +138,7 @@ button {
     display: flex; align-items: center; flex-flow: column; gap: 10px;
     padding: 10px; }
 .cFooter {
-    display: flex; align-items: center; gap: 10px;
-    padding-left: 20px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
     height: 50px;  }
 .cFooter i { 
     padding: 10px;
