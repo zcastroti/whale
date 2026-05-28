@@ -51,40 +51,36 @@ header.innerHTML =
 
 // Função - Modal
 export function modal(titulo) {
-    if (document.querySelector('.overlay')) return
+  if (document.querySelector('.overlay')) return
 
-    // Criar Overlay
-    let overlay = document.createElement('div')
-    overlay.classList.add('overlay')
-    document.body.prepend(overlay)
+  // Criar Overlay
+  let overlay = document.createElement('div')
+  overlay.classList.add('overlay')
+  document.body.prepend(overlay)
 
-    // Cria Modal
-    let modal = document.createElement('div')
-    modal.classList.add('modal')
-    document.body.prepend(modal)
-    
-    modal.innerHTML = 
-    `
-    <div class='mHeader'>
-      <i class="fa-regular fa-font-awesome"></i>
-      ${titulo}
-    </div>
-    <div class='mBody'>
-        Conteúdo do Modal aqui...
-    </div>
-    <div class='mFooter'>
-    </div>
-    `
+  // Cria Modal
+  let modal = document.createElement('div')
+  modal.classList.add('modal')
+  document.body.prepend(modal)
+  
+  modal.innerHTML = 
+  `
+  <div class='mHeader'>
+    <i class="fa-regular fa-font-awesome"></i>
+    ${titulo}
+  </div>
+  <div class='mBody'>
+      Conteúdo do Modal aqui...
+  </div>
+  <div class='mFooter'>
+  </div>
+  `
 
-    // Função - Fechar Modal
-    function fecharModal() {
-        overlay.remove()
-        modal.remove()
-    }
-
-    // Overlay - Fechar Modal
-    overlay.onclick = ()=> { fecharModal() }
-    
+  // Clique no Overlay - Fechar Modal
+  overlay.onclick = ()=> { 
+    overlay.remove()
+    modal.remove()
+  }
 }
 
 // Função - Confirm

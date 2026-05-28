@@ -85,15 +85,40 @@
                     }
 
                     //-- Renomear
-                    document.querySelector('.renomear').onclick = async ()=> {
+                    document.querySelector('.renomear').onclick = ()=> {
+                        confirm('Renomear Nota: ' + `<b>${dados.nome}</b>`)
+
+                        document.querySelector('.cBody').innerHTML +=
+                        `
+                        <input type="text" maxlength="20" class='novoNome' value='${dados.nome}'>
+                        `
+
+                        document.querySelector('.confirmar').onclick = async ()=> {
+                            let novoNome = document.querySelector('.novoNome').value
+                            if (!novoNome) return
+                            await updateDoc(notaREF, {
+                                nome: novoNome
+                            })
+
+                            carregar_Notas()
+                            document.querySelector('.confirm').remove()
+                            document.querySelector('.overlayConfirm').remove()
+                            document.querySelector('.modal').remove()
+                            document.querySelector('.overlay').remove()
+                       }
                     }
 
-                    //-- Deletar
+                    //-- Deletar Nota
                     document.querySelector('.deletar').onclick = ()=> {
                        confirm('Deletar Nota: ' + `<b>${dados.nome}</b>`)
 
-                       document.querySelector('.confirm').onclick = async ()=> {
-                        
+                       document.querySelector('.confirmar').onclick = async ()=> {
+                            deleteDoc(notaREF)
+                            carregar_Notas()
+                            document.querySelector('.confirm').remove()
+                            document.querySelector('.overlayConfirm').remove()
+                            document.querySelector('.modal').remove()
+                            document.querySelector('.overlay').remove()
                        }
                     }
                 }
@@ -112,7 +137,7 @@
                 `
                 <input type="text" maxlength="20" class='nome'>
                 `
-                document.querySelector('.confirm').onclick = async ()=> {
+                document.querySelector('.confirmar').onclick = async ()=> {
                     let nome = document.querySelector('.nome').value
                     if (!nome) return
 
@@ -127,6 +152,8 @@
                 }
             }
         }
+
+        
 
     </script>
 
