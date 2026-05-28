@@ -21,8 +21,8 @@
         // --------------------------------------------------------------------------
 
         document.querySelector('.acessar').onclick = async ()=> {
-            let login = document.querySelector('.login').value
-            let senha = document.querySelector('.senha').value
+            let login = document.querySelector('.login').value.toLowerCase()
+            let senha = document.querySelector('.senha').value.toLowerCase()
             if (!login || !senha) return
             
             let usuarios = collection(db, 'usuarios')
