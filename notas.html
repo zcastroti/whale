@@ -12,12 +12,10 @@
 
     <script type="module">
         import { db, doc, getDoc, setDoc, collection, getDocs, updateDoc, deleteDoc, query, orderBy } from './script.js'
-        // --------------------------------------------------------------------------
-
         import { modal, confirm, gerarID } from './script.js'
-
         const CONTEUDO = document.querySelector('.conteudo')
-        const USUARIO = 'sae'
+        const USUARIO = localStorage.getItem('usuario')
+        // --------------------------------------------------------------------------
 
         carregar_Notas()
         async function carregar_Notas() {
@@ -84,7 +82,7 @@
                         }, 1000)
                     }
 
-                    //-- Renomear
+                    //-- Renomear Nota
                     document.querySelector('.renomear').onclick = ()=> {
                         confirm('Renomear Nota: ' + `<b>${dados.nome}</b>`)
 
@@ -152,9 +150,6 @@
                 }
             }
         }
-
-        
-
     </script>
 
     <script type="module" src="script.js"></script>
