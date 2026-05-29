@@ -76,11 +76,15 @@ export function modal(titulo) {
   </div>
   `
 
-  // Clique no Overlay - Fechar Modal
-  overlay.onclick = ()=> { 
+// Função - Fechar Confirm
+  function fecharModal() {
     overlay.remove()
     modal.remove()
   }
+
+  // Clique no Overlay - Fechar Modal
+  overlay.onclick = fecharModal
+
 }
 
 // Função - Confirm
@@ -101,21 +105,25 @@ export function confirm(texto) {
     `
     <div class='cBody'>${texto}</div>
     <div class='cFooter'>
-      <button class='cancelar'>Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
+      <button class='cancelar' title='Tecle ESC'>Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
       <button class='confirmar'>Confirmar <i class="fa-regular fa-circle-check"></i></button>
     </div>
     `
 
-  // Botão Cancelar - Fechar Confirm
-  document.querySelector('.cancelar').onclick = ()=> { 
+  // Função - Fechar Confirm
+  function fecharConfirm() {
     overlayConfirm.remove()
     confirm.remove()
   }
 
+  // Botão Cancelar - Fechar Confirm
+  document.querySelector('.cancelar').onclick = fecharConfirm
+
   // Clique no Overlay - Fechar Confirm
-  overlayConfirm.onclick = ()=> { 
-    overlayConfirm.remove()
-    confirm.remove()
-  }
+  overlayConfirm.onclick = fecharConfirm 
+
+  // Clique na Tecla ESC - Fechar Confirm
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharConfirm() })
+
 }
 

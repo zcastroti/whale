@@ -84,7 +84,7 @@
 
                     //-- Renomear Nota
                     document.querySelector('.renomear').onclick = ()=> {
-                        confirm('Renomear Nota: ' + `<b>${dados.nome}</b>`)
+                        confirm('Renomear Nota:')
 
                         document.querySelector('.cBody').innerHTML +=
                         `
@@ -98,11 +98,11 @@
                                 nome: novoNome
                             })
 
-                            carregar_Notas()
                             document.querySelector('.confirm').remove()
                             document.querySelector('.overlayConfirm').remove()
                             document.querySelector('.modal').remove()
                             document.querySelector('.overlay').remove()
+                            carregar_Notas()
                        }
                     }
 
@@ -111,12 +111,13 @@
                        confirm('Deletar Nota: ' + `<b>${dados.nome}</b>`)
 
                        document.querySelector('.confirmar').onclick = async ()=> {
+                            e.remove()
                             deleteDoc(notaREF)
-                            carregar_Notas()
                             document.querySelector('.confirm').remove()
                             document.querySelector('.overlayConfirm').remove()
                             document.querySelector('.modal').remove()
                             document.querySelector('.overlay').remove()
+                            carregar_Notas()
                        }
                     }
                 }
@@ -128,6 +129,7 @@
             addNota.classList.add('add')
             CONTEUDO.appendChild(addNota)
             addNota.innerHTML = `Adicionar Nota <i class="fa-solid fa-circle-plus"></i>`
+            
             document.querySelector('.add').onclick = ()=> {
                 confirm('Nome da Anotação')
 
@@ -135,12 +137,13 @@
                 `
                 <input type="text" maxlength="20" class='nome'>
                 `
+                
                 document.querySelector('.confirmar').onclick = async ()=> {
                     let nome = document.querySelector('.nome').value
                     if (!nome) return
 
-                    let id = gerarID();
-                    let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id);
+                    let id = gerarID()
+                    let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id)
 
                     await setDoc(notaREF, { nome: nome })
                     carregar_Notas()

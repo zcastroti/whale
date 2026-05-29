@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Whale</title>    
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="whale.png" type="image/x-icon">
 </head>
 <body>
     <main class="conteudo">
@@ -17,7 +18,6 @@
         import { db, doc, getDoc, setDoc, collection, getDocs, updateDoc, deleteDoc, query, orderBy } from './script.js'
         import { modal, confirm, gerarID } from './script.js'
         const CONTEUDO = document.querySelector('.conteudo')
-
         // --------------------------------------------------------------------------
 
         document.querySelector('.acessar').onclick = async ()=> {
@@ -32,8 +32,6 @@
 
                 if (login != dados.login) return
                 if (senha != dados.senha) return
-
-                console.log('Autenticado')
 
                 localStorage.setItem('usuario', login);
                 window.location.href = 'notas.html';

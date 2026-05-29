@@ -64,6 +64,11 @@ button {
     color: #282828;
     background: #e2e2e2; }
 
+button:hover { 
+    transition: .5s;
+    background: #DADADA; }
+
+
 /*--------------------
     Overlay
 --------------------*/
@@ -168,6 +173,10 @@ button {
     border-radius: 5px;
     text-align: center;
     background: #e2e2e2; }
+
+.nota:hover { 
+    transition: .5s;
+    background: #DADADA; }
 
 .editor {
     border: solid 1px #DADADA;
