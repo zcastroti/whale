@@ -9,10 +9,19 @@
 </head>
 <body>
     <main class="conteudo">
+        <img src="whale.png" width="250px">
         <input type="text" class="login" placeholder="Login">
         <input type="text" class="senha" placeholder="Senha">
         <button class="acessar">Acessar <i class="fa-solid fa-fingerprint"></i></button>
+
+        <a class="criarConta">Criar Conta</a>
+
     </main>
+
+    <style>
+        header { display: none; }
+        main { justify-content: center; }
+    </style>
 
     <script type="module">
         import { db, doc, getDoc, setDoc, collection, getDocs, updateDoc, deleteDoc, query, orderBy } from './script.js'
@@ -20,13 +29,40 @@
         const CONTEUDO = document.querySelector('.conteudo')
         // --------------------------------------------------------------------------
 
+        document.querySelector('.criarConta').onclick = ()=> {
+            confirm('Cadastrar Usuário')
+
+            document.querySelector('.cBody').innerHTML =
+            `
+            Cadastrar Usuário
+            <input type="text" class="loginCadastro" placeholder="Login">
+            <input type="text" class="senhaCadastro" placeholder="Senha">
+            `
+
+            document.querySelector('.confirmar').onclick = async ()=> {
+                let loginCadastro = document.querySelector('.loginCadastro').value.toLowerCase()
+                let senhaCadastro = document.querySelector('.senhaCadastro').value.toLowerCase()
+                if (!loginCadastro || !senhaCadastro) return
+
+                let id = gerarID()
+                let usuarioREF = doc(db, 'usuarios', id)
+                await setDoc(usuarioREF, {
+                    login: loginCadastro,
+                    senha: senhaCadastro
+                })
+
+                document.querySelector('.confirm').remove()
+                document.querySelector('.overlayConfirm').remove()
+            }
+        }
+
         document.querySelector('.acessar').onclick = async ()=> {
             let login = document.querySelector('.login').value.toLowerCase()
             let senha = document.querySelector('.senha').value.toLowerCase()
             if (!login || !senha) return
             
             let usuarios = collection(db, 'usuarios')
-            let consulta = await getDocs(usuarios);
+            let consulta = await getDocs(usuarios)
             consulta.forEach(e => {
                 let dados = e.data()       
 

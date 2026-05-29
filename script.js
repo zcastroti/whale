@@ -46,7 +46,7 @@ let header = document.createElement('header')
 document.body.prepend(header)
 header.innerHTML = 
 `
-<a href='index.html'><img src="whale.png" width="200px"></a>
+<a href='index.html'><img src="whale.png" width="250px"></a>
 `
 
 // Função - Modal
