@@ -205,10 +205,16 @@ button:hover {
     height: 350px;
     padding: 5px; }
 
-@media screen and (max-height: 400px) {
-    .editor { height: 180px; }
-}
+
 
 .editor::-webkit-scrollbar  { display: block; width: 5px; }
 .editor::-webkit-scrollbar-track { background: #00000080; }
 .editor::-webkit-scrollbar-thumb { background: #282828; }
+
+
+
+@media screen and (max-height: 420px) {
+    .editor { height: 180px; }
+    .add { display: none; }
+    .gerencial { display: none; }
+}
