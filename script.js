@@ -137,6 +137,17 @@ nav.innerHTML =
 
 function gerencial() {
   modal('Gerencial')
+
+  document.querySelector('.mBody').innerHTML = 
+  `
+  <div class="listaCategorias">
+    <span>Categoria</span>
+    <span>Categoria</span>
+    <span class='ativo'>Categoria</span>
+    <span>Categoria</span>
+  </div>
+  `
+
 }
 
 document.querySelector('.gerencial').onclick = gerencial
