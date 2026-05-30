@@ -41,14 +41,6 @@ export {
 // Gerar ID
 export function gerarID() { return Math.random().toString(36).substring(2, 6); }
 
-// Header
-let header = document.createElement('header')
-document.body.prepend(header)
-header.innerHTML = 
-`
-<a href='index.html'><img src="whale.png" width="250px"></a>
-`
-
 // Função - Modal
 export function modal(titulo) {
   if (document.querySelector('.overlay')) return
@@ -127,3 +119,24 @@ export function confirm(texto) {
 
 }
 
+// Header
+let header = document.createElement('header')
+document.body.prepend(header)
+header.innerHTML = 
+`
+<a href='index.html'><img src="whale.png" width="250px"></a>
+`
+
+// Navegação
+let nav = document.createElement('nav')
+document.body.prepend(nav)
+nav.innerHTML = 
+`
+<button class='gerencial'><i class="fa-solid fa-gear"></i></button>
+`
+
+function gerencial() {
+  modal('Gerencial')
+}
+
+document.querySelector('.gerencial').onclick = gerencial

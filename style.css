@@ -36,6 +36,25 @@ header {
     color: #f5f5f7; }
 
 /*--------------------
+    Navegação
+--------------------*/
+nav {
+    position: fixed;
+    bottom: 40px;
+    right: 40px; }
+
+nav button {
+    display: flex; align-items: center;  justify-content: center;
+    height: 60px;
+    width: 60px;
+}
+
+nav i { 
+    font-size: 20px;
+    pointer-events: none;
+}
+
+/*--------------------
     Main
 --------------------*/
 main {
@@ -183,8 +202,12 @@ button:hover {
     border: solid 1px #DADADA;
     overflow: hidden;
     overflow-y: scroll;
-    height: 320px;
+    height: 350px;
     padding: 5px; }
+
+@media screen and (max-height: 400px) {
+    .editor { height: 180px; }
+}
 
 .editor::-webkit-scrollbar  { display: block; width: 5px; }
 .editor::-webkit-scrollbar-track { background: #00000080; }
