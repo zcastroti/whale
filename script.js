@@ -135,19 +135,39 @@ nav.innerHTML =
 <button class='gerencial'><i class="fa-solid fa-gear"></i></button>
 `
 
-function gerencial() {
+function categoria() {
   modal('Gerencial')
 
   document.querySelector('.mBody').innerHTML = 
   `
-  <div class="listaCategorias">
-    <span>Categoria</span>
-    <span>Categoria</span>
-    <span class='ativo'>Categoria</span>
-    <span>Categoria</span>
+  <div class="categoriaHeader">
+    <span class='categoria'>Categoria A</span>
+    <span class='categoria'>Categoria B</span>
+    <span class='categoria ativo'>Categoria C</span>
+    <span class='categoria'>Categoria D</span>
+  </div>
+  <div class="categoriaBody">
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi accusantium omnis sapiente quam! Voluptates ad unde fuga sapiente officiis, adipisci fugit recusandae reprehenderit saepe eveniet, dolore voluptas inventore ut possimus?
   </div>
   `
+exibirCategoria();
+
+function exibirCategoria() {
+  let categorias = document.querySelectorAll('.categoria')
+
+  categorias.forEach((botao) => {
+    botao.addEventListener('click', (e) => {
+
+      let categoria = e.target.textContent
+
+
+
+      console.log(categoria)
+    })
+  })
+}
+
 
 }
 
-document.querySelector('.gerencial').onclick = gerencial
+document.querySelector('.gerencial').onclick = categoria
