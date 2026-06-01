@@ -245,8 +245,8 @@ button:hover {
 
 
 
-@media screen and (max-height: 450px) {
-    .editor { height: 180px; }
+@media screen and (max-height: 400px) {
+    .editor { height: 150px; }
     .add { display: none; }
     .gerencial { display: none; }
 }
