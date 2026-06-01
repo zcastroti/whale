@@ -60,7 +60,8 @@ nav i {
 main {
     flex: 1; 
     display: flex; align-items: center; justify-content: flex-start; flex-flow: column; gap: 10px;
-    padding-bottom: 60px; }
+    padding-bottom: 60px; 
+}
 
 input,
 button {
@@ -197,6 +198,7 @@ button:hover {
 
 .nota:hover { 
     transition: .5s;
+    transform: translateY(-2px);
     background: #cccccc; }
 
 .editor {
