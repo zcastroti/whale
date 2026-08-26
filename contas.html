@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whale</title>    
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="ico-whale.png" type="image/x-icon">
+</head>
+<body>
+    <main class="conteudo">
+
+        <div class="menuContas">
+            <div class="mes" id="Janeiro">Jan <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Fevereiro">Fev <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Março">Mar <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Abril">Abr <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Maio">Mai <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Junho">Jun <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Julho">Jul <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Agosto">Ago <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Setembro">Set <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Outubro">Out <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Novembro">Nov <i class="fa-solid fa-calendar-week"></i></div>
+            <div class="mes" id="Dezembro">Dez <i class="fa-solid fa-calendar-week"></i></div>
+        </div>
+
+    </main>
+
+    <style>
+
+        i { pointer-events: none; }
+
+        .menuContas {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px; }
+
+        .mes {
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex; flex-flow: row-reverse; align-items: center; justify-content: space-between;
+            padding: 35px 30px;
+            background: white;
+            border: 1px solid #cccccc;
+            box-shadow: 0 2px 4px #0000000d; }
+
+        .mes:hover { 
+            transition: .8s;
+            background: #cccccc;
+            border: 1px solid #b6b6b6; }
+
+
+        .grid5 div { display: flex; flex-flow: column; }
+
+        .grid5 div:nth-child(1) { grid-column: span 5; }
+        .grid5 div:nth-child(2) { grid-column: span 2; }
+        .grid5 div:nth-child(3) { grid-column: span 2; }
+        .grid5 div:nth-child(4) { grid-column: span 1; }
+
+
+        @media screen and (max-width: 450px) {
+            .menuContas { grid-template-columns: repeat(3, 1fr); }
+            .mes { padding: 25px 20px; }
+            
+        }
+
+        @media screen and (max-width: 520px) { 
+            .menuContas { grid-template-columns: repeat(3, 1fr); }
+            .grid5 div { grid-column: span 5 !important; }
+        }
+
+
+    </style>
+
+    <script type="module" src="contas.js"></script>
+    <script src="https://kit.fontawesome.com/ac3bdc8044.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
