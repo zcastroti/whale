@@ -12,12 +12,14 @@ import {
   orderBy
 } from './script.js'
 
-import { navegacao , gerarIdentificador , modal , alerta , loop, removeLoop } from './script.js'
+import { navegacao , gerarIdentificador , modal , alerta , loop, removeLoop, loopTempo, paginarTabela } from './script.js'
 
 navegacao()
 document.querySelector('.contas')?.classList.add('destaque')
 
 const USUARIO = localStorage.getItem('usuario')
+
+loopTempo(500)
 
 listarMeses()
 function listarMeses() {
@@ -52,14 +54,22 @@ async function carregarMes(a, m) {
   modal(mes)
   document.querySelector('.bodyModal').innerHTML = 
   `
+  <div class="tabela-container">
   <table class="tabelaContas">
     <thead>
+      <th class='col-nome'>Nome</th>
+      <th class='col-valor'>Valor</th>
+      <th class='col-vencimento'>Venc.</th>
+      <th class='col-parcela'>Parcela</th>
+      <th class='col-acao'>Ação</th>
     </thead>
-    <tbody class="corpoTabela"></tbody>
+    <tbody></tbody>
   </table>
+  </div>
   `
-
-  let corpoTabela = document.querySelector('.corpoTabela')
+  let tabelaContas = document.querySelector('.tabelaContas')
+  paginarTabela('.tbody', 5)
+  let tbody = tabelaContas.querySelector('tbody')
 
   if (!consulta.empty) {
     consulta.forEach(docSnap => {
@@ -70,10 +80,11 @@ async function carregarMes(a, m) {
         <td>${dados.valor || 0}</td>
         <td>${dados.vencimento || 0}</td>
         <td>${dados.parcela || 0}</td>
+        <td><i class="fa-solid fa-gear"></i></td>
       `
-      corpoTabela.appendChild(tr)
+      tbody.appendChild(tr)
     })
-  } else { corpoTabela.innerHTML = `<tr><td colspan="2">Nenhuma Conta</td></tr>` }
+  } else { tbody.innerHTML = `<tr><td colspan="2">Nenhuma Conta</td></tr>` }
 
   adicionarConta(a, m)
 }

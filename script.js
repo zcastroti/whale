@@ -20,7 +20,7 @@ const firebaseConfig = {
   projectId: "projeto-bc2b5",
   storageBucket: "projeto-bc2b5.firebasestorage.app",
   messagingSenderId: "7604977733",
-  appId: "1:7604977733:web:26c3b831bf961530bea32c" };
+  appId: "1:7604977733:web:26c3b831bf961530bea32c" }
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
@@ -87,7 +87,6 @@ export function modal(titulo, tamMax ) {
   document.querySelector('.fecharModal').onclick = ()=> {
       document.querySelector('.modal')?.remove()
       document.querySelector('.overlay')?.remove() }
-
 }
 
 // Função - Alerta
@@ -112,4 +111,86 @@ export function loop() {
 // Função - Remover Loop de Carregamento
 export function removeLoop() { 
   document.querySelector('.loop')?.remove() 
+}
+
+// Função - Loop com Tempo
+export function loopTempo(tempo) {
+  let loop = document.createElement('div')
+  loop.classList.add('loop')
+  loop.innerHTML = '<img src="carregando.gif" class="gif" width="120px">'
+  document.body.prepend(loop)
+  setTimeout(() => { document.querySelector('.loop').remove() }, tempo)
+}
+
+
+// Função - Paginar Tabela
+export function paginarTabela(tabelaREF, itensPorPagina = 10) {
+    let tabela = document.querySelector(tabelaREF)
+    if (!tabela) return
+
+    let tbody = tabela.querySelector('tbody')
+    if (!tbody) return
+
+    const linhas = Array.from(tbody.querySelectorAll('tr'))
+    let paginaAtual = 1
+    const totalPaginas = Math.ceil(linhas.length / itensPorPagina) || 1
+
+    // Encontra os botões e o texto dentro do mesmo container da tabela
+    const container = document.querySelector('.tabela-container')
+    let btnsPaginacao = document.createElement('div')
+
+    btnsPaginacao.innerHTML = 
+    `
+    <button class="btnVoltar">Voltar</button>
+    <span class="nomePagina">Página 1 de 1</span>
+    <button class="btnAvancar">Avançar</button>
+    `
+    container.appendChild(btnsPaginacao)
+    
+    
+    let btnVoltar = container.querySelector('.btnVoltar')
+    let nomePagina = container.querySelector('.nomePagina')
+    let btnAvancar = container.querySelector('.btnAvancar')
+    
+    function atualizarExibicao() {
+        const inicio = (paginaAtual - 1) * itensPorPagina
+        const fim = inicio + itensPorPagina
+
+        // Mostra apenas as linhas da página atual e oculta o restante
+        linhas.forEach((linha, indice) => {
+            linha.style.display = (indice >= inicio && indice < fim) ? '' : 'none'
+        })
+
+        // Atualiza o texto da página
+        if (nomePagina) {
+            nomePagina.textContent = `Página ${paginaAtual} de ${totalPaginas}`
+        }
+
+        // Controla o estado visual dos botões (opcional: desativa nos limites)
+        if (btnVoltar) btnVoltar.disabled = (paginaAtual === 1)
+        if (btnAvancar) btnAvancar.disabled = (paginaAtual === totalPaginas)
+    }
+
+    // Evento de Voltar
+    if (btnVoltar) {
+      btnVoltar.addEventListener('click', () => {
+          if (paginaAtual > 1) {
+              paginaAtual--
+              atualizarExibicao()
+          }
+      })
+    }
+
+    // Evento de Avançar
+    if (btnAvancar) {
+      btnAvancar.addEventListener('click', () => {
+          if (paginaAtual < totalPaginas) {
+              paginaAtual++
+              atualizarExibicao()
+          }
+      })
+    }
+
+    // Executa a primeira vez para aplicar a paginação inicial
+    atualizarExibicao()
 }
