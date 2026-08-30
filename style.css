@@ -23,6 +23,19 @@ a {
 
 b { font-weight: 500; }
 
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fa-gear {
+  animation: girar 2s linear infinite;
+}
+
 /*--------------------
     Navegação
 --------------------*/
