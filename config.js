@@ -12,13 +12,14 @@ import {
   orderBy
 } from './script.js'
 
-import { navegacao , gerarIdentificador , modal , alerta , loop, removeLoop } from './script.js'
+import { navegacao , gerarIdentificador , modal , alerta , loop, removeLoop, loopTempo, paginarTabela } from './script.js'
 
+
+loopTempo(500)
 navegacao()
 document.querySelector('.config').classList.add('destaque')
 
 const USUARIO = localStorage.getItem('usuario')
-
 let usuarioREF = doc(db, "usuarios", USUARIO)
 let consulta = await getDoc(usuarioREF)
 let dados = consulta.data()

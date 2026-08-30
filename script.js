@@ -49,7 +49,7 @@ export function navegacao() {
 
   nav.innerHTML =
   `
-  <a href="">Home</a>
+  <a href="home.html" class="home">Home</a>
   <a href="notas.html" class="notas">Notas</a>
   <a href="contas.html" class="contas">Contas</a>
   <a href="config.html" class="config">Config.</a>
@@ -85,8 +85,8 @@ export function modal(titulo, tamMax ) {
   `
 
   document.querySelector('.fecharModal').onclick = ()=> {
-      document.querySelector('.modal')?.remove()
-      document.querySelector('.overlay')?.remove() }
+    document.querySelector('.modal')?.remove()
+    document.querySelector('.overlay')?.remove() }
 }
 
 // Função - Alerta
@@ -137,16 +137,16 @@ export function paginarTabela(tabelaREF, itensPorPagina = 10) {
 
     // Encontra os botões e o texto dentro do mesmo container da tabela
     const container = document.querySelector('.tabela-container')
-    let btnsPaginacao = document.createElement('div')
+    let btnsPaginacaoTabela = document.createElement('div')
+    btnsPaginacaoTabela.classList.add('btnsPaginacaoTabela')
 
-    btnsPaginacao.innerHTML = 
+    btnsPaginacaoTabela.innerHTML = 
     `
     <button class="btnVoltar">Voltar</button>
     <span class="nomePagina">Página 1 de 1</span>
     <button class="btnAvancar">Avançar</button>
     `
-    container.appendChild(btnsPaginacao)
-    
+    container.appendChild(btnsPaginacaoTabela)
     
     let btnVoltar = container.querySelector('.btnVoltar')
     let nomePagina = container.querySelector('.nomePagina')
@@ -176,6 +176,7 @@ export function paginarTabela(tabelaREF, itensPorPagina = 10) {
       btnVoltar.addEventListener('click', () => {
           if (paginaAtual > 1) {
               paginaAtual--
+              loopTempo(200)
               atualizarExibicao()
           }
       })
@@ -186,6 +187,7 @@ export function paginarTabela(tabelaREF, itensPorPagina = 10) {
       btnAvancar.addEventListener('click', () => {
           if (paginaAtual < totalPaginas) {
               paginaAtual++
+              loopTempo(200)
               atualizarExibicao()
           }
       })

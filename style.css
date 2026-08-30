@@ -128,9 +128,8 @@ tbody tr:hover {
     background-color: #0000000e;
 }
 
-
-.btnsPaginacao {
-    margin-top: 10px; display: flex; align-items: center; gap: 10px; 
+.btnsPaginacaoTabela {
+    margin-top: 10px; display: flex; align-items: center; gap: 15px; 
 }
 
 
@@ -170,11 +169,12 @@ tbody tr:hover {
     overflow: hidden;
     width: 95%;
     max-width: 650px;
-    max-height: 500px;
+
     background: #f5f5f7;
     border-radius: 5px; }
 
 .headModal { 
+    border-bottom: solid 1px #e2e2e2;
     display: flex; align-items: center; justify-content: space-between; 
     padding: 10px; }
 .headModal h1 { font-size: 20px; font-weight: bold; }
