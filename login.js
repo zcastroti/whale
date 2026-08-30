@@ -29,11 +29,13 @@ async function login() {
     alerta('Preencha todos os campos!')
     return
   }
-
-  loop()
+  
   let usuarios = collection(db, 'usuarios')
   let filtro = query(usuarios, where("login", "==", inputUsuario) , where("senha", "==", inputSenha))
+  
+  loop()
   let consulta = await getDocs(filtro)
+  removeLoop()
 
   if (!consulta.empty) {
     let docSnap = consulta.docs[0]
@@ -41,6 +43,7 @@ async function login() {
 
     localStorage.setItem('usuario', usuario.id)
     window.location.href = 'notas.html'
-  } else { alerta('Usuário não encontrado ou senha incorreta!') }
-
+  } else { 
+    alerta('Usuário não encontrado ou senha incorreta!') 
+  }
 }

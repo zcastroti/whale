@@ -37,7 +37,7 @@ btnEncerrarSessao.onclick = ()=> {
 // Função - Atualização Cadastral
 let btnAtualizarDados = document.querySelector('.btnAtualizarDados')
 btnAtualizarDados.onclick = ()=> {
-  modal('Atualização Cadastral')
+  modal('Atualização Cadastral' , 400)
   document.querySelector('.bodyModal').innerHTML =
   `
   <label for="login">Login</label>
@@ -62,7 +62,6 @@ btnAtualizarDados.onclick = ()=> {
     let senha = document.querySelector('.senha').value.trim()
 
     loop()
-
     await updateDoc(usuarioREF, { 
       login: login,
       senha: senha
@@ -79,7 +78,7 @@ btnAtualizarDados.onclick = ()=> {
 // Função - Visão Das Contas
 let btnVisaoContas = document.querySelector('.btnVisaoContas')
 btnVisaoContas.onclick = ()=> {
-  modal('Visão Das Contas')
+  modal('Visão Das Contas' , 400)
   document.querySelector('.bodyModal').innerHTML =
   `
   <input type="text" class="anoVisaoContas" value="${dados.anoVisaoContas}">

@@ -51,7 +51,7 @@ async function carregarMes(a, m) {
   let consulta = await getDocs(contasREF)
   removeLoop()
 
-  modal(mes , 800)
+  modal(`${mes} de ${ano}` , 800)
   document.querySelector('.bodyModal').innerHTML = 
   `
   <div class="tabela-container">
@@ -80,14 +80,18 @@ async function carregarMes(a, m) {
         <td>${dados.valor || 0}</td>
         <td>${dados.vencimento || 0}</td>
         <td>${dados.parcela || 0}</td>
-        <td><i class="fa-solid fa-gear"></i></td>
+        <td><button class="btnEditarConta" style="border: none; background: none; padding: 0px; height: auto;"><i class="fa-solid fa-gear"></i></button></td>
         `
+
+      tr.querySelector('.btnEditarConta').onclick = () => { 
+        editarConta(docSnap.id, ano, mes) 
+      }
+
       tbody.appendChild(tr)
-      document.querySelector('.fa-gear').onclick = ()=> { alerta('fa-gear') } 
     })
     paginarTabela('.tabelaContas' , 8)
 
-  } else { tbody.innerHTML = `<tr><td colspan="2">Nenhuma Conta</td></tr>` }
+  } else { tbody.innerHTML = `<tr><td colspan="5">Nenhuma Conta em ${mes}</td></tr>` }
 
   
   adicionarConta(a, m)
@@ -103,23 +107,23 @@ function adicionarConta(a, m) {
   document.querySelector('.bodyModal').appendChild(btnAddConta)
 
   btnAddConta.onclick = ()=> {
-    modal("Adicionar Conta")
+    modal("Adicionar Conta" , 600)
     document.querySelector('.bodyModal').innerHTML =
     `
-    <div class="grid5">
-        <div>
+    <div class="grid10">
+        <div style=" grid-column: span 10; ">
             <label for="nome">Nome</label>
             <input type="text" class="nome">
         </div>
-        <div>
+        <div style=" grid-column: span 3; ">
             <label for="valor">Valor</label>
             <input type="text" class="valor">
         </div>
-        <div>
+        <div style=" grid-column: span 4; ">
             <label for="vencimento">Dia Vencimento</label>
             <input type="text" class="vencimento">
         </div>
-        <div>
+        <div style=" grid-column: span 3; ">
             <label for="parcela">Parcela</label>
             <input type="text" class="parcela">
         </div>
@@ -188,34 +192,41 @@ async function editarConta(id, a, m) {
 
   let dados = docSnap.data()
 
-  modal("Editar Conta", 800)
+  modal("Editar Conta", 600)
   document.querySelector('.bodyModal').innerHTML =
   `
-  <div class="grid5">
-      <div>
+  <div class="grid10">
+      <div style=" grid-column: span 10; ">
           <label for="nome">Nome</label>
           <input type="text" class="nome" value="${dados.nome || ''}">
       </div>
-      <div>
+      <div style=" grid-column: span 3; ">
           <label for="valor">Valor</label>
           <input type="text" class="valor" value="${dados.valor || ''}">
       </div>
-      <div>
+      <div style=" grid-column: span 4; ">
           <label for="vencimento">Dia Vencimento</label>
           <input type="text" class="vencimento" value="${dados.vencimento || ''}">
       </div>
-      <div>
+      <div style=" grid-column: span 3; ">
           <label for="parcela">Parcela</label>
           <input type="text" class="parcela" value="${dados.parcela || ''}">
       </div>
+      <div style=" grid-column: span 10; ">
+          <label>Observação</label>
+          <input type="text" class="obs" value="${dados.obs || ''}">
+      </div>
   </div>
   <div style="display: flex; gap: 10px; justify-content: space-between; margin-top: 20px;">
-    <button class="btnDeletar" style="background-color: #ff4d4d; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px;">Excluir <i class="fa-regular fa-trash-can"></i></button>
     <div style="display: flex; gap: 10px;">
       <button class="btnCancelar">Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
       <button class="btnSalvar">Salvar <i class="fa-regular fa-circle-check"></i></button>
     </div>
-  </div>
+    <div style="display: flex; gap: 10px;">
+      <button class="btnDeletar" style="background: #e23f3f; color: white; border: none;">Excluir <i class="fa-regular fa-trash-can"></i></button>
+      <button class="btnStatus" style="background: #6caa60; color: white; border: none;">Atualizar Status <i class="fa-solid fa-thumbs-up"></i></button>
+    </div>
+    </div>
   `
 
   // Cancelar

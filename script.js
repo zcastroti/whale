@@ -82,6 +82,7 @@ export function modal(titulo, tamMax ) {
     <button class="fecharModal">Fechar <i class="fa-regular fa-circle-xmark"></i></button>
   </div>
   <div class="bodyModal"></div>
+  <div class="footerModal"></div>
   `
 
   document.querySelector('.fecharModal').onclick = ()=> {
