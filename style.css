@@ -31,10 +31,7 @@ b { font-weight: 500; }
     transform: rotate(360deg);
   }
 }
-
-.fa-gear {
-  animation: girar 2s linear infinite;
-}
+.fa-gear { animation: girar 2s linear infinite; }
 
 /*--------------------
     Navegação

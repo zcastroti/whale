@@ -70,7 +70,6 @@ function adicionarNota() {
     }
 }
 
-
 // Listar Notas
 listarNotas()
 async function listarNotas() {
@@ -110,7 +109,7 @@ async function visualizarNota(id) {
     let dados = consulta.data()
     
     modal(dados.nome)
-    let bodyModal = document.querySelector('.bodyModal').innerHTML =
+    document.querySelector('.bodyModal').innerHTML =
     `
     <div class="editor" contenteditable="true">
         ${dados.conteudo || ''}
@@ -123,20 +122,18 @@ async function visualizarNota(id) {
     `
 
     // Chamada - Salvar Nota
-    document.querySelector('.btnSalvarNota').onclick = (e)=> { salvarNota(id) }
+    document.querySelector('.btnSalvarNota').onclick = ()=> { salvarNota(id) }
 
     // Chamada - Renomear Nota
-    document.querySelector('.btnRenomearNota').onclick = (e)=> { renomearNota(id, dados.nome) }
+    document.querySelector('.btnRenomearNota').onclick = ()=> { renomearNota(id, dados.nome) }
 
     // Chamada - Deletar Nota
-    document.querySelector('.btnDeletarNota').onclick = (e)=> { deletarNota(id) }
+    document.querySelector('.btnDeletarNota').onclick = ()=> { deletarNota(id) }
 }
 
 async function salvarNota(id) {
-    
     let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id)
-    let consulta = await getDoc(notaREF)
-    
+
     let novoConteudo = document.querySelector('.editor').innerHTML
 
     // Remove todos os atributos style="..." das tags HTML antes de salvar
@@ -149,12 +146,8 @@ async function salvarNota(id) {
 }
 
 async function renomearNota(id, nome) {  
-    document.querySelector('.modal')?.remove()
-    document.querySelector('.overlay')?.remove()
-
     modal('Renomear Nota')
-    let bodyModal = document.querySelector('.bodyModal')
-    bodyModal.innerHTML =
+    document.querySelector('.bodyModal').innerHTML =
     `
     <p>Renomear Nota:</p>
     <input type="text" value="${nome}" class="novoNome">
@@ -180,7 +173,6 @@ async function renomearNota(id, nome) {
 
         loop()
         let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id)
-        let consulta = await getDoc(notaREF)
 
         await updateDoc(notaREF, { nome: novoNome })
         document.querySelector('.modal')?.remove()
@@ -198,8 +190,7 @@ async function deletarNota(id) {
     document.querySelector('.overlay')?.remove()
 
     modal('Deletar Nota')
-    let bodyModal = document.querySelector('.bodyModal')
-    bodyModal.innerHTML =
+    document.querySelector('.bodyModal').innerHTML =
     `
     <p>Tem certeza que deseja deletar?</p>
 
@@ -220,7 +211,6 @@ async function deletarNota(id) {
     document.querySelector('.btnConfirmar').onclick = async ()=> {
         loop()
         let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id)
-        let consulta = await getDoc(notaREF)
 
         await deleteDoc(notaREF)
         document.querySelector('.modal')?.remove()
