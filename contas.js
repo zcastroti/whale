@@ -269,6 +269,9 @@ async function editarConta(id, a, m) {
 
   // Chamando Função - Deletar Conta
   document.querySelector('.btnDeletar').onclick = ()=> { deletarConta(docSnap.id, ano, mes) }
+
+  // Chamando Função - Atualizar Status
+  document.querySelector('.btnStatus').onclick = ()=> { atualizarStatusConta(docSnap.id, ano, mes) }
 }
   
 
@@ -308,6 +311,47 @@ async function deletarConta(id, a, m){
     document.querySelector('.modal')?.remove()
     document.querySelector('.overlay')?.remove()
     listarContas(ano, mes)
+  }
+
+}
+
+// Funcção - Atualizar Status da Conta
+async function atualizarStatusConta(id, a, m){
+  let ano = a
+  let mes = m
+
+  let contaREF = doc(db, "usuarios", USUARIO, "contas", ano, mes, id)
+
+  modal("Atualizar Status da Conta" , 600)
+  document.querySelector('.bodyModal').innerHTML =
+  `
+  <p>Tem certeza que deseja atualizar o status?</p>
+
+  <div style=" display: flex; gap: 10px; ">
+      <button class="btnCancelar">Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
+      <button class="btnConfirmar">Confirmar <i class="fa-regular fa-circle-check"></i></button>
+  </div>
+  `
+
+  // Cancelar
+    document.querySelector('.btnCancelar').onclick = ()=> {
+      document.querySelector('.modal')?.remove()
+      document.querySelector('.overlay')?.remove()
+      editarConta(id, a, m)
+    }
+
+  // Confirmar
+  document.querySelector('.btnConfirmar').onclick = async ()=> {
+    loop()
+    await updateDoc(contaREF, {
+      status: "Pago"
+    })
+    removeLoop()
+    alerta('Status da conta atualizado com sucesso!')
+
+    document.querySelector('.modal')?.remove()
+    document.querySelector('.overlay')?.remove()
+    editarConta(id, a, m)
   }
 
 }
