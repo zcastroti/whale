@@ -214,3 +214,4 @@ tbody tr:hover {
 @media print {  }
 
 
+.corVerde > td { color: green !important; }

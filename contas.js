@@ -74,6 +74,11 @@ async function listarContas(a, m) {
     consulta.forEach(docSnap => {
       let dados = docSnap.data()
       let tr = document.createElement('tr')
+
+      if (dados.status == "Pago") {
+        tr.classList.add('corVerde')
+      }
+
       tr.innerHTML = 
       `
       <td class="col-nome">${dados.nome}</td>
@@ -164,7 +169,8 @@ function adicionarConta(a, m) {
         valor: valor,
         vencimento: vencimento || 0,
         parcela: parcela || 0,
-        obs: obs || ''
+        obs: obs || '',
+        status: "Pendente"
       })
         
       document.querySelector('.modal')?.remove()
@@ -217,18 +223,39 @@ async function editarConta(id, a, m) {
       <label>Observação</label>
       <input type="text" class="obs" value="${dados.obs}">
     </div>
+    <div style=" grid-column: span 10; flex-flow: row; gap: 20px">
+      <div style=" display: flex; align-items: center; gap: 5px; " class="divStatusPendente">
+        <input type="radio" name="status" value="Pendente">Pendente
+      </div>
+      <div style=" display: flex; align-items: center; gap: 5px; " class="divStatusPago">
+        <input type="radio" name="status" value="Pago">Pago
+        </div>
+    </div>
   </div>
+
   <div class="btnsEditarConta" style="display: flex; gap: 10px; justify-content: space-between;">
     <div style="display: flex; gap: 10px;">
       <button class="btnCancelar">Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
       <button class="btnSalvar">Salvar <i class="fa-regular fa-circle-check"></i></button>
     </div>
     <div style="display: flex; gap: 10px;">
-      <button class="btnDeletar" style="background: #e23f3f; color: white; border: none;">Excluir <i class="fa-regular fa-trash-can"></i></button>
-      <button class="btnStatus" style="background: #6caa60; color: white; border: none;">Atualizar Status <i class="fa-solid fa-thumbs-up"></i></button>
+      <button class="btnDeletar" style="background: #414141; color: white; border: none;">Excluir <i class="fa-regular fa-trash-can"></i></button>
     </div>
   </div>
   `
+
+    if (dados.status == 'Pago') {
+      document.querySelector('.divStatusPago').innerHTML =
+      `
+      <input type="radio" name="status" value="Pago" checked>Pago
+      `
+    } else {
+      document.querySelector('.divStatusPendente').innerHTML =
+      `
+      <input type="radio" name="status" value="Pendente" checked>Pendente
+      `
+    }
+
 
   // Cancelar
   document.querySelector('.btnCancelar').onclick = ()=> {
@@ -244,6 +271,7 @@ async function editarConta(id, a, m) {
     let vencimento = document.querySelector('.vencimento').value.trim()
     let parcela = document.querySelector('.parcela').value.trim()
     let obs = document.querySelector('.obs').value.trim()
+    let status = document.querySelector('input[name="status"]:checked').value
 
     if (!nome || !valor) {
       alerta('Preencha todos os dados!') 
@@ -256,7 +284,8 @@ async function editarConta(id, a, m) {
       valor: valor,
       vencimento: vencimento || 0,
       parcela: parcela || 0,
-      obs: obs || ''
+      obs: obs || '',
+      status: status
     })
 
     document.querySelector('.modal')?.remove()
@@ -270,8 +299,6 @@ async function editarConta(id, a, m) {
   // Chamando Função - Deletar Conta
   document.querySelector('.btnDeletar').onclick = ()=> { deletarConta(docSnap.id, ano, mes) }
 
-  // Chamando Função - Atualizar Status
-  document.querySelector('.btnStatus').onclick = ()=> { atualizarStatusConta(docSnap.id, ano, mes) }
 }
   
 
