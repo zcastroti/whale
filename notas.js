@@ -108,7 +108,7 @@ async function visualizarNota(id) {
     removeLoop()
     let dados = consulta.data()
     
-    modal(dados.nome)
+    modal(`<p class='identificador'>${notaREF.id}</p>`+ dados.nome)
     document.querySelector('.bodyModal').innerHTML =
     `
     <div class="editor" contenteditable="true">
