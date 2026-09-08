@@ -21,10 +21,27 @@ const USUARIO = localStorage.getItem('usuario')
 
 loopTempo(400)
 
-listarMeses()
-function listarMeses() {
-  let menuContas = document.querySelector('.menuContas')
-  menuContas.onclick = async (e) => {
+exibirMeses()
+function exibirMeses() {
+  document.querySelector('.conteudo').innerHTML =
+  `
+  <div class="meses">
+    <div class="mes" id="Janeiro">Janeiro <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Fevereiro">Fevereiro <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Março">Março <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Abril">Abril <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Maio">Maio <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Junho">Junho <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Julho">Julho <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Agosto">Agosto <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Setembro">Setembro <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Outubro">Outubro <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Novembro">Novembro <i class="fa-solid fa-calendar-week"></i></div>
+    <div class="mes" id="Dezembro">Dezembro <i class="fa-solid fa-calendar-week"></i></div>
+  </div>
+  `
+
+  document.querySelector('.meses').onclick = async (e) => {
     if (!e.target.classList.contains('mes')) return
 
     let usuarioREF = doc(db, "usuarios", USUARIO)
@@ -39,6 +56,7 @@ function listarMeses() {
     let mes = e.target.id
     listarContas(ano, mes)
   }
+
 }
 
 async function listarContas(a, m) {
@@ -98,10 +116,10 @@ async function listarContas(a, m) {
 
   } else { tbody.innerHTML = `<tr><td colspan="5">Nenhuma Conta em ${mes}</td></tr>` }
 
-  adicionarConta(a, m)
+  addConta(a, m)
 }
 
-function adicionarConta(a, m) {
+function addConta(a, m) {
   let ano = a
   let mes = m
 
@@ -111,6 +129,7 @@ function adicionarConta(a, m) {
 
   btnAddConta.onclick = ()=> {
     modal("Adicionar Conta" , 600)
+    document.querySelector('.fecharModal').style.display = 'none'
     document.querySelector('.bodyModal').innerHTML =
     `
     <div class="grid10">
@@ -120,11 +139,11 @@ function adicionarConta(a, m) {
       </div>
       <div style=" grid-column: span 3; ">
         <label for="valor">Valor</label>
-        <input type="text" class="valor">
+        <input type="number" class="valor">
       </div>
       <div style=" grid-column: span 4; ">
         <label for="vencimento">Dia Vencimento</label>
-        <input type="text" class="vencimento">
+        <input type="number" class="vencimento" maxlength="2">
       </div>
       <div style=" grid-column: span 3; ">
         <label for="parcela">Parcela</label>
@@ -157,8 +176,9 @@ function adicionarConta(a, m) {
       let obs = document.querySelector('.obs').value.trim()
 
       if (!nome || !valor) {
-        alerta('Preencha todos os dados!') 
+        alerta('Nome e Valor são obrigatórios!') 
         return }
+    
 
       let id = gerarIdentificador()
       let contaREF = doc(db, "usuarios", USUARIO, "contas", ano, mes, id)
@@ -200,6 +220,7 @@ async function editarConta(id, a, m) {
   let dados = docSnap.data()
 
   modal("Editar Conta", 600)
+  document.querySelector('.fecharModal').style.display = 'none'
   document.querySelector('.bodyModal').innerHTML =
   `
   <div class="grid10">
@@ -209,11 +230,11 @@ async function editarConta(id, a, m) {
     </div>
     <div style=" grid-column: span 3; ">
       <label for="valor">Valor</label>
-      <input type="text" class="valor" value="${dados.valor}">
+      <input type="number" class="valor" value="${dados.valor}">
     </div>
     <div style=" grid-column: span 4; ">
       <label for="vencimento">Dia Vencimento</label>
-      <input type="text" class="vencimento" value="${dados.vencimento}">
+      <input type="number" class="vencimento" value="${dados.vencimento}" maxlength="2">
     </div>
     <div style=" grid-column: span 3; ">
       <label for="parcela">Parcela</label>
@@ -311,6 +332,7 @@ async function deletarConta(id, a, m){
   let contaREF = doc(db, "usuarios", USUARIO, "contas", ano, mes, id)
 
   modal("Deletar Conta" , 600)
+  document.querySelector('.fecharModal').style.display = 'none'
   document.querySelector('.bodyModal').innerHTML =
   `
   <p>Tem certeza que deseja deletar?</p>
@@ -342,43 +364,3 @@ async function deletarConta(id, a, m){
 
 }
 
-// Funcção - Atualizar Status da Conta
-async function atualizarStatusConta(id, a, m){
-  let ano = a
-  let mes = m
-
-  let contaREF = doc(db, "usuarios", USUARIO, "contas", ano, mes, id)
-
-  modal("Atualizar Status da Conta" , 600)
-  document.querySelector('.bodyModal').innerHTML =
-  `
-  <p>Tem certeza que deseja atualizar o status?</p>
-
-  <div style=" display: flex; gap: 10px; ">
-      <button class="btnCancelar">Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
-      <button class="btnConfirmar">Confirmar <i class="fa-regular fa-circle-check"></i></button>
-  </div>
-  `
-
-  // Cancelar
-    document.querySelector('.btnCancelar').onclick = ()=> {
-      document.querySelector('.modal')?.remove()
-      document.querySelector('.overlay')?.remove()
-      editarConta(id, a, m)
-    }
-
-  // Confirmar
-  document.querySelector('.btnConfirmar').onclick = async ()=> {
-    loop()
-    await updateDoc(contaREF, {
-      status: "Pago"
-    })
-    removeLoop()
-    alerta('Status da conta atualizado com sucesso!')
-
-    document.querySelector('.modal')?.remove()
-    document.querySelector('.overlay')?.remove()
-    editarConta(id, a, m)
-  }
-
-}

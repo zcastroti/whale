@@ -10,28 +10,13 @@
 <body>
     <main class="conteudo">
 
-        <div class="menuContas">
-            <div class="mes" id="Janeiro">Jan <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Fevereiro">Fev <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Março">Mar <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Abril">Abr <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Maio">Mai <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Junho">Jun <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Julho">Jul <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Agosto">Ago <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Setembro">Set <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Outubro">Out <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Novembro">Nov <i class="fa-solid fa-calendar-week"></i></div>
-            <div class="mes" id="Dezembro">Dez <i class="fa-solid fa-calendar-week"></i></div>
-        </div>
-
     </main>
     </div>
     <style>
 
         i { pointer-events: none; }
 
-        .menuContas {
+        .meses {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
@@ -41,8 +26,8 @@
         .mes {
             cursor: pointer;
             border-radius: 5px;
-            display: flex; flex-flow: row-reverse; align-items: center; justify-content: space-between;
-            padding: 35px 30px;
+            display: flex; flex-flow: row-reverse; align-items: center; justify-content: center; gap: 5px;
+            padding: 25px 30px;
             background: white;
             border: 1px solid #cccccc;
             box-shadow: 0 2px 4px #0000000d; }
@@ -52,29 +37,22 @@
             background: #cccccc;
             border: 1px solid #b6b6b6; }
 
-        
-
-
         .col-acao { width: 60px; }
         .col-parcela { width: 70px; }
         .col-vencimento { width: 70px; }
         .col-valor { width: 120px; }
 
-        @media screen and (max-width: 450px) {
-            .menuContas { grid-template-columns: repeat(3, 1fr); }
-            .mes { padding: 25px 20px; }
-            
-        }
-
-        @media screen and (max-width: 520px) { 
-            .menuContas { grid-template-columns: repeat(3, 1fr); }
-            .col-vencimento { display: none; }
-            .col-parcela { display: none; }
+        @media screen and (max-width: 750px) {
+            .meses { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media screen and (max-width: 600px) { 
-            .btnsEditarConta { flex-flow: column-reverse;  }
+            .meses { 
+                grid-template-columns: repeat(2, 1fr);
+                padding-bottom: 30px; }
+            .col-vencimento { display: none; }
         }
+
 
     </style>
 

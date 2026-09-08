@@ -19,7 +19,7 @@ html, body {
 a { 
     cursor: pointer;
     text-decoration: none; 
-    color: #678DB2; }
+    color: #6980ab; }
 
 b { font-weight: 500; }
 
@@ -145,7 +145,19 @@ tbody tr:hover {
     right: 10px;
     padding: 20px;
     border-radius: 5px;
-    background: #cee2f7; }
+    background: #cee2f7; 
+    animation: deslizarDireita 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;}
+
+    @keyframes deslizarDireita {
+        0% {
+            opacity: 0;
+            transform: translate(150%, 50%);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(0%, 0%);
+        }
+    }
 
 /*--------------------
     Overlay
@@ -170,7 +182,19 @@ tbody tr:hover {
     width: 95%;
     max-width: 650px;
     background: #f5f5f7;
-    border-radius: 5px; }
+    border-radius: 5px; 
+    animation: deslizarEsquerda 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+    @keyframes deslizarEsquerda {
+        0% {
+            opacity: 0;
+            transform: translate(-150%, -50%);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(0%, 0%);
+        }
+    }
 
 .headModal { 
     border-bottom: solid 1px #e2e2e2;
@@ -182,7 +206,7 @@ tbody tr:hover {
     display: flex; flex-direction: column; gap: 10px; 
     padding: 10px;}
 
-.footerModal{ display: flex; height: 5px; background: #678DB2;}
+.footerModal{ display: flex; height: 8px; background: #6980ab;}
 
 /*--------------------------
     Loop de Carregamento
