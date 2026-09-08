@@ -100,7 +100,7 @@ async function listarContas(a, m) {
       tr.innerHTML = 
       `
       <td class="col-nome">${dados.nome}</td>
-      <td class="col-valor">${dados.valor}</td>
+      <td class="col-valor">R$ ${dados.valor}</td>
       <td class="col-vencimento">${dados.vencimento}</td>
       <td class="col-parcela">${dados.parcela}</td>
       <td class="col-acao"><button class="btnEditarConta" style="border: none; background: none; padding: 0px; height: auto;"><i class="fa-solid fa-gear"></i></button></td>
@@ -321,8 +321,6 @@ async function editarConta(id, a, m) {
   document.querySelector('.btnDeletar').onclick = ()=> { deletarConta(docSnap.id, ano, mes) }
 
 }
-  
-
 
 // Funcção - Deletar Conta
 async function deletarConta(id, a, m){

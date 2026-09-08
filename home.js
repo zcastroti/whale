@@ -20,8 +20,16 @@ navegacao()
 document.querySelector('.home').classList.add('destaque')
 
 const USUARIO = localStorage.getItem('usuario')
-let usuarioREF = doc(db, "usuarios", USUARIO)
-let consulta = await getDoc(usuarioREF)
-let dados = consulta.data()
 
-paginarTabela('.tabelaPessoas', 5)
+let contasREF = collection(db, "usuarios", USUARIO, "contas", '2026', 'Setembro')
+let consulta = await getDocs(contasREF)
+
+let conteudo = document.querySelector('.conteudo')
+let total = 0
+
+
+consulta.forEach(docSnap => {
+    let dados = docSnap.data()
+    total = total + dados.valor
+})
+conteudo.innerHTML = `R$ ${total}`
