@@ -38,9 +38,9 @@
             border: 1px solid #b6b6b6; }
 
         .col-acao { width: 60px; }
-        .col-parcela { width: 70px; }
-        .col-vencimento { width: 70px; }
-        .col-valor { width: 120px; }
+        .col-parcela { width: 80px; text-align: center; }
+        .col-vencimento { width: 80px; text-align: center; }
+        .col-valor { width: 120px; text-align: right; }
 
         @media screen and (max-width: 750px) {
             .meses { grid-template-columns: repeat(3, 1fr); }
@@ -50,6 +50,8 @@
             .meses { 
                 grid-template-columns: repeat(2, 1fr);
                 padding-bottom: 30px; }
+
+            .col-parcela { display: none; }
             .col-vencimento { display: none; }
         }
 
