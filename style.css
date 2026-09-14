@@ -203,8 +203,7 @@ tbody tr:hover {
 .headModal h1 {
     display: flex; align-items: center; gap: 10px;
     font-size: 18px; 
-    font-weight: bold; 
-    font-family: monospace; }
+    font-weight: bold; }
 
 .bodyModal { 
     display: flex; flex-direction: column; gap: 10px; 
@@ -243,6 +242,7 @@ tbody tr:hover {
 
 
 .corVerde > td { color: green !important; }
+.corVermelho > td { color: tomato; }
 
 
 /*--------------------------

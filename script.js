@@ -25,7 +25,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
-
 export {
   db,
   doc,
@@ -40,8 +39,6 @@ export {
   orderBy
 }
 
-// --------------------------------------------------------------------------
-
 // Função - Criar Barra de Navegação
 export function navegacao() {
   let nav = document.createElement('nav')
@@ -51,7 +48,7 @@ export function navegacao() {
   `
   <a href="home.html" class="home">Home</a>
   <a href="notas.html" class="notas">Notas</a>
-  <a href="contas.html" class="contas">Contas</a>
+  <a href="despesas.html" class="despesas">Despesas</a>
   <a href="config.html" class="config">Config.</a>
   `
 }
@@ -98,7 +95,7 @@ export function alerta(texto , tempo) {
   document.body.prepend(alerta)
 
   alerta.innerHTML = `<i class="fa-solid fa-info"></i> ${texto}`
-  setTimeout(() => { document.querySelector('.alerta').remove() }, tempo || 1500)
+  setTimeout(() => { document.querySelector('.alerta')?.remove() }, tempo || 1500)
 }
 
 // Função - Loop de Carregamento
@@ -120,9 +117,8 @@ export function loopTempo(tempo) {
   loop.classList.add('loop')
   loop.innerHTML = '<img src="carregando.gif" class="gif" width="120px">'
   document.body.prepend(loop)
-  setTimeout(() => { document.querySelector('.loop').remove() }, tempo)
+  setTimeout(() => { document.querySelector('.loop')?.remove() }, tempo)
 }
-
 
 // Função - Paginar Tabela
 export function paginarTabela(tabelaREF, itensPorPagina = 10) {

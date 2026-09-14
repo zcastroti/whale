@@ -147,6 +147,7 @@ async function salvarNota(id) {
 
 async function renomearNota(id, nome) {  
     modal('Renomear Nota')
+    document.querySelector('.fecharModal').style.display = 'none'
     document.querySelector('.bodyModal').innerHTML =
     `
     <p>Renomear Nota:</p>
@@ -190,6 +191,7 @@ async function deletarNota(id) {
     document.querySelector('.overlay')?.remove()
 
     modal('Deletar Nota')
+    document.querySelector('.fecharModal').style.display = 'none'
     document.querySelector('.bodyModal').innerHTML =
     `
     <p>Tem certeza que deseja deletar?</p>
