@@ -11,7 +11,8 @@ import {
   getDocs,
   query,
   where,
-  orderBy
+  orderBy,
+  getCountFromServer
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"
 
 const firebaseConfig = {
@@ -36,7 +37,8 @@ export {
   getDocs,
   query,
   where,
-  orderBy
+  orderBy,
+  getCountFromServer
 }
 
 // Função - Criar Barra de Navegação

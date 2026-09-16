@@ -82,6 +82,7 @@ function exibirMeses() {
     </div>
   </div>
   `
+  carregarQtdDespesas()
 
   document.querySelector('.meses').onclick = async (e) => {
     if (!e.target.classList.contains('mes')) return
@@ -99,7 +100,6 @@ function exibirMeses() {
     listarDespesas(ano, mes)
   }
 
-  carregarQtdDespesas()
 }
 
 async function carregarQtdDespesas() {
@@ -311,9 +311,16 @@ function adicionarDespesa(a, m) {
   let ano = a
   let mes = m
 
-  let btnAdicionarDespesa = document.createElement('button')
-  btnAdicionarDespesa.innerHTML = `Adicionar Despesa <i class="fa-solid fa-circle-plus"></i>`
-  document.querySelector('.bodyModal').appendChild(btnAdicionarDespesa)
+  let botoes = document.createElement('div')
+  botoes.classList.add('botoes')
+  botoes.innerHTML =
+  `
+  <button class="btnAddDespesa">Adicionar Despesa <i class="fa-solid fa-circle-plus"></i></button>
+  `
+  document.querySelector('.bodyModal').appendChild(botoes)
+
+
+  let btnAdicionarDespesa = document.querySelector('.btnAddDespesa')
 
   btnAdicionarDespesa.onclick = ()=> {
     modal("Adicionar Despesa" , 600)

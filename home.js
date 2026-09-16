@@ -1,15 +1,16 @@
 import {
-db,
-doc,
-collection,
-getDoc,
-setDoc,
-updateDoc,
-deleteDoc,
-getDocs,
-query,
-where,
-orderBy
+  db,
+  doc,
+  collection,
+  getDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  getCountFromServer
 } from './script.js'
 
 import { navegacao , gerarIdentificador , modal , alerta , loop, removeLoop, loopTempo, paginarTabela } from './script.js'

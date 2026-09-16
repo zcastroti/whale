@@ -9,7 +9,8 @@ import {
   getDocs,
   query,
   where,
-  orderBy
+  orderBy,
+  getCountFromServer
 } from './script.js'
 
 import { navegacao , gerarIdentificador , modal , alerta , loop, removeLoop, loopTempo, paginarTabela } from './script.js'
