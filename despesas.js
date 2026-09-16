@@ -85,7 +85,9 @@ function exibirMeses() {
   carregarQtdDespesas()
 
   document.querySelector('.meses').onclick = async (e) => {
-    if (!e.target.classList.contains('mes')) return
+    const mesElemento = e.target.closest('.mes')
+
+    if (!mesElemento) return
 
     let usuarioREF = doc(db, "usuarios", USUARIO)
     
@@ -96,7 +98,7 @@ function exibirMeses() {
     let dados = consulta.data()
     let ano = dados.anoVisaoContas || 2026
 
-    let mes = e.target.id
+    let mes = mesElemento.id
     listarDespesas(ano, mes)
   }
 
@@ -318,7 +320,6 @@ function adicionarDespesa(a, m) {
   <button class="btnAddDespesa">Adicionar Despesa <i class="fa-solid fa-circle-plus"></i></button>
   `
   document.querySelector('.bodyModal').appendChild(botoes)
-
 
   let btnAdicionarDespesa = document.querySelector('.btnAddDespesa')
 
