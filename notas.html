@@ -9,6 +9,14 @@
 </head>
 <body>
     <main class="conteudo">
+
+        <div class="categoriaNotas">
+            <div class="categoria ativo">Todos</div>
+            <div class="categoria">Pessoal</div>
+            <div class="categoria">Trabalho</div>
+            <div class="categoria">Senhas</div>
+        </div>
+
         <div class="menuNotas">
         </div>
 
@@ -16,17 +24,44 @@
     </main>
 
 <style>
-    /*--------------------
-        Anotações
-    --------------------*/
+
+    .categoriaNotas {
+        max-width: 1200px;
+       margin: 0 auto 5px auto;
+        display: flex; flex-flow: row wrap; gap: 15px;
+    }
+
+.categoria { 
+        cursor: pointer;
+        padding: 8px 16px;
+        background: #f8fafc; /* Fundo sutil */
+        border-radius: 8px; /* Transforma em formato de pílula (pill) */
+        border: 1px solid #e2e8f0; 
+        transition: all 0.2s ease-in-out;
+    }
+
+    .categoria:hover {
+        background: #f1f5f9;
+        border-color: #cbd5e1;
+        color: #0f172a;
+        transform: translateY(-1px);
+    }
+
+    /* Exemplo de estado ativo (quando a categoria estiver selecionada) */
+    .categoria.ativo {
+        background: #0f172a; /* Fundo escuro de destaque */
+        color: #ffffff;
+        border-color: #0f172a;
+    }
+
+
     .menuNotas {
         max-width: 1200px;
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 15px;
-        padding: 10px;
-    }
+        padding: 10px; }
 
     .nota {
         display: flex;
@@ -60,12 +95,9 @@
 
 
     .btnAdicionarNota {
-        background: #d0d0e7;
-        border: none;
         position: fixed;
         bottom: 40px;
-        right: 20px;
-        padding: 30px 20px; }
+        left: 20px; }
 
     @media screen and (max-width: 750px) { .menuNotas { grid-template-columns: repeat(3, 1fr); } }
     @media screen and (max-width: 600px) { .menuNotas { grid-template-columns: repeat(2, 1fr); } }
