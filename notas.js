@@ -154,7 +154,7 @@ function adicionarNota() {
             document.querySelector('.modal')?.remove()
             document.querySelector('.overlay')?.remove()
 
-            await listarNotas()
+            carregarNotas()
             
             alerta('Nota cadastrada com sucesso!')
             abrirNota(id)
