@@ -21,6 +21,8 @@ navegacao()
 document.querySelector('.config').classList.add('destaque')
 
 const USUARIO = localStorage.getItem('usuario')
+if (!USUARIO) window.location.href = 'index.html'
+
 let usuarioREF = doc(db, "usuarios", USUARIO)
 let consulta = await getDoc(usuarioREF)
 let dados = consulta.data()

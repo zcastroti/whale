@@ -20,27 +20,31 @@
         Anotações
     --------------------*/
     .menuNotas {
-        display: flex; flex-wrap: wrap; justify-content: left; gap: 10px; 
-        width: 100%;
-        max-width: 800px;
-        padding-bottom: 10px;
-        margin: 0 auto; }
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        padding: 10px;
+    }
 
     .nota {
-        width: 200px;
-        flex: auto;
-        display: flex; align-items: center; 
-        padding: 25px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
         cursor: pointer;
-        border-radius: 5px;
-        background: white;
-        border: 1px solid #cccccc;
-        box-shadow: 0 2px 4px #0000000d; }
+        background: #ffffff;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0; 
+        box-shadow: 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008; 
+        transition: all 0.2s ease-in-out; 
+    }
 
-    .nota:hover { 
-        transition: .8s;
-        background: #cccccc;
-        border: 1px solid #b6b6b6; }
+    .nota:hover {
+        transform: translateY(-1px);
+        border-color: #cbd5e1;
+        box-shadow: 0 10px 15px -3px #00000014, 0 4px 6px -2px #0000000a; }
 
     .editor {
         background: #e9f0f9;
@@ -63,10 +67,12 @@
         right: 20px;
         padding: 30px 20px; }
 
+    @media screen and (max-width: 750px) { .menuNotas { grid-template-columns: repeat(3, 1fr); } }
+    @media screen and (max-width: 600px) { .menuNotas { grid-template-columns: repeat(2, 1fr); } }
+    @media screen and (max-width: 380px) { .menuNotas { grid-template-columns: repeat(1, 1fr); width: 100%; } }
 
     @media screen and (max-width: 450px) {
         .btnsVisualizarNota button { padding: 5px; gap: 5px; }
-        .nota { flex: content; padding: 15px 10px; }
     }
 
     @media screen and (max-height: 500px) {

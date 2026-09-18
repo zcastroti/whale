@@ -21,3 +21,4 @@ navegacao()
 document.querySelector('.home').classList.add('destaque')
 
 const USUARIO = localStorage.getItem('usuario')
+if (!USUARIO) window.location.href = 'index.html'

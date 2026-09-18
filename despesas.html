@@ -24,18 +24,20 @@
             gap: 15px; }
 
         .mes {
-            cursor: pointer;
-            border-radius: 5px;
             display: flex;  flex-flow: column; align-items: center; gap: 5px;
             padding: 25px 30px;
+            cursor: pointer;
             background: white;
-            border: 1px solid #cccccc;
-            box-shadow: 0 2px 4px #0000000d; }
+            border-radius: 8px;
+            border: 1px solid #e2f0e5;
+            box-shadow: 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008; /* Sombra elegante estilo Tailwind */
+            transition: all 0.2s ease-in-out; /* Transição suave para interações */
+        }
 
         .mes:hover { 
-            transition: .8s;
-            background: #cccccc;
-            border: 1px solid #b6b6b6; }
+            transform: translateY(-1px);
+            border-color: #d0e1cb;
+            box-shadow: 0 10px 15px -3px #00000014, 0 4px 6px -2px #0000000a; }
 
         .col-acao { width: 60px; }
         .col-parcela { width: 80px; text-align: center; }

@@ -19,6 +19,7 @@ navegacao()
 document.querySelector('.despesas')?.classList.add('destaque')
 
 const USUARIO = localStorage.getItem('usuario')
+if (!USUARIO) window.location.href = 'index.html'
 
 loopTempo(400)
 
@@ -124,6 +125,7 @@ async function carregarQtdDespesas() {
   let totalJaneiro = 0
   despesasJaneiro.forEach( () => { totalJaneiro = totalJaneiro + 1 })
   document.querySelector('.totalJaneiro').innerHTML = `${totalJaneiro} Despesas`
+
 
   // Total Fevereiro
   let colecaoFevereiro = collection(db, "usuarios", USUARIO, "despesas", ano, 'Fevereiro')
@@ -232,9 +234,13 @@ async function listarDespesas(a, m) {
   let mes = m
 
   let despesasREF = collection(db, "usuarios", USUARIO, "despesas", ano, mes)
-  
+  let consultaPorStatus = query(despesasREF, 
+    orderBy("status", "desc", 
+    orderBy("diaVencimento", "asc")))
+
+
   loop()
-  let consulta = await getDocs(despesasREF)
+  let querySnapshot = await getDocs(consultaPorStatus)
   removeLoop()
 
   modal(`${mes} de ${ano}` , 800)
@@ -256,8 +262,8 @@ async function listarDespesas(a, m) {
 
   let tbody = document.querySelector('tbody')
 
-  if (!consulta.empty) {
-    consulta.forEach(docSnap => {
+  if (!querySnapshot.empty) {
+    querySnapshot.forEach(docSnap => {
       let dados = docSnap.data()
       let tr = document.createElement('tr')
 

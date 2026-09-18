@@ -19,8 +19,8 @@ navegacao()
 document.querySelector('.notas').classList.add('destaque')
 
 const USUARIO = localStorage.getItem('usuario')
+if (!USUARIO) window.location.href = 'index.html'
 let menuNotas = document.querySelector('.menuNotas')
-
 
 // Adicionar Nota
 adicionarNota()
