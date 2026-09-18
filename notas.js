@@ -20,6 +20,7 @@ document.querySelector('.notas').classList.add('destaque')
 
 const USUARIO = localStorage.getItem('usuario')
 if (!USUARIO) window.location.href = 'index.html'
+
 let menuNotas = document.querySelector('.menuNotas')
 
 // Adicionar Nota
@@ -88,9 +89,48 @@ async function listarNotas() {
             nota.innerHTML = `${dados.nome}`
             menuNotas.prepend(nota)
         })
-    } else { menuNotas.innerHTML = `<p style='text-align: center;'>Nenhuma nota cadastrada!</p>`}
+    } else { menuNotas.innerHTML = `<p style='text-align: center; grid-column: span 10; '>Nenhuma nota cadastrada!</p>`}
     removeLoop()
 }
+
+
+let categoriaNotas = document.querySelector('.categoriaNotas')
+categoriaNotas.addEventListener('click', (e) => {
+    if (e?.target) e.target.blur()
+    e.preventDefault()
+
+    let categoria = e.target.closest('.categoria')
+    let valor = categoria.textContent
+    if (categoria) { listarNotasPorCategoria(valor) }
+})
+
+async function listarNotasPorCategoria(categoria) {
+    loop()
+    menuNotas.innerHTML = ''
+
+    if (categoria == "Todos") {
+        listarNotas()
+        removeLoop()
+        return
+    }
+
+    let notasREF = collection(db, 'usuarios', USUARIO, 'notas')
+    let consultaQ = query(notasREF, where('categoria', '==', categoria))
+    let consulta = await getDocs(consultaQ)
+    if (!consulta.empty) {
+        consulta.forEach(e => {
+            let dados = e.data()
+            let nota = document.createElement('div')
+            nota.classList.add('nota')
+            nota.id = e.id
+            nota.innerHTML = `${dados.nome}`
+            menuNotas.prepend(nota)
+        })
+    } else { menuNotas.innerHTML = `<p style='text-align: center; grid-column: span 10;'>Nenhuma nota cadastrada!</p>`}
+    removeLoop()
+}
+
+
 
 menuNotas.addEventListener('click', (e) => {
     if (e?.target) e.target.blur()
