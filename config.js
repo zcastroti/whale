@@ -112,3 +112,50 @@ btnVisaoContas.onclick = ()=> {
   }
 
 }
+
+
+
+// Adicionar categoria
+let btnAdicionarCategoria = document.querySelector('.btnAdicionarCategoria')
+btnAdicionarCategoria.onclick = async () => {
+    modal('Adicionar Categoria')
+    let bodyModal = document.querySelector('.bodyModal')
+    bodyModal.innerHTML =
+    `
+    <p>Nova Categoria:</p>
+    <input type="text" class="nome" maxlength="15">
+
+    <div style=" display: flex; gap: 10px; ">
+        <button class="btnCancelar">Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
+        <button class="btnConfirmar">Confirmar <i class="fa-regular fa-circle-check"></i></button>
+    </div>
+    `
+
+    document.querySelector('.nome').focus()
+
+    // Cancelar
+    document.querySelector('.btnCancelar').onclick = ()=> {
+        document.querySelector('.modal')?.remove()
+        document.querySelector('.overlay')?.remove()
+    }
+
+    // Confirmar
+    document.querySelector('.btnConfirmar').onclick = async ()=> {
+        let nome = document.querySelector('.nome').value.trim()
+        if (!nome) return
+
+        let id = gerarIdentificador()
+        let categoriaREF = doc(db, 'usuarios', USUARIO, 'categoriaNotas', id)
+        
+        loop()
+        await setDoc(categoriaREF, { nome: nome })
+        removeLoop()
+
+        document.querySelector('.modal')?.remove()
+        document.querySelector('.overlay')?.remove()
+
+        carregarCategorias()
+        
+        alerta('Categoria cadastrada com sucesso!')
+    }
+}

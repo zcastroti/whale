@@ -11,11 +11,6 @@
     <main class="conteudo">
 
         <div class="categoriaNotas">
-            <div class="categoria ativo">Todos</div>
-            <div class="categoria">Programação</div>
-            <div class="categoria">Pessoal</div>
-            <div class="categoria">Senhas</div>
-            <button><i class="fa-solid fa-plus"></i>
         </div>
 
         <div class="menuNotas">
@@ -28,7 +23,7 @@
 
     .categoriaNotas {
         max-width: 1200px;
-        margin: 0 auto 5px auto;
+        margin: 0 auto 10px auto;
         display: flex; flex-flow: row wrap; gap: 15px;
         justify-content: center; align-items: center;
     }
@@ -51,7 +46,7 @@
     }
 
     /* Exemplo de estado ativo (quando a categoria estiver selecionada) */
-    .categoria.ativo {
+    .categoriaAtiva {
         background: #94a3b8;
         color: #ffffff;
         border-color: #6980ab;

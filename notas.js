@@ -9,8 +9,7 @@ import {
   getDocs,
   query,
   where,
-  orderBy,
-  getCountFromServer
+  orderBy
 } from './script.js'
 
 import { navegacao , gerarIdentificador , modal , alerta , loop, removeLoop } from './script.js'
@@ -22,8 +21,99 @@ const USUARIO = localStorage.getItem('usuario')
 if (!USUARIO) window.location.href = 'index.html'
 
 let menuNotas = document.querySelector('.menuNotas')
+let categoriaNotas = document.querySelector('.categoriaNotas')
 
-// Adicionar Nota
+
+// Carregar categorias
+carregarCategorias()
+async function carregarCategorias() {
+    loop()
+    categoriaNotas.innerHTML =
+    `
+    <div class="categoria categoriaAtiva">Todos</div>
+    `
+
+    let categoriasREF = collection(db, 'usuarios', USUARIO, 'categoriaNotas')
+    let consulta = await getDocs(categoriasREF)
+    if (!consulta.empty) {
+        consulta.forEach(e => {
+            let dados = e.data()
+            let categoria = document.createElement('div')
+            categoria.classList.add('categoria')
+            categoria.innerHTML = `${dados.nome}`
+            categoriaNotas.appendChild(categoria)
+        })
+    }
+    removeLoop()
+}
+
+
+// identificar click (Categoria)
+categoriaNotas.addEventListener('click', (e) => {
+    if (e?.target) e.target.blur()
+    e.preventDefault()
+
+    let categoria = e.target.closest('.categoria')
+
+    if (categoria) {
+        let valor = categoria.textContent
+        document.querySelectorAll('.categoriaAtiva').forEach(e => {
+            e.classList.remove('categoriaAtiva')
+            categoria.classList.add('categoriaAtiva')
+        })
+        filtrarNotas(valor) 
+    }
+})
+
+// Filtrar notas por categoria
+async function filtrarNotas(categoria) {
+    loop()
+    menuNotas.innerHTML = ''
+
+    if (categoria == "Todos") {
+        carregarNotas()
+        removeLoop()
+        return }
+
+    let notasREF = collection(db, 'usuarios', USUARIO, 'notas')
+    let consultaQ = query(notasREF, where('categoria', '==', categoria))
+    let consulta = await getDocs(consultaQ)
+    if (!consulta.empty) {
+        consulta.forEach(e => {
+            let dados = e.data()
+            let nota = document.createElement('div')
+            nota.classList.add('nota')
+            nota.id = e.id
+            nota.innerHTML = `${dados.nome}`
+            menuNotas.prepend(nota)
+        })
+    } else { menuNotas.innerHTML = `<p style='text-align: center; grid-column: span 10;'>Nenhuma nota cadastrada!</p>`}
+    removeLoop()
+}
+
+
+// Carregar  notas
+carregarNotas()
+async function carregarNotas() {
+    loop()
+    menuNotas.innerHTML = ''
+
+    let notasREF = collection(db, 'usuarios', USUARIO, 'notas')
+    let consulta = await getDocs(notasREF)
+    if (!consulta.empty) {
+        consulta.forEach(e => {
+            let dados = e.data()
+            let nota = document.createElement('div')
+            nota.classList.add('nota')
+            nota.id = e.id
+            nota.innerHTML = `${dados.nome}`
+            menuNotas.prepend(nota)
+        })
+    } else { menuNotas.innerHTML = `<p style='text-align: center; grid-column: span 10; '>Nenhuma nota cadastrada!</p>`}
+    removeLoop()
+}
+
+// Adicionar nota
 adicionarNota()
 function adicionarNota() {
     let btnAdicionarNota = document.querySelector('.btnAdicionarNota')
@@ -67,81 +157,22 @@ function adicionarNota() {
             await listarNotas()
             
             alerta('Nota cadastrada com sucesso!')
-            visualizarNota(id)
+            abrirNota(id)
         }
     }
 }
 
-// Listar Notas
-listarNotas()
-async function listarNotas() {
-    loop()
-    menuNotas.innerHTML = ''
-
-    let notasREF = collection(db, 'usuarios', USUARIO, 'notas')
-    let consulta = await getDocs(notasREF)
-    if (!consulta.empty) {
-        consulta.forEach(e => {
-            let dados = e.data()
-            let nota = document.createElement('div')
-            nota.classList.add('nota')
-            nota.id = e.id
-            nota.innerHTML = `${dados.nome}`
-            menuNotas.prepend(nota)
-        })
-    } else { menuNotas.innerHTML = `<p style='text-align: center; grid-column: span 10; '>Nenhuma nota cadastrada!</p>`}
-    removeLoop()
-}
-
-
-let categoriaNotas = document.querySelector('.categoriaNotas')
-categoriaNotas.addEventListener('click', (e) => {
-    if (e?.target) e.target.blur()
-    e.preventDefault()
-
-    let categoria = e.target.closest('.categoria')
-    let valor = categoria.textContent
-    if (categoria) { listarNotasPorCategoria(valor) }
-})
-
-async function listarNotasPorCategoria(categoria) {
-    loop()
-    menuNotas.innerHTML = ''
-
-    if (categoria == "Todos") {
-        listarNotas()
-        removeLoop()
-        return
-    }
-
-    let notasREF = collection(db, 'usuarios', USUARIO, 'notas')
-    let consultaQ = query(notasREF, where('categoria', '==', categoria))
-    let consulta = await getDocs(consultaQ)
-    if (!consulta.empty) {
-        consulta.forEach(e => {
-            let dados = e.data()
-            let nota = document.createElement('div')
-            nota.classList.add('nota')
-            nota.id = e.id
-            nota.innerHTML = `${dados.nome}`
-            menuNotas.prepend(nota)
-        })
-    } else { menuNotas.innerHTML = `<p style='text-align: center; grid-column: span 10;'>Nenhuma nota cadastrada!</p>`}
-    removeLoop()
-}
-
-
-
+// identificar click (Nota)
 menuNotas.addEventListener('click', (e) => {
     if (e?.target) e.target.blur()
     e.preventDefault()
 
     let nota = e.target.closest('.nota')
-    if (nota) { visualizarNota(nota.id) }
+    if (nota) { abrirNota(nota.id) }
 })
 
-// Visualizar Notas
-async function visualizarNota(id) {
+// Abrir nota
+async function abrirNota(id) {
     
     let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id)
     loop()
@@ -155,7 +186,7 @@ async function visualizarNota(id) {
     <div class="editor" contenteditable="true">
         ${dados.conteudo || ''}
     </div>
-    <div class="btnsVisualizarNota" style=" display: flex; gap: 10px; ">
+    <div class="btnsabrirNota" style=" display: flex; gap: 10px; ">
         <button class='btnSalvarNota'>Salvar <i class="fa-solid fa-sd-card"></i></button>
         <button class='btnRenomearNota'>Renomear <i class="fa-solid fa-feather"></i></button>
         <button class='btnDeletarNota'>Deletar <i class="fa-solid fa-trash"></i></button>
@@ -172,6 +203,7 @@ async function visualizarNota(id) {
     document.querySelector('.btnDeletarNota').onclick = ()=> { deletarNota(id) }
 }
 
+// Salvar nota
 async function salvarNota(id) {
     let notaREF = doc(db, 'usuarios', USUARIO, 'notas', id)
 
@@ -186,6 +218,7 @@ async function salvarNota(id) {
     alerta('Nota salva com sucesso!')
 }
 
+// Renomear nota
 async function renomearNota(id, nome) {  
     modal('Renomear Nota')
     document.querySelector('.fecharModal').style.display = 'none'
@@ -206,7 +239,7 @@ async function renomearNota(id, nome) {
     document.querySelector('.btnCancelar').onclick = ()=> {
         document.querySelector('.modal')?.remove()
         document.querySelector('.overlay')?.remove()
-        visualizarNota(id)
+        abrirNota(id)
     }
 
     // Confirmar
@@ -223,10 +256,11 @@ async function renomearNota(id, nome) {
         await listarNotas()
         removeLoop()
         alerta('Nota renomeada com sucesso!')
-        visualizarNota(id)
+        abrirNota(id)
     }
 }
 
+// Deletar nota
 async function deletarNota(id) {
     document.querySelector('.modal')?.remove()
     document.querySelector('.overlay')?.remove()
@@ -247,7 +281,7 @@ async function deletarNota(id) {
     document.querySelector('.btnCancelar').onclick = ()=> {
         document.querySelector('.modal')?.remove()
         document.querySelector('.overlay')?.remove()
-        visualizarNota(id)
+        abrirNota(id)
     }
 
     // Confirmar
