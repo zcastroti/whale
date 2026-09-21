@@ -30,9 +30,8 @@ const anoAtual = hoje.getFullYear()
 
 exibirMeses()
 function exibirMeses() {
-  document.querySelector('.conteudo').innerHTML =
+  document.querySelector('.meses').innerHTML =
   `
-  <div class="meses">
     <div class="mes" id="Janeiro">
       <div style="display: flex; align-items: center; flex-flow: row-reverse; gap: 5px;">Janeiro <i class="fa-solid fa-calendar-week"></i></div>
       <p style="font-size: 13px;" class="totalJaneiro">Carregando</p>
@@ -81,7 +80,6 @@ function exibirMeses() {
       <div style="display: flex; align-items: center; flex-flow: row-reverse; gap: 5px;">Dezembro <i class="fa-solid fa-calendar-week"></i></div>
       <p style="font-size: 13px;" class="totalDezembro">Carregando</p>
     </div>
-  </div>
   `
   carregarQtdDespesas()
 
@@ -97,7 +95,7 @@ function exibirMeses() {
     removeLoop()
 
     let dados = consulta.data()
-    let ano = dados.anoVisaoContas || 2026
+    let ano = dados.anoDespesas || "2026"
 
     let mes = mesElemento.id
     listarDespesas(ano, mes)
@@ -114,7 +112,7 @@ async function carregarQtdDespesas() {
   removeLoop()
 
   let dados = consulta.data()
-  let ano = dados.anoVisaoContas || 2026
+  let ano = dados.anoDespesas || "2026"
 
 
   // Total Janeiro
@@ -227,7 +225,6 @@ async function carregarQtdDespesas() {
   document.querySelector('.totalDezembro').innerHTML = `${totalDezembro} Despesas`
 
 }
-
 
 async function listarDespesas(a, m) {
   let ano = a
@@ -566,3 +563,44 @@ async function deletarDespesa(id, a, m){
 
 }
 
+// Função - Visão Das Contas
+let btnAnoDespesas = document.querySelector('.btnAnoDespesas')
+btnAnoDespesas.onclick = async ()=> {
+
+  let usuarioREF = doc(db, "usuarios", USUARIO)
+  loop()
+  let consulta = await getDoc(usuarioREF)
+  removeLoop()
+  let dados = consulta.data()
+
+  modal('Ano das Despesas' , 600)
+  document.querySelector('.bodyModal').innerHTML =
+  `
+  <input type="text" class="anoDespesas" value="${dados.anoDespesas}">
+  <div style=" display: flex; gap: 10px; ">
+      <button class="btnCancelar">Cancelar <i class="fa-regular fa-circle-xmark"></i></button>
+      <button class="btnConfirmar">Confirmar <i class="fa-regular fa-circle-check"></i></button>
+  </div>
+  `
+
+  // Cancelar
+  document.querySelector('.btnCancelar').onclick = ()=> {
+    document.querySelector('.modal')?.remove()
+    document.querySelector('.overlay')?.remove() }
+
+  // Confirmar
+  document.querySelector('.btnConfirmar').onclick = async ()=> {
+    let anoDespesas = document.querySelector('.anoDespesas').value
+
+    loop()
+    await updateDoc(usuarioREF, { 
+      anoDespesas: anoDespesas
+    })
+    exibirMeses()
+    removeLoop()
+
+    document.querySelector('.modal')?.remove()
+    document.querySelector('.overlay')?.remove()
+    alerta('Dados alterados com sucesso!')
+  }
+}

@@ -22,3 +22,10 @@ document.querySelector('.home').classList.add('destaque')
 
 const USUARIO = localStorage.getItem('usuario')
 if (!USUARIO) window.location.href = 'index.html'
+
+// Função - Encerrar Sessão
+let btnEncerrarSessao = document.querySelector('.btnEncerrarSessao')
+btnEncerrarSessao.onclick = ()=> {
+  window.location.href = 'index.html'
+  localStorage.removeItem('usuario')
+}

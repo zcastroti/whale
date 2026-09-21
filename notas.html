@@ -9,109 +9,91 @@
 </head>
 <body>
     <main class="conteudo">
-
         <div class="categoriaNotas">
         </div>
 
         <div class="menuNotas">
+            Carregando...
         </div>
 
-        <button class="btnAdicionarNota">Adicionar Nota <i class="fa-solid fa-circle-plus"></i></button>
+        <div class="botoesFooter">
+            <button class="btnAdicionarNota">Adicionar Nota <i class="fa-solid fa-circle-plus"></i></button>
+            <button class="btnConfigCategoria">Categoria de Notas<i class="fa-solid fa-gear"></i></button>
+        </div>
     </main>
 
-<style>
+    <style>
+        .categoriaNotas {
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            display: flex; flex-flow: row wrap; gap: 15px;
+            justify-content: center; align-items: center; }
 
-    .categoriaNotas {
-        max-width: 1200px;
-        margin: 0 auto 20px auto;
-        display: flex; flex-flow: row wrap; gap: 15px;
-        justify-content: center; align-items: center;
-    }
+        .categoria { 
+            cursor: pointer;
+            padding: 8px 16px;
+            background: #f8fafc;
+            border-radius: 3px;
+            border: 1px solid #e2e8f0; 
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008; }
 
-    .categoria { 
-        cursor: pointer;
-        padding: 8px 16px;
-        background: #f8fafc;
-        border-radius: 3px;
-        border: 1px solid #e2e8f0; 
-        transition: all 0.2s ease-in-out;
-        box-shadow: 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008; 
-    }
+        .categoria:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            color: #0f172a;
+            transform: translateY(-1px); }
 
-    .categoria:hover {
-        background: #f1f5f9;
-        border-color: #cbd5e1;
-        color: #0f172a;
-        transform: translateY(-1px);
-    }
+        .categoriaAtiva {
+            background: #94a3b8;
+            color: #ffffff;
+            border-color: #6980ab; }
 
-    /* Exemplo de estado ativo (quando a categoria estiver selecionada) */
-    .categoriaAtiva {
-        background: #94a3b8;
-        color: #ffffff;
-        border-color: #6980ab;
-    }
+        .menuNotas {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 10px; 
+            padding-bottom: 120px; }
 
+        @media screen and (max-width: 680px) { 
+            .menuNotas { grid-template-columns: repeat(3, 1fr); } 
+            .categoriaNotas { max-width: 450px; }
+            .botoes { flex-wrap: wrap; }
+        }
 
-    .menuNotas {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 15px;
-        padding: 10px; }
+        .nota {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: pointer;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0; 
+            box-shadow: 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008; 
+            transition: all 0.2s ease-in-out; }
 
-    .nota {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        cursor: pointer;
-        background: #ffffff;
-        border-radius: 8px;
-        border: 1px solid #e2e8f0; 
-        box-shadow: 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008; 
-        transition: all 0.2s ease-in-out; 
-    }
+        .nota:hover {
+            background: #f1f5f9;
+            transform: translateY(-1px);
+            border-color: #cbd5e1;
+            box-shadow: 0 10px 15px -3px #00000014, 0 4px 6px -2px #0000000a; }
 
-    .nota:hover {
-        background: #f1f5f9;
-        transform: translateY(-1px);
-        border-color: #cbd5e1;
-        box-shadow: 0 10px 15px -3px #00000014, 0 4px 6px -2px #0000000a; }
+        .editor {
+            background: #e9f0f9;
+            border: solid 1px #cccccc;
+            overflow: hidden;
+            overflow-y: scroll;
+            height: 350px;
+            padding: 5px; }
 
-    .editor {
-        background: #e9f0f9;
-        border: solid 1px #cccccc;
-        overflow: hidden;
-        overflow-y: scroll;
-        height: 350px;
-        padding: 5px; }
-
-    .editor::-webkit-scrollbar  { display: block; width: 5px; }
-    .editor::-webkit-scrollbar-track { background: #00000080; }
-    .editor::-webkit-scrollbar-thumb { background: #282828; }
-
-
-    .btnAdicionarNota {
-        position: fixed;
-        bottom: 40px;
-        left: 20px; }
-
-    @media screen and (max-width: 750px) { .menuNotas { grid-template-columns: repeat(3, 1fr); } }
-    @media screen and (max-width: 600px) { .menuNotas { grid-template-columns: repeat(2, 1fr); } }
-    @media screen and (max-width: 380px) { .menuNotas { grid-template-columns: repeat(1, 1fr); width: 100%; } }
-
-    @media screen and (max-width: 450px) {
-        .btnsVisualizarNota button { padding: 5px; gap: 5px; }
-    }
-
-    @media screen and (max-height: 500px) {
-        .editor { height: 200px;  }
-    }
-
-
-</style>
+        .editor::-webkit-scrollbar  { display: block; width: 5px; }
+        .editor::-webkit-scrollbar-track { background: #00000080; }
+        .editor::-webkit-scrollbar-thumb { background: #282828; }
+    </style>
 
     <script type="module" src="notas.js"></script>
     <script src="bloqueio.js"></script>

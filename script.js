@@ -51,7 +51,6 @@ export function navegacao() {
   <a href="home.html" class="home">Home</a>
   <a href="notas.html" class="notas">Notas</a>
   <a href="despesas.html" class="despesas">Despesas</a>
-  <a href="config.html" class="config">Config.</a>
   `
 }
 

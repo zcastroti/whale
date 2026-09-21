@@ -85,7 +85,10 @@ input:hover {
     transition: 2s;
     border: solid 1px #555; }
 
-select { border: solid 1px #cccccc; }
+select { 
+    padding: 0px 11px;
+    border: solid 1px #cccccc; color: #6980ab; }
+option { color: #6980ab; }
 
 button {
     cursor: pointer;
@@ -113,16 +116,14 @@ table {
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e2e2;
-}
+    border: 1px solid #e2e2e2; }
 
 th { 
     color: white;
     padding: 12px 10px;
     background: #6980ab;
     font-weight: 500;
-    text-align: left;
-}
+    text-align: left; }
 
 td { 
     padding: 10px;
@@ -245,12 +246,8 @@ tbody tr:hover {
 
 .grid10 > div { display: flex; flex-flow: column; }
 
-@media print {  }
-
-
 .corVerde > td { color: #6ea16e !important; }
 .corVermelho > td { color: #df7461; }
-
 
 /*--------------------------
     Identificador
@@ -259,5 +256,17 @@ tbody tr:hover {
     font-size: 11px;
     background: #e9f0f9;
     padding: 10px;
-    border-radius: 40% 60% 65% 35% / 40% 35% 65% 60%;
-}
+    border-radius: 40% 60% 65% 35% / 40% 35% 65% 60%; }
+
+/*--------------------------
+    Botões Footer
+---------------------------*/
+.botoesFooter {
+    position: fixed;
+    left: 50px;
+    bottom: 30px;
+    display: flex; gap: 20px;
+    max-width: 1000px;
+    margin: 20px auto 0; 
+    padding-bottom: 20px; }
+.botoesFooter button { height: 50px; }

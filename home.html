@@ -9,17 +9,90 @@
 </head>
 <body>
     <main class="conteudo">
-        <div class="grid10">
-            <h1 style="grid-column: span 10; padding: 20px; background: #efefef; display: flex; align-self: center; gap: 10px; border-radius: 10px;"><i class="fa-solid fa-globe"></i> Whale</h1>
+<div class="cardBoasVindas">
+    <div class="icone">
+        <img src="ico-whale.png" width="90px">
+    </div>
 
+    <h1>Bem-vindo ao Whale</h1>
+
+    <p>
+        Sistema de organização pessoal focado em gestão
+        de notas e controle de despesas.
+    </p>
+
+    <div class="acoes">
+        <a href="notas.html">
+            <button>
+                Notas
+                <i class="fa-solid fa-note-sticky"></i>
+            </button>
+        </a>
+
+        <a href="despesas.html">
+            <button>
+                Despesas
+                <i class="fa-solid fa-wallet"></i>
+            </button>
+        </a>
+    </div>
+</div>
+
+        <div class="botoesFooter">
+            <button class="btnEncerrarSessao">Encerrar Sessão <i class="fa-solid fa-right-from-bracket"></i></button>
         </div>
     </main>
 
     <style>
+        main { padding: 85px 60px; }
+
         .grid10 {
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
         }
+
+        .cardBoasVindas {
+            grid-column: span 10;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #e2e2e2;
+            box-shadow: 0 10px 25px rgba(0,0,0,.05);
+        }
+
+        .icone {
+            width: 90px;
+            height: 90px;
+            margin: auto;
+            border-radius: 50%;
+            background: #6980ab20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #6980ab;
+        }
+
+        .cardBoasVindas h1 {
+            margin-top: 20px;
+            color: #6980ab;
+        }
+
+        .cardBoasVindas p {
+            max-width: 500px;
+            margin: 15px auto 30px;
+            color: #666;
+        }
+
+        .acoes {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .acoes button { padding: 20px; }
     </style>
 
 

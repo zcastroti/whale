@@ -42,7 +42,7 @@ async function login() {
     let usuario = docSnap.data()
 
     localStorage.setItem('usuario', usuario.id)
-    window.location.href = 'notas.html'
+    window.location.href = 'home.html'
   } else { 
     alerta('Usuário não encontrado ou senha incorreta!') 
   }

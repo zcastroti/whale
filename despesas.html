@@ -9,9 +9,14 @@
 </head>
 <body>
     <main class="conteudo">
-    </main>
+        <div class="meses">
+            Carregando...
+        </div>
 
-    
+        <div class="botoesFooter">
+            <button class="btnAnoDespesas">Ano das Despesas <i class="fa-solid fa-eye"></i></button>
+        </div>
+    </main>
 
     <style>
         i { pointer-events: none; }
@@ -50,18 +55,14 @@
             display: flex; align-items: center; justify-content: flex-end;
         }
 
-        @media screen and (max-width: 750px) {
+        @media screen and (max-width: 750px) { 
             .meses { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media screen and (max-width: 600px) { 
-            .meses { 
-                grid-template-columns: repeat(2, 1fr);
-                padding-bottom: 30px; }
-
-            .col-parcela { display: none; }
-            .col-vencimento { display: none; }
+            .meses { grid-template-columns: repeat(2, 1fr); padding-bottom: 120px; }
         }
+
     </style>
 
     <script type="module" src="despesas.js"></script>
