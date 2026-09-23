@@ -45,15 +45,40 @@
             border-color: #d0e1cb;
             box-shadow: 0 10px 15px -3px #00000014, 0 4px 6px -2px #0000000a; }
 
-        .col-acao { width: 60px; }
-        .col-parcela { width: 80px; text-align: center; }
-        .col-vencimento { width: 80px; text-align: center; }
-        .col-valor { width: 120px; text-align: right; }
-
-
         .botoes {
             display: flex; align-items: center; justify-content: flex-end;
         }
+
+
+        .containerDespesas {
+            max-height: 450px;
+            overflow-y: scroll;
+            grid-column: span 5;
+            display: flex;
+            flex-flow: column;
+            gap: 5px;
+            padding: 5px;
+            border-radius: 8px 0px 0px 8px;
+            border: 1px solid #cccccc; 
+            box-shadow: 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008;
+        }
+
+        .containerDespesas::-webkit-scrollbar  { display: block; width: 5px; }
+        .containerDespesas::-webkit-scrollbar-track { background: #00000080; }
+        .containerDespesas::-webkit-scrollbar-thumb { background: #6980ab; }
+        .containerDespesas::-webkit-scrollbar-thumb { background: #6980ab; }
+
+        .containerTotalizacao {
+            grid-column: span 5;
+            display: flex;
+            flex-flow: column;
+            gap: 5px;
+            padding: 5px;
+        }
+
+        .item { 
+            padding: 5px;
+            background: linear-gradient(90deg, #ededed, #f4f4f4); }
 
         @media screen and (max-width: 750px) { 
             .meses { grid-template-columns: repeat(3, 1fr); }
@@ -61,6 +86,13 @@
 
         @media screen and (max-width: 600px) { 
             .meses { grid-template-columns: repeat(2, 1fr); padding-bottom: 120px; }
+        }
+
+        @media screen and (max-width: 750px) { 
+            .containerDespesas,
+            .containerTotalizacao {
+                grid-column: span 10;
+            }
         }
 
     </style>
