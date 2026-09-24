@@ -114,6 +114,7 @@ async function carregarQtdDespesas() {
   let dados = consulta.data()
   let ano = dados.anoDespesas || "2026"
 
+
   // Total Janeiro
   let colecaoJaneiro = collection(db, "usuarios", USUARIO, "despesas", ano, 'Janeiro')
   loop()
@@ -122,6 +123,7 @@ async function carregarQtdDespesas() {
   let totalJaneiro = 0
   despesasJaneiro.forEach( () => { totalJaneiro = totalJaneiro + 1 })
   document.querySelector('.totalJaneiro').innerHTML = `${totalJaneiro} Despesas`
+
 
   // Total Fevereiro
   let colecaoFevereiro = collection(db, "usuarios", USUARIO, "despesas", ano, 'Fevereiro')
@@ -233,29 +235,33 @@ async function listarDespesas(a, m) {
     orderBy("status", "desc", 
     orderBy("diaVencimento", "asc")))
 
+
   loop()
   let querySnapshot = await getDocs(consultaPorStatus)
   removeLoop()
 
-  modal('', 1000)
+  modal(`${mes} de ${ano}` , 800)
   document.querySelector('.bodyModal').innerHTML = 
   `
-  <div class="grid10">
-    <div class="containerDespesas">
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <div class="tabela-container" style="width: 100%;">
+      <table class="tabelaDespesas">
+        <tbody></tbody>
+      </table>
     </div>
-    <div class="containerTotalizacao" style="display: flex; align-items: center; justify-content: center">
-      <p style="font-size: 19px; color: #6980ab;">
-        Totalização ${ano} - ${mes}
-      </p>
+    <div style="display: flex; align-items: center; justify-content: center; width: 500px;">
+      Totalização
     </div>
+
+  </div>
   `
 
-  let containerDespesas = document.querySelector('.containerDespesas')
+  let tbody = document.querySelector('tbody')
 
   if (!querySnapshot.empty) {
     querySnapshot.forEach(docSnap => {
       let dados = docSnap.data()
-      let item = document.createElement('div')
+      let tr = document.createElement('tr')
 
       let numMes
 
@@ -273,44 +279,48 @@ async function listarDespesas(a, m) {
       if (mes == 'Dezembro') { numMes = 12 }
 
       if (ano < anoAtual) 
-        { item.classList.add('corVermelho') }
+        { tr.classList.add('corVermelho') }
 
       if (numMes < mesAtual) 
-        { item.classList.add('corVermelho') }
+        { tr.classList.add('corVermelho') }
 
       if (numMes <= mesAtual && dados.diaVencimento < diaAtual) 
-        { item.classList.add('corVermelho') }
+        { tr.classList.add('corVermelho') }
       
-      if (dados.status == "Pago") { item.classList.add('corVerde')}
+      if (dados.status == "Pago") { tr.classList.add('corVerde')}
 
-      item.innerHTML = 
+      tr.innerHTML = 
       `
-      <div class="item" style="display: flex; justify-content: space-between;">
+      <td style="padding: 5px 10px;">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
           <div style="display: flex; flex-flow: column; gap: 5px;">
-              <p>${dados.nome}</p>
-              <div style="display: flex; align-items: center; gap: 10px;">
-                  <p title="Dia do Vencimento" style="font-size: 14px;"><i class="fa-solid fa-calendar-day"></i> ${dados.diaVencimento}</p>
-                  <p title="Parcela" style="font-size: 14px;"><i class="fa-solid fa-clone"></i> ${dados.parcela}</p>
-              </div>
-              <p style=" font-size: 13px; color: #666;">${dados.observacao || ''}</p>
+            <p>${dados.nome}</p>
+            <div style="display: flex; align-items: center; gap: 20px;">
+              <p style="font-size: 13px;"><i class="fa-solid fa-calendar-day"></i> Dia do Vencimento: ${dados.diaVencimento}</p>
+              <p style="font-size: 13px;"><i class="fa-solid fa-clone"></i> Parcela: ${dados.parcela}</p>
+            </div>
           </div>
-          <div style="display: flex; align-items: center; gap: 20px;">
-              <p>R$ ${dados.valor}</p>
-              <button class="btnEditarDespesa">
-                <i class="fa-solid fa-gear"></i>
-              </button>
+          
+          <div style="display: flex; align-items: center; gap: 10px;">
+             <p>R$ ${dados.valor}</p>
+            <button class="btnEditarDespesa" style="border: none; background: none; padding: 0px; height: auto;"><i class="fa-solid fa-gear"></i></button>
           </div>
-      </div>
+          
+
+        </div>
+      </td>
+
       `
 
-      item.querySelector('.btnEditarDespesa').onclick = () => { 
+      tr.querySelector('.btnEditarDespesa').onclick = () => { 
         editarDespesa(docSnap.id, ano, mes) 
       }
 
-      containerDespesas.appendChild(item)
+      tbody.appendChild(tr)
     })
+    paginarTabela('.tabelaDespesas' , 5)
 
-  } else { containerDespesas.innerHTML = `Nenhuma despesa em ${mes}` }
+  } else { tbody.innerHTML = `<tr><td colspan="5">Nenhuma despesa em ${mes}</td></tr>` }
 
   adicionarDespesa(a, m)
 }
