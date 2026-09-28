@@ -232,40 +232,39 @@ async function listarDespesas(a, m) {
 
   let despesasREF = collection(db, "usuarios", USUARIO, "despesas", ano, mes)
   let consultaPorStatus = query(despesasREF, 
-    orderBy("status", "desc", 
-    orderBy("diaVencimento", "asc")))
-
+    orderBy("status", "desc", orderBy("diaVencimento", "asc"))
+  )
 
   loop()
   let querySnapshot = await getDocs(consultaPorStatus)
   removeLoop()
 
-  modal(`${mes} de ${ano}` , 800)
+  modal(`${mes} de ${ano}` , 800) 
   document.querySelector('.bodyModal').innerHTML = 
   `
-  <div style="display: flex; align-items: center; justify-content: space-between;">
-    <div class="tabela-container" style="width: 100%;">
+  <div class="container">
+    <div class="tabela-container" style="flex: 1;">
       <table class="tabelaDespesas">
         <tbody></tbody>
       </table>
     </div>
-    <div style="display: flex; align-items: center; justify-content: center; width: 500px;">
-      Totalização
-    </div>
-
   </div>
   `
 
   let tbody = document.querySelector('tbody')
+  let totalGeral = 0
+  let totalPendente = 0
+  let totalPago = 0
 
   if (!querySnapshot.empty) {
     querySnapshot.forEach(docSnap => {
       let dados = docSnap.data()
       let tr = document.createElement('tr')
 
-      let numMes
+      totalGeral = Number((totalGeral + Number(dados.valor)).toFixed(2))
 
-      if (mes == 'Janeiro') { numMes = 1; }
+      let numMes
+      if (mes == 'Janeiro') { numMes = 1 }
       if (mes == 'Fevereiro') { numMes = 2 }
       if (mes == 'Março') { numMes = 3 }
       if (mes == 'Abril') { numMes = 4 }
@@ -278,16 +277,16 @@ async function listarDespesas(a, m) {
       if (mes == 'Novembro') { numMes = 11 }
       if (mes == 'Dezembro') { numMes = 12 }
 
-      if (ano < anoAtual) 
-        { tr.classList.add('corVermelho') }
-
-      if (numMes < mesAtual) 
-        { tr.classList.add('corVermelho') }
-
-      if (numMes <= mesAtual && dados.diaVencimento < diaAtual) 
-        { tr.classList.add('corVermelho') }
+      if (ano < anoAtual) { tr.classList.add('pendente') }
+      if (numMes < mesAtual) { tr.classList.add('pendente') }
+      if (numMes <= mesAtual && dados.diaVencimento < diaAtual) { tr.classList.add('pendente') }
       
-      if (dados.status == "Pago") { tr.classList.add('corVerde')}
+      if (dados.status == "Pago") { 
+        tr.classList.add('pago')
+        totalPago = Number((totalPago + Number(dados.valor)).toFixed(2))
+      }
+
+      totalPendente = Number((totalGeral - Number(totalPago)).toFixed(2))
 
       tr.innerHTML = 
       `
@@ -295,8 +294,8 @@ async function listarDespesas(a, m) {
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <div style="display: flex; flex-flow: column; gap: 5px;">
             <p>${dados.nome}</p>
-            <div style="display: flex; align-items: center; gap: 20px;">
-              <p style="font-size: 13px;"><i class="fa-solid fa-calendar-day"></i> Dia do Vencimento: ${dados.diaVencimento}</p>
+            <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px;">
+              <p style="font-size: 13px; width: 130px;"><i class="fa-solid fa-calendar-day"></i> Vencimento: ${dados.diaVencimento}</p>
               <p style="font-size: 13px;"><i class="fa-solid fa-clone"></i> Parcela: ${dados.parcela}</p>
             </div>
           </div>
@@ -305,11 +304,8 @@ async function listarDespesas(a, m) {
              <p>R$ ${dados.valor}</p>
             <button class="btnEditarDespesa" style="border: none; background: none; padding: 0px; height: auto;"><i class="fa-solid fa-gear"></i></button>
           </div>
-          
-
         </div>
       </td>
-
       `
 
       tr.querySelector('.btnEditarDespesa').onclick = () => { 
@@ -319,6 +315,7 @@ async function listarDespesas(a, m) {
       tbody.appendChild(tr)
     })
     paginarTabela('.tabelaDespesas' , 5)
+
 
   } else { tbody.innerHTML = `<tr><td colspan="5">Nenhuma despesa em ${mes}</td></tr>` }
 

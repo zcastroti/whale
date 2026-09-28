@@ -27,6 +27,9 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px; }
+        @media screen and (max-width: 750px) { .meses { grid-template-columns: repeat(3, 1fr); } }
+        @media screen and (max-width: 600px) { .meses { grid-template-columns: repeat(2, 1fr); padding-bottom: 120px; } }
+
 
         .mes {
             display: flex;  flex-flow: column; align-items: center; gap: 5px;
@@ -37,38 +40,21 @@
             border: 1px solid #e2f0e5;
             box-shadow: 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008; /* Sombra elegante estilo Tailwind */
             transition: all 0.2s ease-in-out; /* Transição suave para interações */ }
-
+        
         .mes:hover { 
             transform: translateY(-1px);
             background: #fbfffa;
             border-color: #d0e1cb;
             box-shadow: 0 10px 15px -3px #00000014, 0 4px 6px -2px #0000000a; }
 
+        .tabela-container { width: 100%; }
 
-        .tabela-container {
-            width: 100%;
-        }
-
-
-
-
-        .botoes {
-            display: flex; align-items: center; justify-content: flex-end;
-        }
-
-        @media screen and (max-width: 750px) { 
-            .meses { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media screen and (max-width: 600px) { 
-            .meses { grid-template-columns: repeat(2, 1fr); padding-bottom: 120px; }
-        }
-
+        .botoes { display: flex; align-items: center; justify-content: flex-end; }
     </style>
 
     <script type="module" src="despesas.js"></script>
     <script src="bloqueio.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/ac3bdc8044.js" crossorigin="anonymous"></script>
 </body>
 </html>
-

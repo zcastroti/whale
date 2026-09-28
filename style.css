@@ -249,8 +249,8 @@ tbody tr:hover {
 
 .grid10 > div { display: flex; flex-flow: column; }
 
-.corVerde > td { color: #6ea16e !important; }
-.corVermelho > td { color: #df7461; }
+.pago > td { color: #6ea16e !important; }
+.pendente > td { color: #df7461 ; }
 
 /*--------------------------
     Identificador
