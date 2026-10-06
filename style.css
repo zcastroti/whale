@@ -272,3 +272,18 @@ tbody tr:hover {
     margin: 20px auto 0; 
     padding-bottom: 20px; }
 .botoesFooter button { height: 50px; }
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+    main, nav, .overlay { display: none; }
+
+}
+
+@media screen and (max-height: 600px) {
+    main, nav, .overlay { display: none; }
+
+}
