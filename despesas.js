@@ -344,7 +344,7 @@ function adicionarDespesa(a, m) {
     <div class="grid10">
       <div style=" grid-column: span 10; ">
         <label>Nome</label>
-        <input type="text" class="nome">
+        <input type="text" class="nome" maxlength="20">
       </div>
       <div style=" grid-column: span 3; ">
         <label>Valor</label>
@@ -434,7 +434,7 @@ async function editarDespesa(id, a, m) {
   <div class="grid10">
     <div style=" grid-column: span 10; ">
       <label>Nome</label>
-      <input type="text" class="nome" value="${dados.nome}">
+      <input type="text" class="nome" value="${dados.nome}" maxlength="20">
     </div>
     <div style=" grid-column: span 3; ">
       <label>Valor</label>

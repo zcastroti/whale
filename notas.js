@@ -30,7 +30,7 @@ async function carregarCategorias() {
     loop()
     categoriaNotas.innerHTML =
     `
-    <div class="categoria categoriaAtiva">Todos</div>
+    <div class="categoria categoriaAtiva" style="display: none;">Todos</div>
     `
 
     let categoriasREF = collection(db, 'usuarios', USUARIO, 'categoriaNotas')
@@ -44,6 +44,7 @@ async function carregarCategorias() {
             categoriaNotas.appendChild(categoria)
         })
     }
+    document.querySelector('.categoriaAtiva').style.display = "block"
     removeLoop()
 }
 
@@ -744,7 +745,7 @@ async function renomearNota(id, nome) {
     document.querySelector('.bodyModal').innerHTML =
     `
     <p>Renomear Nota:</p>
-    <input type="text" value="${nome}" class="novoNome">
+    <input type="text" value="${nome}" class="novoNome" maxlength="15">
 
     <div style=" display: flex; gap: 10px; ">
         <button class="btnCancelar">Cancelar <i class="fa-regular fa-circle-xmark"></i></button>

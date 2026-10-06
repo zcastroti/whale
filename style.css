@@ -37,7 +37,7 @@ b { font-weight: 500; }
     Navegação
 --------------------*/
 nav {
-    display: flex; gap: 10px; align-items: center;
+    display: flex; gap: 10px; align-items: center; justify-content: space-between;
     position: fixed;
     width: 100%;
     height: 60px;
@@ -46,7 +46,6 @@ nav {
     box-shadow: 0 4px #00000026; }
 
 nav a { 
-    border-radius: 40% 60% 65% 35% / 40% 35% 65% 60%;
     padding: 10px;
     color: white; }
 

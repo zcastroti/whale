@@ -48,9 +48,12 @@ export function navegacao() {
 
   nav.innerHTML =
   `
-  <a href="home.html" class="home">Home</a>
-  <a href="notas.html" class="notas">Notas</a>
-  <a href="despesas.html" class="despesas">Despesas</a>
+  <div style="display: flex; gap: 10px; padding-left: 10px;">
+    <a href="home.html" class="home">Home</a>
+    <a href="notas.html" class="notas">Notas</a>
+    <a href="despesas.html" class="despesas">Despesas</a>
+  </div>
+  <a href="https://zcastroti.github.io/portfolio/" style="margin-right: 30px;">By Guilherme Castro</a>
   `
 }
 
