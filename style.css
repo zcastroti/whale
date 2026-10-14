@@ -45,13 +45,15 @@ nav {
     padding-left: 20px; 
     box-shadow: 0 4px #00000026; }
 
-nav a { 
+nav a {
+    border-radius: 8px 20px;
     padding: 10px;
     color: white; }
 
 nav a:hover {
-    transition: 1s;
     background: #28282869;
+    transition: 1s;
+    
     transform: translateY(2px); }
 
 .destaque { background: #282828; }
@@ -97,9 +99,10 @@ button {
     background: #e2e2e2;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     border: 1px solid #cccccc; 
-    transition: all 0.2s ease-in-out;}
+    transition: all 0.4s ease-in-out;}
 button:hover { 
     background: #e2e8f0;
+    color: #3a5280;
     border-color: #94a3b8; }
 
 label { font-size: 15px;  }
@@ -206,15 +209,13 @@ tbody tr:hover {
 
 .headModal { 
     width: 100%;
-    border-bottom: solid 1px #e2e2e2;
     display: flex; align-items: center; justify-content: space-between; 
     padding: 10px; }
 .headModal h1 {
-    color: #1e293b;
+    color: #1f3f5b;
     display: flex; align-items: center; gap: 10px;
-    font-size: 18px; 
+    font-size: 20px; 
     font-weight: bold; }
-
 .bodyModal { 
     display: flex; flex-direction: column; gap: 10px; 
     padding: 10px;}
@@ -277,13 +278,22 @@ tbody tr:hover {
 
 
 
-
-@media screen and (max-width: 600px) {
-    main, nav, .overlay { display: none; }
-
-}
-
-@media screen and (max-height: 600px) {
-    main, nav, .overlay { display: none; }
-
+.bloqueioBackground {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #9797ff;
+    background: url(img2.jpg) repeat;
+    
+    color: #fffb25;
+    text-shadow: 4px 3px 3px black;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
