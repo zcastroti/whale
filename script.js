@@ -53,7 +53,7 @@ export function navegacao() {
     <a href="notas.html" class="notas">Notas</a>
     <a href="despesas.html" class="despesas">Despesas</a>
   </div>
-  <a href="https://zcastroti.github.io/portfolio/" style="margin-right: 30px;">By Guilherme Castro</a>
+  <a target="_blank" href="https://zcastroti.github.io/portfolio/" style="margin-right: 30px;">By Guilherme Castro</a>
   `
 }
 
@@ -197,36 +197,3 @@ export function paginarTabela(tabelaREF, itensPorPagina = 10) {
     // Executa a primeira vez para aplicar a paginação inicial
     atualizarExibicao()
 }
-
-
-
-function verificarTamanhoTela() {
-    const larguraJanela = window.innerWidth;
-    const alturaJanela = window.innerHeight;
-
-    // Procura se o aviso já existe na tela
-    let bloqueioBackground = document.querySelector('.bloqueioBackground');
-
-    // Se a tela for menor que 600px em largura ou altura
-    if (larguraJanela < 600 || alturaJanela < 500) {
-        // Se o aviso ainda não existe, cria ele
-        if (!bloqueioBackground) {
-            bloqueioBackground = document.createElement('div');
-            bloqueioBackground.classList.add('bloqueioBackground');
-            bloqueioBackground.innerHTML = 'Com esse tamanho de tela não dá!';
-            document.body.prepend(bloqueioBackground);
-        }
-        bloqueioBackground.style.display = 'flex'; // Mostra o aviso
-    } else {
-        // Se a tela estiver ok, remove o aviso caso ele exista
-        if (bloqueioBackground) {
-            bloqueioBackground.remove();
-        }
-    }
-}
-
-// Executa assim que a página carrega
-window.addEventListener('load', verificarTamanhoTela);
-
-// Executa sempre que a janela for redimensionada
-window.addEventListener('resize', verificarTamanhoTela);

@@ -46,17 +46,13 @@ nav {
     box-shadow: 0 4px #00000026; }
 
 nav a {
-    border-radius: 8px 20px;
     padding: 10px;
     color: white; }
 
 nav a:hover {
-    background: #28282869;
+    background: #2828282d;
     transition: 1s;
-    
     transform: translateY(2px); }
-
-.destaque { background: #282828; }
 
 /*--------------------
     Main
@@ -151,7 +147,6 @@ tbody tr:hover {
     right: 10px;
     padding: 20px;
     border-radius: 5px;
-    border-left: 4px solid #77a6ff; /* Detalhe lateral elegante em azul */
     background: #cee2f7; 
     animation: deslizarDireita 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
@@ -276,24 +271,29 @@ tbody tr:hover {
 
 
 
+.bloco {
+    width: 100%;
+    padding: 26px 30px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #eef6ff, #ffffff);
+    border: 1px solid #d7e8fa;
+    color: #243447;
+    box-shadow: 0 4px 14px #0000000f; }
 
-
-.bloqueioBackground {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #9797ff;
-    background: url(img2.jpg) repeat;
-    
-    color: #fffb25;
-    text-shadow: 4px 3px 3px black;
-    font-size: 18px;
+.bloco h1 { 
+    font-size: 26px;
     font-weight: bold;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+    color: #1f3f5b; }
+
+
+.bloco p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #536575;
 }
+
+.bloco .txtImportante { 
+    font-size: 13px;
+    font-weight: bold;
+    color: #3578b8;
+    letter-spacing: 0.5px; }

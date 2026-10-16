@@ -9,54 +9,24 @@
 </head>
 <body>
     <main class="conteudo">
-    <br>
-        <div style="
-    width: 100%;
-    box-sizing: border-box;
-    padding: 26px 30px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #eef6ff, #ffffff);
-    border: 1px solid #d7e8fa;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #243447;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-">
 
-    <div style="
-        font-size: 13px;
-        font-weight: bold;
-        color: #3578b8;
-        letter-spacing: 0.5px;
-        margin-bottom: 8px;
-    ">
-         AVISO IMPORTANTE
-    </div>
+        <div class="bloco">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div><a href="" ></a>
+                    <h1>Bem-vindo ao Whale!</h1>
+                    <p>Controle suas anotações e despesas!</p>
+                </div>
+                <img src="ico-whale.png" width="100px">
+            </div>
+        </div>
 
-    <div style="
-        font-size: 26px;
-        font-weight: bold;
-        color: #1f3f5b;
-        margin-bottom: 10px;
-    ">
-        Bem-vindo ao Whale!
-    </div>
+        <br>
+        <div class="bloco" style="max-width: 360px;">
+            <h1>Dólar Hoje</h1>
+            <p id="valor-dolar"></p>
+            <p id="data-atualizacao"></p>
+        </div>
 
-    <div style="
-        font-size: 16px;
-        line-height: 1.6;
-        color: #536575;
-        margin-bottom: 18px;
-    ">
-Controle suas anotações e despesas!
-        <br></div>
-
-
-
-</div>
-    <br>
-
-
-        
         <div class="botoesFooter">
             <button class="btnEncerrarSessao">Encerrar Sessão <i class="fa-solid fa-right-from-bracket"></i></button>
         </div>
@@ -64,16 +34,44 @@ Controle suas anotações e despesas!
 
     <style>
         main { padding: 85px 60px; }
-
-
-
-
     </style>
 
 
+    <!-- Carregar Dólar -->
+    <script>
+    async function buscarCotacaoDolar() {
+        try {
+            // Requisição para a API gratuita da AwesomeAPI
+            const resposta = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL');
+            const dados = await resposta.json();
+            
+            // Acessa os dados do Dólar para Real
+            const dolar = dados.USDBRL;
+            const valorBid = parseFloat(dolar.bid).toFixed(2); // Valor atual de compra
+            const dataFormatada = dolar.create_date;
+
+            // Formata o valor para o padrão brasileiro (troca ponto por vírgula)
+            const valorFormatado = `R$ ${valorBid.replace('.', ',')}`;
+
+            // Insere os dados nos elementos HTML
+            document.getElementById('valor-dolar').innerText = valorFormatado;
+            document.getElementById('data-atualizacao').innerText = `Atualizado em: ${dataFormatada}`;
+        } catch (erro) {
+            console.error('Erro ao buscar cotação:', erro);
+            alerta('Erro ao carregar valor do dólar!')
+        }
+    }
+
+    // Chama a função assim que a página carrega
+    buscarCotacaoDolar();
+    </script>
+
+
     <script type="module" src="home.js"></script>
-    <script src="bloqueio.js"></script>
     <script src="https://kit.fontawesome.com/ac3bdc8044.js" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
 

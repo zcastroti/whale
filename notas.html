@@ -45,8 +45,6 @@
             transform: translateY(-1px); }
 
         .categoriaAtiva {
-            background: #94a3b8;
-            color: #ffffff;
             border-color: #6980ab; }
 
         .menuNotas {
@@ -58,28 +56,22 @@
             padding: 10px; 
             padding-bottom: 120px; }
 
-        @media screen and (max-width: 790px) { 
-            .menuNotas { grid-template-columns: repeat(3, 1fr); } 
-            .categoriaNotas { max-width: 450px; }
-            .botoes { flex-wrap: wrap; }
-        }
-
         .nota {
+            display: flex; align-items: center; justify-content: center;
             width: 170px;
             padding: 10px;
-            display: flex; align-items: center; justify-content: center;
             cursor: pointer;
-            background: #ffffff;
+            background: white;
             border-radius: 8px;
-            border: 1px solid #e2e8f0; 
+            border: 1px solid #d7e8fa; 
             box-shadow: 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008; 
             transition: all 0.2s ease-in-out; }
 
         .nota:hover {
             background: #f1f5f9;
-            transform: translateY(-1px);
             border-color: #cbd5e1;
-            box-shadow: 0 10px 15px -3px #00000014, 0 4px 6px -2px #0000000a; }
+            box-shadow: 0 10px 15px -3px #00000014, 0 4px 6px -2px #0000000a; 
+            transform: translateY(-1px); }
 
         .editor {
             background: #e9f0f9;

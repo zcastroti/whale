@@ -15,7 +15,6 @@ import {
 import { navegacao , gerarIdentificador , modal , alerta , loop, removeLoop } from './script.js'
 
 navegacao()
-document.querySelector('.notas').classList.add('destaque')
 
 const USUARIO = localStorage.getItem('usuario')
 if (!USUARIO) window.location.href = 'index.html'

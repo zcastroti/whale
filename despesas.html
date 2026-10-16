@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -27,23 +27,22 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px; }
-        @media screen and (max-width: 750px) { .meses { grid-template-columns: repeat(3, 1fr); } }
 
         .mes {
-            display: flex;  flex-flow: column; align-items: center; gap: 5px;
+            display: flex; align-items: center; flex-flow: column; gap: 5px;
             padding: 25px 30px;
             cursor: pointer;
             background: white;
             border-radius: 8px;
-            border: 1px solid #e2f0e5;
+            border: 1px solid #d7e8fa;
             box-shadow: 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008; /* Sombra elegante estilo Tailwind */
             transition: all 0.2s ease-in-out; /* Transição suave para interações */ }
         
-        .mes:hover { 
-            transform: translateY(-1px);
+        .mes:hover {
             background: #f1f5f9;
             border-color: #cbd5e1;
-            box-shadow: 0 10px 15px -3px #00000014, 0 4px 6px -2px #0000000a; }
+            box-shadow: 0 10px 15px -3px #00000014, 0 4px 6px -2px #0000000a; 
+            transform: translateY(-1px); }
 
         .tabela-container { width: 100%; }
 

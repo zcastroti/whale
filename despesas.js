@@ -16,8 +16,6 @@ import {
 import { navegacao , gerarIdentificador , modal , alerta , loop, removeLoop, loopTempo, paginarTabela } from './script.js'
 
 navegacao()
-document.querySelector('.despesas')?.classList.add('destaque')
-
 const USUARIO = localStorage.getItem('usuario')
 if (!USUARIO) window.location.href = 'index.html'
 
@@ -87,7 +85,6 @@ function exibirMeses() {
     const mesElemento = e.target.closest('.mes')
 
     if (!mesElemento) return
-
     let usuarioREF = doc(db, "usuarios", USUARIO)
     
     loop()
@@ -104,7 +101,6 @@ function exibirMeses() {
 }
 
 async function carregarQtdDespesas() {
-
   let usuarioREF = doc(db, "usuarios", USUARIO)
     
   loop()
@@ -114,116 +110,93 @@ async function carregarQtdDespesas() {
   let dados = consulta.data()
   let ano = dados.anoDespesas || "2026"
 
+  loop()
 
   // Total Janeiro
   let colecaoJaneiro = collection(db, "usuarios", USUARIO, "despesas", ano, 'Janeiro')
-  loop()
   let despesasJaneiro = await getDocs(colecaoJaneiro)
-  removeLoop()
   let totalJaneiro = 0
   despesasJaneiro.forEach( () => { totalJaneiro = totalJaneiro + 1 })
   document.querySelector('.totalJaneiro').innerHTML = `${totalJaneiro} Despesas`
 
-
   // Total Fevereiro
   let colecaoFevereiro = collection(db, "usuarios", USUARIO, "despesas", ano, 'Fevereiro')
-  loop()
   let despesasFevereiro = await getDocs(colecaoFevereiro)
-  removeLoop()
   let totalFevereiro = 0
   despesasFevereiro.forEach( () => { totalFevereiro = totalFevereiro + 1 })
   document.querySelector('.totalFevereiro').innerHTML = `${totalFevereiro} Despesas`
 
   // Total Março
   let colecaoMarço = collection(db, "usuarios", USUARIO, "despesas", ano, 'Março')
-  loop()
   let despesasMarço = await getDocs(colecaoMarço)
-  removeLoop()
   let totalMarço = 0
   despesasMarço.forEach( () => { totalMarço = totalMarço + 1 })
   document.querySelector('.totalMarço').innerHTML = `${totalMarço} Despesas`
 
   // Total Abril
   let colecaoAbril = collection(db, "usuarios", USUARIO, "despesas", ano, 'Abril')
-  loop()
   let despesasAbril = await getDocs(colecaoAbril)
-  removeLoop()
   let totalAbril = 0
   despesasAbril.forEach( () => { totalAbril = totalAbril + 1 })
   document.querySelector('.totalAbril').innerHTML = `${totalAbril} Despesas`
 
   // Total Maio
   let colecaoMaio = collection(db, "usuarios", USUARIO, "despesas", ano, 'Maio')
-  loop()
   let despesasMaio = await getDocs(colecaoMaio)
-  removeLoop()
   let totalMaio = 0
   despesasMaio.forEach( () => { totalMaio = totalMaio + 1 })
   document.querySelector('.totalMaio').innerHTML = `${totalMaio} Despesas`
 
   // Total Junho
   let colecaoJunho = collection(db, "usuarios", USUARIO, "despesas", ano, 'Junho')
-  loop()
   let despesasJunho = await getDocs(colecaoJunho)
-  removeLoop()
   let totalJunho = 0
   despesasJunho.forEach( () => { totalJunho = totalJunho + 1 })
   document.querySelector('.totalJunho').innerHTML = `${totalJunho} Despesas`
 
   // Total Julho
   let colecaoJulho = collection(db, "usuarios", USUARIO, "despesas", ano, 'Julho')
-  loop()
   let despesasJulho = await getDocs(colecaoJulho)
-  removeLoop()
   let totalJulho = 0
   despesasJulho.forEach( () => { totalJulho = totalJulho + 1 })
   document.querySelector('.totalJulho').innerHTML = `${totalJulho} Despesas`
 
   // Total Agosto
   let colecaoAgosto = collection(db, "usuarios", USUARIO, "despesas", ano, 'Agosto')
-  loop()
   let despesasAgosto = await getDocs(colecaoAgosto)
-  removeLoop()
   let totalAgosto = 0
   despesasAgosto.forEach( () => { totalAgosto = totalAgosto + 1 })
   document.querySelector('.totalAgosto').innerHTML = `${totalAgosto} Despesas`
 
   // Total Setembro
   let colecaoSetembro = collection(db, "usuarios", USUARIO, "despesas", ano, 'Setembro')
-  loop()
   let despesasSetembro = await getDocs(colecaoSetembro)
-  removeLoop()
   let totalSetembro = 0
   despesasSetembro.forEach( () => { totalSetembro = totalSetembro + 1 })
   document.querySelector('.totalSetembro').innerHTML = `${totalSetembro} Despesas`
 
   // Total Outubro
   let colecaoOutubro = collection(db, "usuarios", USUARIO, "despesas", ano, 'Outubro')
-  loop()
   let despesasOutubro = await getDocs(colecaoOutubro)
-  removeLoop()
   let totalOutubro = 0
   despesasOutubro.forEach( () => { totalOutubro = totalOutubro + 1 })
   document.querySelector('.totalOutubro').innerHTML = `${totalOutubro} Despesas`
 
   // Total Novembro
   let colecaoNovembro = collection(db, "usuarios", USUARIO, "despesas", ano, 'Novembro')
-  loop()
   let despesasNovembro = await getDocs(colecaoNovembro)
-  removeLoop()
   let totalNovembro = 0
   despesasNovembro.forEach( () => { totalNovembro = totalNovembro + 1 })
   document.querySelector('.totalNovembro').innerHTML = `${totalNovembro} Despesas`
 
   // Total Dezembro
   let colecaoDezembro = collection(db, "usuarios", USUARIO, "despesas", ano, 'Dezembro')
-  loop()
   let despesasDezembro = await getDocs(colecaoDezembro)
-  removeLoop()
   let totalDezembro = 0
   despesasDezembro.forEach( () => { totalDezembro = totalDezembro + 1 })
   document.querySelector('.totalDezembro').innerHTML = `${totalDezembro} Despesas`
-
+  
+  removeLoop()
 }
 
 async function listarDespesas(a, m) {
@@ -231,9 +204,7 @@ async function listarDespesas(a, m) {
   let mes = m
 
   let despesasREF = collection(db, "usuarios", USUARIO, "despesas", ano, mes)
-  let consultaPorStatus = query(despesasREF, 
-    orderBy("status", "desc", orderBy("diaVencimento", "asc"))
-  )
+  let consultaPorStatus = query(despesasREF, orderBy("status", "desc", orderBy("diaVencimento", "asc")))
 
   loop()
   let querySnapshot = await getDocs(consultaPorStatus)
@@ -252,16 +223,11 @@ async function listarDespesas(a, m) {
   `
 
   let tbody = document.querySelector('tbody')
-  let totalGeral = 0
-  let totalPendente = 0
-  let totalPago = 0
 
   if (!querySnapshot.empty) {
     querySnapshot.forEach(docSnap => {
       let dados = docSnap.data()
       let tr = document.createElement('tr')
-
-      totalGeral = Number((totalGeral + Number(dados.valor)).toFixed(2))
 
       let numMes
       if (mes == 'Janeiro') { numMes = 1 }
@@ -283,10 +249,7 @@ async function listarDespesas(a, m) {
       
       if (dados.status == "Pago") { 
         tr.classList.add('pago')
-        totalPago = Number((totalPago + Number(dados.valor)).toFixed(2))
       }
-
-      totalPendente = Number((totalGeral - Number(totalPago)).toFixed(2))
 
       tr.innerHTML = 
       `
