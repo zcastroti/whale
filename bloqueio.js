@@ -11,7 +11,6 @@ function TestaSeAbriuDevToolsEBloqueia() {
 
     if (depois - antes > tempoMinimoQueOUsuarioLevaParaResponderEmMilisegundos) {
         document.querySelector("html").remove();
-        localStorage.removeItem('usuario')
     }
     else {
         setTimeout(()=> { TestaSeAbriuDevToolsEBloqueia(); }, 1000);
