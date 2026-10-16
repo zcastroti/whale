@@ -3,7 +3,6 @@
 (function () { setTimeout(()=> { TestaSeAbriuDevToolsEBloqueia(); }, 1000); })();
 
 function TestaSeAbriuDevToolsEBloqueia() {
-    localStorage.removeItem('usuario')
     const tempoMinimoQueOUsuarioLevaParaResponderEmMilisegundos = 100;
     const antes = new Date();
     
@@ -12,6 +11,7 @@ function TestaSeAbriuDevToolsEBloqueia() {
 
     if (depois - antes > tempoMinimoQueOUsuarioLevaParaResponderEmMilisegundos) {
         document.querySelector("html").remove();
+        localStorage.removeItem('usuario')
     }
     else {
         setTimeout(()=> { TestaSeAbriuDevToolsEBloqueia(); }, 1000);
