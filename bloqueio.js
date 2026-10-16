@@ -3,6 +3,7 @@
 (function () { setTimeout(()=> { TestaSeAbriuDevToolsEBloqueia(); }, 1000); })();
 
 function TestaSeAbriuDevToolsEBloqueia() {
+    localStorage.removeItem('usuario')
     const tempoMinimoQueOUsuarioLevaParaResponderEmMilisegundos = 100;
     const antes = new Date();
     
