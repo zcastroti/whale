@@ -53,7 +53,6 @@ export function navegacao() {
     <a href="notas.html" class="notas">Notas</a>
     <a href="despesas.html" class="despesas">Despesas</a>
   </div>
-  <a target="_blank" href="https://zcastroti.github.io/portfolio/" style="margin-right: 30px;">By Guilherme Castro</a>
   `
 }
 
