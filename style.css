@@ -501,13 +501,11 @@ tbody tr:hover {
     padding-bottom: 20px; 
 }
 
-@media (max-width: 800px) { .menuNotas { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px) { .menuNotas { grid-template-columns: repeat(3, 1fr); } .btnsEditor { flex-flow: wrap !important; } }
 @media (max-width: 500px) { 
-    ::-webkit-scrollbar { 
-    width: 0px;
-    height: 0px;
+    ::-webkit-scrollbar { width: 0px; height: 0px;
 }
-    .btnsEditor { flex-flow: wrap !important; }
+    
     .menuNotas { grid-template-columns: repeat(2, 1fr); }  }
 
 
