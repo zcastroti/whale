@@ -679,7 +679,7 @@ async function abrirNota(id) {
     <div class="editor" contenteditable="true">
         ${dados.conteudo || ''}
     </div>
-    <div class="botoes" style=" display: flex; gap: 10px; ">
+    <div class="botoes btnsEditor" style=" display: flex; gap: 10px; ">
         <button class='btnSalvarNota'>Salvar <i class="fa-solid fa-sd-card"></i></button>
         <button class='btnRenomearNota'>Renomear <i class="fa-solid fa-feather"></i></button>
         <button class='btnDeletarNota'>Deletar <i class="fa-solid fa-trash"></i></button>

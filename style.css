@@ -34,7 +34,7 @@ html, body {
 a { 
     cursor: pointer;
     text-decoration: none; 
-    color: #3b82f6; 
+    color: #475569; 
 }
 
 b { 
@@ -77,8 +77,8 @@ nav a {
 }
 
 nav a:hover, nav a.active {
-    background: #eff6ff;
-    color: #2563eb;
+    background: #f1f5f9;
+    color: #0f172a;
 }
 
 /*--------------------
@@ -107,7 +107,7 @@ button {
     gap: 8px;
     height: 44px; 
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 input, select {
@@ -120,8 +120,8 @@ input, select {
 }
 
 input:focus, select:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    border-color: #64748b;
+    box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.15);
 }
 
 select { 
@@ -139,15 +139,15 @@ button {
     padding: 0 16px;
     border: none;
     color: #ffffff;
-    background: #2563eb;
+    background: #334155;
     font-weight: 600;
-    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 2px 4px rgba(51, 65, 85, 0.2);
     transition: all 0.2s ease;
     justify-content: center;
 }
 
 button:hover { 
-    background: #1d4ed8;
+    background: #1e293b;
     transform: translateY(-1px);
 }
 
@@ -218,7 +218,7 @@ tbody tr:hover {
 .btnsPaginacaoTabela button {
     height: 34px;
     padding: 0 12px;
-    font-size: 13px;
+    font-size: 15px;
     background: #f1f5f9;
     color: #475569;
     box-shadow: none;
@@ -229,7 +229,7 @@ tbody tr:hover {
 }
 
 .nomePagina {
-    font-size: 13px;
+    font-size: 15px;
     color: #64748b;
     font-weight: 500;
 }
@@ -291,7 +291,7 @@ tbody tr:hover {
     position: fixed;
     z-index: 201;
     overflow-y: auto;
-    width: 100%;
+    width: 95%;
     max-width: 700px;
     max-height: 90vh;
     background: #ffffff;
@@ -330,7 +330,7 @@ tbody tr:hover {
     padding: 0 10px;
     background: #f1f5f9;
     color: #64748b;
-    font-size: 12px;
+    font-size: 15px;
     box-shadow: none;
 }
 .headModal button:hover {
@@ -348,7 +348,7 @@ tbody tr:hover {
 .footerModal { 
     display: flex; 
     height: 4px; 
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    background: linear-gradient(90deg, #334155, #94a3b8);
 }
 
 /*--------------------------
@@ -391,16 +391,16 @@ tbody tr:hover {
     grid-column: span 10 !important;
 }
 
-.pago > td { color: #16a34a !important; font-weight: 500; }
-.pendente > td { color: #dc2626 ; font-weight: 500; }
+.pago > td { color: #427655 !important; font-weight: 500; }
+.pendente > td { color: #c92c2c; font-weight: 500; }
 
 /*--------------------------
     Identificador
 ---------------------------*/
 .identificador {
     font-size: 11px;
-    background: #eff6ff;
-    color: #2563eb;
+    background: #f1f5f9;
+    color: #475569;
     padding: 4px 8px;
     border-radius: 6px;
     font-weight: 600;
@@ -449,22 +449,22 @@ tbody tr:hover {
 }
 
 .bloco p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.5;
     color: #64748b;
 }
 
-.bloco .txtImportante { 
-    font-size: 12px;
-    font-weight: 600;
-    color: #2563eb;
-    letter-spacing: 0.3px; 
-}
+.bloco span { 
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 500; }
 
 /* Específicos para ecrãs de Meses e Notas */
 .meses {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px; 
     padding-bottom: 20px;
 }
@@ -487,7 +487,7 @@ tbody tr:hover {
 }
 
 .mes:hover {
-    border-color: #3b82f6;
+    border-color: #94a3b8;
     background: #f8fafc;
     transform: translateY(-2px); 
 }
@@ -501,12 +501,16 @@ tbody tr:hover {
     padding-bottom: 20px; 
 }
 
-@media (max-width: 800px) { .menuNotas { grid-template-columns: repeat(3, 1fr); } .btnsEditor { flex-flow: wrap !important; } }
-@media (max-width: 500px) { 
-    ::-webkit-scrollbar { width: 0px; height: 0px;
+@media (max-width: 800px) 
+{ 
+    .menuNotas { grid-template-columns: repeat(3, 1fr); } 
+    .btnsEditor { flex-flow: wrap !important; } 
 }
+
+@media (max-width: 500px) 
+{ ::-webkit-scrollbar { width: 0px; height: 0px; }
     
-    .menuNotas { grid-template-columns: repeat(2, 1fr); }  }
+.menuNotas { grid-template-columns: repeat(2, 1fr); }  }
 
 
 
@@ -527,7 +531,7 @@ tbody tr:hover {
 }
 
 .nota:hover {
-    border-color: #3b82f6;
+    border-color: #94a3b8;
     background: #f8fafc;
     transform: translateY(-2px); 
 }
@@ -560,19 +564,23 @@ tbody tr:hover {
 }
 
 .categoriaAtiva {
-    background: #2563eb !important;
-    border-color: #2563eb !important;
+    background: #334155 !important;
+    border-color: #334155 !important;
     color: #ffffff !important; 
 }
 
 .editor {
     background: #f8fafc;
     border: solid 1px #e2e8f0;
-    border-radius: 12px;
     overflow-y: auto;
-    height: 300px;
+    height: 320px;
     padding: 12px; 
-    font-size: 14px;
+    font-size: 15px;
+}
+
+@media (max-height: 550px) 
+{
+    .editor { height: 170px; }
 }
 
 /* Específico para a página de Login (index.html) */
