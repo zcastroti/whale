@@ -204,7 +204,7 @@ async function listarDespesas(a, m) {
   let mes = m
 
   let despesasREF = collection(db, "usuarios", USUARIO, "despesas", ano, mes)
-  let consultaPorStatus = query(despesasREF, orderBy("status", "desc", orderBy("diaVencimento", "asc")))
+  let consultaPorStatus = query(despesasREF, orderBy("diaVencimento", "asc"))
 
   loop()
   let querySnapshot = await getDocs(consultaPorStatus)
@@ -215,7 +215,7 @@ async function listarDespesas(a, m) {
   `
   <div class="container">
     <div class="tabela-container" style="flex: 1;">
-      <table class="tabelaDespesas">
+      <table class="tabelaDespesas" style="border-radius: 0px;">
         <tbody></tbody>
       </table>
     </div>
@@ -277,7 +277,7 @@ async function listarDespesas(a, m) {
 
       tbody.appendChild(tr)
     })
-    paginarTabela('.tabelaDespesas' , 5)
+    
 
 
   } else { tbody.innerHTML = `<tr><td colspan="5">Nenhuma despesa em ${mes}</td></tr>` }
