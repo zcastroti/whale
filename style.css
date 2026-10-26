@@ -140,7 +140,7 @@ button {
     border: none;
     color: #ffffff;
     background: #334155;
-    font-weight: 600;
+    font-weight: 500;
     box-shadow: 0 2px 4px rgba(51, 65, 85, 0.2);
     transition: all 0.2s ease;
     justify-content: center;
@@ -431,10 +431,7 @@ tbody tr:hover {
     z-index: 90;
     box-sizing: border-box;
 }
-.botoesFooter button { 
-    height: 46px; 
-    font-size: 14px;
-}
+.botoesFooter button { font-size: 14px; }
 
 /*--------------------------
     Blocos & Cards
