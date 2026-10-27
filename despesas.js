@@ -204,7 +204,7 @@ async function listarDespesas(a, m) {
   let mes = m
 
   let despesasREF = collection(db, "usuarios", USUARIO, "despesas", ano, mes)
-  let consultaPorStatus = query(despesasREF, orderBy("diaVencimento", "asc"))
+  let consultaPorStatus = query(despesasREF, orderBy("status", "desc"))
 
   loop()
   let querySnapshot = await getDocs(consultaPorStatus)
@@ -213,6 +213,12 @@ async function listarDespesas(a, m) {
   modal(`${mes} de ${ano}` , 800) 
   document.querySelector('.bodyModal').innerHTML = 
   `
+  <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 15px;">
+    <p class='vTotal'>Total: <strong>R$ 0,00</strong></p>
+    <p class='vPendente'>Pendente: <strong>R$ 0,00</strong></p>
+    <p class='vPago'>Pago: <strong>R$ 0,00</strong></p>
+  </div>
+
   <div class="container">
     <div class="tabela-container" style="flex: 1;">
       <table class="tabelaDespesas" style="border-radius: 0px;">
@@ -224,10 +230,19 @@ async function listarDespesas(a, m) {
 
   let tbody = document.querySelector('tbody')
 
+  // 1. Variáveis acumuladoras para os totais
+  let totalGeral = 0
+  let totalPago = 0
+  let totalPendente = 0
+
   if (!querySnapshot.empty) {
     querySnapshot.forEach(docSnap => {
       let dados = docSnap.data()
       let tr = document.createElement('tr')
+
+
+      // Soma no total geral
+      totalGeral += Number(dados.valor)
 
       let numMes
       if (mes == 'Janeiro') { numMes = 1 }
@@ -247,8 +262,12 @@ async function listarDespesas(a, m) {
       if (numMes < mesAtual) { tr.classList.add('pendente') }
       if (numMes <= mesAtual && dados.diaVencimento < diaAtual) { tr.classList.add('pendente') }
       
+      // Classificação de Pago vs Pendente para os totais
       if (dados.status == "Pago") { 
         tr.classList.add('pago')
+        totalPago += Number(dados.valor) // Soma no total pago
+      } else {
+        totalPendente += Number(dados.valor) // Soma no total pendente
       }
 
       tr.innerHTML = 
@@ -258,8 +277,8 @@ async function listarDespesas(a, m) {
           <div style="display: flex; flex-flow: column; gap: 5px;">
             <p>${dados.nome}</p>
             <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px;">
-              <p style="font-size: 13px; width: 130px;"><i class="fa-solid fa-calendar-day"></i> Vencimento: ${dados.diaVencimento}</p>
-              <p style="font-size: 13px;"><i class="fa-solid fa-clone"></i> Parcela: ${dados.parcela}</p>
+              <p title='Vencimento' style="font-size: 13px; width: 40px;"><i class="fa-solid fa-calendar-day"></i> ${dados.diaVencimento}</p>
+              <p title='Parcela' style="font-size: 13px;"><i class="fa-solid fa-clone"></i> ${dados.parcela}</p>
             </div>
           </div>
           
@@ -277,10 +296,15 @@ async function listarDespesas(a, m) {
 
       tbody.appendChild(tr)
     })
-    
 
+    // 2. Atualiza os elementos na tela formatando para moeda brasileira (R$)
+    document.querySelector('.vTotal').innerHTML = `Total: <strong>${totalGeral.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>`
+    document.querySelector('.vPendente').innerHTML = `Pendente: <strong>${totalPendente.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>`
+    document.querySelector('.vPago').innerHTML = `Pago: <strong>${totalPago.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>`
 
-  } else { tbody.innerHTML = `<tr><td colspan="5">Nenhuma despesa em ${mes}</td></tr>` }
+  } else { 
+    tbody.innerHTML = `<tr><td colspan="5">Nenhuma despesa em ${mes}</td></tr>` 
+  }
 
   adicionarDespesa(a, m)
 }

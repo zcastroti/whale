@@ -172,7 +172,7 @@ label {
 }
 @media (max-height: 550px)
 { 
-    .tabela-container { max-height: 200px;}
+    .tabela-container { max-height: 160px;}
 }
 
 table {
@@ -199,7 +199,7 @@ td {
     padding: 12px;
     color: #1e293b;
     border-bottom: 1px solid #f1f5f9;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 tbody tr:last-child td {

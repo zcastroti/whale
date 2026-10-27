@@ -21,9 +21,14 @@
         </div>
 
         <div class="bloco">
-            <h1>Dólar Hoje</h1>
-            <span id="valor-dolar"></span>
-            <p id="data-atualizacao"></p>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; flex-flow: column;">
+                    <h1>Dólar Hoje</h1>
+                    <p id="data-atualizacao"></p>
+                </div> 
+                <span id="valor-dolar" style="font-size: 20px;"></span>
+            </div>
+            
         </div>
 
 
@@ -47,14 +52,22 @@
             // Acessa os dados do Dólar para Real
             const dolar = dados.USDBRL;
             const valorBid = parseFloat(dolar.bid).toFixed(2); // Valor atual de compra
-            const dataFormatada = dolar.create_date;
+            const dataFormatada = dolar.create_date; // 2026-10-26 19:30:15
+            
+            let dia = dataFormatada.slice(8,10)
+            let mes = dataFormatada.slice(5,7)
+            let ano = dataFormatada.slice(0,4)
+            let hora = dataFormatada.slice(11,13)
+            let minuto = dataFormatada.slice(14,16)
+
+            let dataFinal = `${dia}/${mes}/${ano} às ${hora}:${minuto}`
 
             // Formata o valor para o padrão brasileiro (troca ponto por vírgula)
             const valorFormatado = `R$ ${valorBid.replace('.', ',')}`;
 
             // Insere os dados nos elementos HTML
             document.getElementById('valor-dolar').innerText = valorFormatado;
-            document.getElementById('data-atualizacao').innerText = `Atualizado em: ${dataFormatada}`;
+            document.getElementById('data-atualizacao').innerText = `Atualizado em ${dataFinal}`;
         } catch (erro) {
             console.error('Erro ao buscar cotação:', erro);
             alerta('Erro ao carregar valor do dólar!')
