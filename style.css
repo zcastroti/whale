@@ -175,6 +175,11 @@ label {
     .tabela-container { max-height: 140px;}
 }
 
+@media (min-height: 700px) 
+{
+    .tabela-container { max-height: 400px;}
+}
+
 table {
     width: 100%;
     border-collapse: separate;
