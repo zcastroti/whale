@@ -177,7 +177,7 @@ label {
 
 @media (min-height: 700px) 
 {
-    .tabela-container { max-height: 400px;}
+    .tabela-container { max-height: 550px;}
 }
 
 table {
@@ -595,7 +595,7 @@ tbody tr:hover {
 
 @media (min-height: 700px) 
 {
-    .editor { height: 400px; }
+    .editor { height: 550px; }
 }
 
 /* Específico para a página de Login (index.html) */
