@@ -590,7 +590,7 @@ tbody tr:hover {
 
 @media (min-height: 700px) 
 {
-    .editor { height: 450px; }
+    .editor { height: 400px; }
 }
 
 /* Específico para a página de Login (index.html) */
