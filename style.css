@@ -12,7 +12,7 @@
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #94a3b8;
     border-radius: 4px;
 }
 
@@ -26,7 +26,7 @@
 html, body {
     width: 100%;
     height: 100%;
-    background: #f8fafc;
+    background: #e2e8f0; /* Cinza claro suave */
     color: #1e293b;
     -webkit-font-smoothing: antialiased;
 }
@@ -60,16 +60,16 @@ nav {
     left: 0;
     width: 100%;
     height: 60px;
-    background: #ffffff;
+    background: #f1f5f9;
     padding: 0 16px; 
-    border-bottom: 1px solid #e2e8f0;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid #cbd5e1;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
     z-index: 100;
 }
 
 nav a {
     padding: 8px 14px;
-    color: #64748b;
+    color: #475569;
     font-weight: 500;
     font-size: 14px;
     border-radius: 8px;
@@ -77,7 +77,7 @@ nav a {
 }
 
 nav a:hover, nav a.active {
-    background: #f1f5f9;
+    background: #e2e8f0;
     color: #0f172a;
 }
 
@@ -115,39 +115,39 @@ input, select {
     color: #1e293b;
     padding: 0 14px;
     border: solid 1px #cbd5e1;
-    background: #ffffff;
+    background: #f8fafc;
     transition: all 0.2s ease;
 }
 
 input:focus, select:focus {
-    border-color: #64748b;
-    box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.15);
+    border-color: #475569;
+    box-shadow: 0 0 0 3px rgba(71, 85, 105, 0.15);
 }
 
 select { 
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 16px;
     padding-right: 36px;
 }
-option { color: #1e293b; }
+option { color: #1e293b; background: #f8fafc; }
 
 button {
     cursor: pointer;
     padding: 0 16px;
     border: none;
     color: #ffffff;
-    background: #334155;
+    background: #475569;
     font-weight: 500;
-    box-shadow: 0 2px 4px rgba(51, 65, 85, 0.2);
+    box-shadow: 0 2px 4px rgba(71, 85, 105, 0.2);
     transition: all 0.2s ease;
     justify-content: center;
 }
 
 button:hover { 
-    background: #1e293b;
+    background: #334155;
     transform: translateY(-1px);
 }
 
@@ -158,7 +158,7 @@ button:active {
 label { 
     font-size: 13px;  
     font-weight: 600;
-    color: #475569;
+    color: #334155;
     margin-bottom: 2px;
 }
 
@@ -179,17 +179,17 @@ table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    background: white;
+    background: #f1f5f9;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    border: 1px solid #e2e8f0; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #cbd5e1; 
 }
 
 th { 
-    color: #475569;
+    color: #334155;
     padding: 12px;
-    background: #f1f5f9;
+    background: #e2e8f0;
     font-weight: 600;
     font-size: 13px;
     text-align: left; 
@@ -198,7 +198,7 @@ th {
 td { 
     padding: 12px;
     color: #1e293b;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid #cbd5e1;
     font-size: 15px;
 }
 
@@ -207,11 +207,11 @@ tbody tr:last-child td {
 }
 
 tbody tr:nth-child(even) { 
-    background-color: #f8fafc; 
+    background-color: #e9eff5; 
 }
 
 tbody tr:hover {
-    background-color: #f1f5f9; 
+    background-color: #e2e8f0; 
 }
 
 .btnsPaginacaoTabela { 
@@ -219,28 +219,28 @@ tbody tr:hover {
     display: flex; 
     align-items: center; 
     justify-content: space-between;
-    background: #ffffff;
+    background: #f1f5f9;
     padding: 8px 12px;
     border-radius: 10px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #cbd5e1;
 }
 
 .btnsPaginacaoTabela button {
     height: 34px;
     padding: 0 12px;
     font-size: 15px;
-    background: #f1f5f9;
-    color: #475569;
+    background: #e2e8f0;
+    color: #334155;
     box-shadow: none;
 }
 .btnsPaginacaoTabela button:hover {
-    background: #e2e8f0;
-    color: #1e293b;
+    background: #cbd5e1;
+    color: #0f172a;
 }
 
 .nomePagina {
     font-size: 15px;
-    color: #64748b;
+    color: #475569;
     font-weight: 500; }
 
 /*--------------------
@@ -257,7 +257,7 @@ tbody tr:hover {
     right: 16px;
     padding: 14px 16px;
     border-radius: 12px;
-    background: #1e293b; 
+    background: #334155; 
     color: #ffffff;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     font-size: 14px;
@@ -287,13 +287,13 @@ tbody tr:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(2px);
     z-index: 200; 
 }
 
 /*--------------------
-    Modal (Estilo Bottom Sheet em Mobile)
+    Modal
 --------------------*/
 .modal {
     position: fixed;
@@ -302,7 +302,7 @@ tbody tr:hover {
     width: 95%;
     max-width: 700px;
     max-height: 90vh;
-    background: #ffffff;
+    background: #f1f5f9;
     border-radius: 20px 20px 0 0; 
     box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.1); 
     animation: subirModal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
@@ -323,7 +323,7 @@ tbody tr:hover {
     align-items: center; 
     justify-content: space-between; 
     padding: 16px 20px;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid #cbd5e1;
 }
 .headModal h1 {
     color: #0f172a;
@@ -336,13 +336,13 @@ tbody tr:hover {
 .headModal button {
     height: 32px;
     padding: 0 10px;
-    background: #f1f5f9;
-    color: #64748b;
+    background: #e2e8f0;
+    color: #334155;
     font-size: 15px;
     box-shadow: none;
 }
 .headModal button:hover {
-    background: #e2e8f0;
+    background: #cbd5e1;
     color: #0f172a;
 }
 
@@ -356,7 +356,7 @@ tbody tr:hover {
 .footerModal { 
     display: flex; 
     height: 4px; 
-    background: linear-gradient(90deg, #334155, #94a3b8);
+    background: linear-gradient(90deg, #334155, #64748b);
 }
 
 /*--------------------------
@@ -374,7 +374,7 @@ tbody tr:hover {
     width: 100%;
     height: 100%;
     z-index: 9999;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(241, 245, 249, 0.8);
     backdrop-filter: blur(2px);
 }
 .gif { 
@@ -399,16 +399,16 @@ tbody tr:hover {
     grid-column: span 10 !important;
 }
 
-.pago > td { color: #427655 !important; font-weight: 500; }
-.pendente > td { color: #c92c2c; font-weight: 500; }
+.pago > td { color: #166534 !important; font-weight: 600; }
+.pendente > td { color: #991b1b; font-weight: 600; }
 
 /*--------------------------
     Identificador
 ---------------------------*/
 .identificador {
     font-size: 11px;
-    background: #f1f5f9;
-    color: #475569;
+    background: #e2e8f0;
+    color: #334155;
     padding: 4px 8px;
     border-radius: 6px;
     font-weight: 600;
@@ -425,9 +425,9 @@ tbody tr:hover {
     display: flex; 
     gap: 10px;
     padding: 20px 16px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(241, 245, 249, 0.9);
     backdrop-filter: blur(10px);
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid #cbd5e1;
     z-index: 90;
     box-sizing: border-box;
 }
@@ -440,10 +440,10 @@ tbody tr:hover {
     width: 100%;
     padding: 20px;
     border-radius: 16px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
     color: #1e293b;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02); 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03); 
 }
 
 .bloco h1 { 
@@ -456,11 +456,11 @@ tbody tr:hover {
 .bloco p {
     font-size: 15px;
     line-height: 1.5;
-    color: #64748b;
+    color: #475569;
 }
 
 .bloco span { 
-    background: #f1f5f9;
+    background: #e2e8f0;
     color: #0f172a;
     padding: 4px 8px;
     border-radius: 6px;
@@ -484,20 +484,20 @@ tbody tr:hover {
     gap: 8px;
     padding: 16px;
     cursor: pointer;
-    background: white;
+    background: #f1f5f9;
     border-radius: 14px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #cbd5e1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     transition: all 0.2s ease; 
 }
 
 .mes:hover {
     border-color: #94a3b8;
-    background: #f8fafc;
+    background: #e9eff5;
     transform: translateY(-2px); 
 }
 
-.btnEditarDespesa { box-shadow: none;  color: #0f172a;}
+.btnEditarDespesa { box-shadow: none; color: #0f172a; }
 
 .menuNotas {
     display: grid;
@@ -517,8 +517,6 @@ tbody tr:hover {
     
 .menuNotas { grid-template-columns: repeat(2, 1fr); }  }
 
-
-
 .nota {
     display: flex; 
     align-items: center; 
@@ -527,17 +525,18 @@ tbody tr:hover {
     min-height: 60px;
     padding: 14px;
     cursor: pointer;
-    background: white;
+    background: #f1f5f9;
     border-radius: 14px;
-    border: 1px solid #e2e8f0; 
+    border: 1px solid #cbd5e1; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); 
     transition: all 0.2s ease; 
     font-weight: 500;
+    color: #1e293b;
 }
 
 .nota:hover {
     border-color: #94a3b8;
-    background: #f8fafc;
+    background: #e9eff5;
     transform: translateY(-2px); 
 }
 
@@ -553,18 +552,18 @@ tbody tr:hover {
 .categoria { 
     cursor: pointer;
     padding: 6px 12px;
-    background: #ffffff;
+    background: #f1f5f9;
     border-radius: 20px;
-    border: 1px solid #e2e8f0; 
+    border: 1px solid #cbd5e1; 
     font-size: 13px;
     font-weight: 500;
-    color: #64748b;
+    color: #475569;
     transition: all 0.2s ease;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02); 
 }
 
 .categoria:hover {
-    background: #f1f5f9;
+    background: #e2e8f0;
     color: #1e293b; 
 }
 
@@ -576,11 +575,12 @@ tbody tr:hover {
 
 .editor {
     background: #f8fafc;
-    border: solid 1px #e2e8f0;
+    border: solid 1px #cbd5e1;
     overflow-y: auto;
     height: 320px;
     padding: 12px; 
     font-size: 15px;
+    color: #1e293b;
 }
 
 @media (max-height: 550px) 
@@ -602,10 +602,10 @@ body:has(.imgWhale) section {
     gap: 12px;
     width: 100%;
     max-width: 340px;
-    background: #ffffff;
+    background: #f1f5f9;
     padding: 24px;
     border-radius: 20px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #cbd5e1;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
 
