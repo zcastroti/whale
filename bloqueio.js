@@ -1,5 +1,5 @@
 
-
+/*
 (function () { setTimeout(()=> { TestaSeAbriuDevToolsEBloqueia(); }, 1000); })();
 
 function TestaSeAbriuDevToolsEBloqueia() {
@@ -16,6 +16,3 @@ function TestaSeAbriuDevToolsEBloqueia() {
         setTimeout(()=> { TestaSeAbriuDevToolsEBloqueia(); }, 1000);
     }
 }
-
-
-
