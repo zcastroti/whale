@@ -210,18 +210,18 @@ async function listarDespesas(a, m) {
   let querySnapshot = await getDocs(consultaPorStatus)
   removeLoop()
 
-  modal(`${mes} de ${ano}` , 800) 
+  modal(`<i class="fa-solid fa-calendar-week"></i> ${mes} de ${ano}` , 800) 
   document.querySelector('.bodyModal').innerHTML = 
   `
-  <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 15px;">
+  <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
     <p class='vTotal'>Total: <strong>R$ 0,00</strong></p>
     <p class='vPendente'>Pendente: <strong>R$ 0,00</strong></p>
     <p class='vPago'>Pago: <strong>R$ 0,00</strong></p>
   </div>
 
   <div class="container">
-    <div class="tabela-container" style="flex: 1;">
-      <table class="tabelaDespesas" style="border-radius: 0px;">
+    <div class="tabela-container scroll" style="flex: 1; border-top: solid 1px #cbd5e1; border-bottom: solid 1px #cbd5e1; ">
+      <table class="tabelaDespesas" style="border-radius: 0px; border-top: solid 0px; border-bottom: solid 0px; ">
         <tbody></tbody>
       </table>
     </div>
@@ -239,7 +239,6 @@ async function listarDespesas(a, m) {
     querySnapshot.forEach(docSnap => {
       let dados = docSnap.data()
       let tr = document.createElement('tr')
-
 
       // Soma no total geral
       totalGeral += Number(dados.valor)
@@ -317,12 +316,15 @@ function adicionarDespesa(a, m) {
   botoes.classList.add('botoes')
   botoes.innerHTML =
   `
-  <button class="btnAddDespesa">Adicionar Despesa <i class="fa-solid fa-circle-plus"></i></button>
+    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+      <button class="btnAddDespesa">Adicionar Despesa <i class="fa-solid fa-circle-plus"></i></button>
+      <button class="btnImportarExcel" style="background: #166534;">Importar Excel <i class="fa-solid fa-file-excel"></i></button>
+    </div>
   `
   document.querySelector('.bodyModal').appendChild(botoes)
 
+  // 1. Botão Adicionar Manual
   let btnAdicionarDespesa = document.querySelector('.btnAddDespesa')
-
   btnAdicionarDespesa.onclick = ()=> {
     modal("Adicionar Despesa" , 600)
     document.querySelector('.fecharModal').style.display = 'none'
@@ -356,13 +358,12 @@ function adicionarDespesa(a, m) {
     </div>
     `
 
-    // Cancelar
     document.querySelector('.btnCancelar').onclick = ()=> {
       document.querySelector('.modal')?.remove()
       document.querySelector('.overlay')?.remove()
-      listarDespesas(ano, mes) }
+      listarDespesas(ano, mes) 
+    }
 
-    // Confirmar
     document.querySelector('.btnConfirmar').onclick = async ()=> {
       let nome = document.querySelector('.nome').value.trim()
       let valor = document.querySelector('.valor').value.trim()
@@ -371,12 +372,14 @@ function adicionarDespesa(a, m) {
       let obs = document.querySelector('.obs').value.trim()
 
       if (!nome || !valor || !diaVencimento) {
-        alerta('Nome valor e dia do vencimento são obrigatórios!') 
-        return }
+        alerta('Nome, valor e dia do vencimento são obrigatórios!') 
+        return 
+      }
 
       if (diaVencimento > 31 || diaVencimento < 1) {
         alerta('Dia de vencimento inválido!') 
-        return }
+        return 
+      }
     
       let id = gerarIdentificador()
       let despesaREF = doc(db, "usuarios", USUARIO, "despesas", ano, mes, id)
@@ -399,6 +402,85 @@ function adicionarDespesa(a, m) {
       removeLoop()
       alerta('Despesa cadastrada com sucesso!')
     }
+  }
+
+  // 2. Botão Importar Excel
+  let btnImportarExcel = document.querySelector('.btnImportarExcel')
+  btnImportarExcel.onclick = () => {
+    let inputInvisivel = document.createElement('input')
+    inputInvisivel.type = 'file'
+    inputInvisivel.accept = '.xlsx, .xls, .csv'
+
+    inputInvisivel.onchange = async (e) => {
+      let arquivo = e.target.files[0]
+      if (!arquivo) return
+
+      let leitor = new FileReader()
+      leitor.onload = async (event) => {
+        try {
+          let dadosBinarios = new Uint8Array(event.target.result)
+          let workbook = XLSX.read(dadosBinarios, { type: 'array' })
+
+          let nomePrimeiraPlanilha = workbook.SheetNames[0]
+          let worksheet = workbook.Sheets[nomePrimeiraPlanilha]
+          let listaDespesasExcel = XLSX.utils.sheet_to_json(worksheet)
+
+          if (listaDespesasExcel.length === 0) {
+            alerta('A planilha está vazia!')
+            return
+          }
+
+          loop()
+          let contadorSucesso = 0
+
+          for (let item of listaDespesasExcel) {
+            let nome = String(item.Nome || item.nome || item.DESPESA || '').trim()
+            let valor = Number(item.Valor || item.valor || item.VALOR || 0)
+            let diaVencimento = Number(item.Vencimento || item.vencimento || item.Dia || item.dia || 1)
+            let parcela = String(item.Parcela || item.parcela || '0')
+            let obs = String(item.Obs || item.obs || item.Observação || '')
+
+            if (nome !== '' && !isNaN(valor) && valor > 0) {
+              let id = gerarIdentificador()
+              let despesaREF = doc(db, "usuarios", USUARIO, "despesas", ano, mes, id)
+
+              await setDoc(despesaREF, {
+                nome: nome,
+                valor: valor,
+                diaVencimento: diaVencimento,
+                parcela: parcela,
+                obs: obs,
+                status: "Pendente"
+              })
+              contadorSucesso++
+            }
+          }
+
+          removeLoop()
+
+          if (contadorSucesso === 0) {
+            alerta('Nenhuma despesa válida foi encontrada na planilha.')
+            return
+          }
+
+          document.querySelector('.modal')?.remove()
+          document.querySelector('.overlay')?.remove()
+
+          await listarDespesas(ano, mes)
+          carregarQtdDespesas()
+          alerta(`${contadorSucesso} despesas importadas com sucesso!`)
+
+        } catch (erro) {
+          removeLoop()
+          console.error(erro)
+          alerta('Erro ao processar o arquivo Excel.')
+        }
+      }
+
+      leitor.readAsArrayBuffer(arquivo)
+    }
+
+    inputInvisivel.click()
   }
 }
 

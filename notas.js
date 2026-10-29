@@ -676,7 +676,7 @@ async function abrirNota(id) {
     modal(`<p class='identificador'>${notaREF.id}</p>`+ dados.nome)
     document.querySelector('.bodyModal').innerHTML =
     `
-    <div class="editor" contenteditable="true">
+    <div class="editor scroll" contenteditable="true">
         ${dados.conteudo || ''}
     </div>
     <div class="botoes btnsEditor" style=" display: flex; gap: 10px; ">
