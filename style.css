@@ -495,17 +495,22 @@ tbody tr:hover {
 .btnEditarDespesa { box-shadow: none; color: #0f172a; }
 
 .menuNotas {
+    padding: 10px;
+    overflow-y: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    padding-bottom: 20px; }
+    gap: 12px; }
 
 @media (max-width: 800px) { 
     .menuNotas { grid-template-columns: repeat(3, 1fr); } 
-    .btnsEditor { flex-flow: wrap !important; } }
+    .btnsEditor { flex-flow: wrap !important; } 
+    .menuNotas { max-width: 100%; }
+}
 
 @media (max-width: 500px) { 
-    .menuNotas { grid-template-columns: repeat(2, 1fr); }  }
+    .menuNotas { grid-template-columns: repeat(2, 1fr); }  
+
+}
 
 .nota {
     display: flex; 
@@ -567,13 +572,11 @@ tbody tr:hover {
     color: #1e293b;
 }
 
-@media (max-height: 550px) 
-{
+@media (max-height: 550px) {
     .editor { height: 170px; }
 }
 
-@media (min-height: 700px) 
-{
+@media (min-height: 700px) {
     .editor { height: 550px; }
 }
 
